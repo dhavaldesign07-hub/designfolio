@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 2147223386">
+<path id="DesignFolio" d="M16.0897 27C17.7051 27 19.3803 26.8533 20.7564 25.9733C22.2821 25.0347 22.9701 23.4213 23 21.2213V11.4533C23 9.34133 22.6709 7.2 20.6368 6.02667C18.9316 5.05867 16.6282 5 14.7137 5H9V27H16.0897ZM14.265 8.96C16.8376 9.01867 17.7051 9.16533 17.735 11.7467V18.9333C17.8248 21.8667 17.7949 23.2747 14.265 23.04V8.96Z" fill="url(#paint0_linear_87_2045)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_87_2045" x1="16.3895" y1="33.0618" x2="33.9949" y2="-31.1945" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0B53EF"/>
+<stop offset="1" stop-color="#FA9472"/>
+</linearGradient>
+</defs>
+</svg>

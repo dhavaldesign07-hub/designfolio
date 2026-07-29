@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="Header/Favicon.svg">
+<title>Airtel DTH &amp; Companion App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Airtel DTH & Companion App — Figma node 73:2879 (1920 / 1280 content)
+   ============================================================ */
+:root{--paper:#FBF7EF;--red:#FF4C4C;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden}
+img{display:block;max-width:100%}
+body{background:var(--paper);font-family:'Bricolage Grotesque',system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap-wide{max-width:1600px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+/* HEADER */
+header{height:108px;background:var(--paper);}
+.hd{height:108px;display:flex;align-items:center;justify-content:space-between;}
+.logo{width:189.878px;height:37.56px;flex:0 0 auto;}
+.logo img{width:100%;height:100%;object-fit:contain}
+.hd-contact{font-weight:600;font-size:16px;line-height:28px;color:#000;text-align:right;}
+
+/* HERO (red) */
+.dth-hero{background:var(--red);position:relative;overflow:hidden;height:980px;}
+.hero-back{position:absolute;top:40px;left:clamp(20px,5.2vw,100px);width:48px;height:48px;z-index:5;display:block;}
+.hero-back img{width:100%;height:100%;display:block;}
+.dth-title{position:absolute;top:86px;left:50%;transform:translateX(-50%);width:100%;text-align:center;
+  font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(40px,6.35vw,122px);line-height:normal;color:#FFADAD;white-space:nowrap;}
+.dth-hero-frame{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:min(1134px,84%);}
+.dth-hero-frame img{width:100%;height:auto;display:block;}
+
+/* META BAND (red) */
+.metaband{background:var(--red);padding:clamp(32px,4vw,56px) 0;}
+.meta{border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.5);
+  display:grid;grid-template-columns:repeat(4,1fr);}
+.meta-col{padding:30px 32px;}
+.meta-col + .meta-col{border-left:1px solid rgba(255,255,255,.5);}
+.meta-col .lbl{font-family:'Inter',sans-serif;font-weight:400;font-size:20px;color:#fff;margin-bottom:16px;}
+.meta-col .val{font-family:'Inter',sans-serif;font-weight:700;font-size:20px;color:#FBF7EF;line-height:1;display:flex;flex-direction:column;gap:12px;}
+
+/* PROBLEM / MY ROLE / OUTCOME cards */
+.cards3{padding-top:100px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+.card3{background:#EBE7DF;border:1px solid #364689;border-radius:12px;padding:20px 28px 19px 24px;}
+.card3 h3{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(30px,3.1vw,40px);color:var(--red);margin-bottom:14px;}
+.card3 p{font-family:'Bricolage Grotesque';font-weight:400;font-size:clamp(18px,1.9vw,24px);line-height:normal;color:#676767;}
+
+/* DARK BLOCK */
+.dark{background:linear-gradient(180deg,#250606 0%,#191919 58%);border-radius:24px;color:#fff;overflow:hidden;
+  padding:57px clamp(28px,4.6vw,60px);margin-top:100px;}
+.dark-tag{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(28px,3.1vw,40px);color:#FBF7EF;}
+.dark-hero-img{border-radius:23px;overflow:hidden;margin:40px 0 60px;}
+.dark-hero-img img{width:100%;height:auto;display:block;}
+.dark-groups{display:flex;flex-direction:column;gap:40px;}
+.dg h3{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(28px,3.1vw,40px);color:#fff;margin-bottom:14px;}
+.dg p{font-family:'Bricolage Grotesque';font-weight:400;font-size:clamp(18px,1.9vw,24px);line-height:normal;color:#BCBBBB;max-width:1160px;}
+
+/* ADD CHANNEL ON TV */
+.tvsec{margin-top:100px;}
+.tvsec h2{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(30px,3.1vw,40px);color:#191919;margin-bottom:71px;}
+.tv-screens{max-width:976px;display:flex;flex-direction:column;gap:32px;}
+.tv-screens .shot{border:1px solid #F2FF9F;border-radius:24px;overflow:hidden;}
+.tv-screens .shot img{width:100%;height:auto;display:block;}
+
+/* APP phones (Add Channel on App) */
+.app-phones{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,40px);margin:40px 0 0;max-width:900px;}
+.app-phones .p{border:1px solid #F2FF9F;border-radius:24px;overflow:hidden;}
+.app-phones .p img{width:100%;height:auto;display:block;}
+
+/* Reminder phones (Schedule & Reminder) */
+.rem-title{margin-top:64px;}
+.rem-flow{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:clamp(6px,1vw,14px);margin-top:32px;}
+.rem-item{display:flex;flex-direction:column;align-items:center;gap:16px;flex:1 1 0;min-width:0;}
+.rem-item .p{border:0.764px solid #F2FF9F;border-radius:18px;overflow:hidden;width:100%;}
+.rem-item .p img{width:100%;height:auto;display:block;}
+.rem-item .cap{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(12px,1.3vw,18px);color:#fff;text-align:center;}
+.rem-arrow{align-self:center;color:#F2FF9F;font-size:clamp(15px,2vw,26px);line-height:1;flex:0 0 auto;}
+
+/* FOOTER */
+.foot{margin-top:96px;padding-bottom:33px;}
+.foot-line{height:1px;background:#000;width:100%;}
+.foot-contact{min-height:100px;padding:24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(16px,2.2vw,24px);line-height:1.3;color:#000;text-align:center;}
+
+/* responsive */
+@media(max-width:1000px){
+  .dth-hero{height:auto;padding:150px 0 0;}
+  .dth-title{position:static;transform:none;white-space:normal;padding:0 16px;}
+  .dth-hero-frame{position:static;transform:none;width:100%;max-width:760px;margin:40px auto 0;}
+  .cards3{grid-template-columns:1fr;gap:24px;padding-top:64px;}
+  .rem-arrow{display:none;}
+  .rem-flow{flex-wrap:wrap;gap:24px;justify-content:center;}
+  .rem-item{flex:0 0 44%;}
+}
+@media(max-width:640px){
+  .meta{grid-template-columns:1fr 1fr;}
+  .meta-col{padding:24px;}
+  .meta-col + .meta-col{border-left:none;}
+  .meta-col:nth-child(2n){border-left:1px solid rgba(255,255,255,.5);}
+  .meta-col:nth-child(n+3){border-top:1px solid rgba(255,255,255,.5);}
+  .app-phones{grid-template-columns:1fr;max-width:320px;}
+  .hd-contact{font-size:clamp(11px,2.4vw,16px)}
+  .rem-item{width:100%;}
+}
+@media(min-width:641px){.foot-contact{flex-flow:row wrap;gap:0;font-size:clamp(16px,1.8vw,22px);}.foot-contact span{white-space:nowrap;}.foot-contact span:nth-child(2)::before{content:"\2192";margin:0 10px;}.foot-contact span:nth-child(3)::before{content:"|";margin:0 10px;font-weight:400;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap-wide hd">
+    <a class="logo" href="index.html"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="dth-hero">
+  <a class="hero-back" href="index.html" aria-label="Back to home"><img src="Header/back%20arrow.svg" alt="Back"></a>
+  <h1 class="dth-title">Airtel DTH &amp; Companion App</h1>
+  <div class="dth-hero-frame"><img src="Hero%20Banner/hero_banner_airtel_dth_crop.webp" alt="Airtel DTH TV and companion app"></div>
+</section>
+
+<!-- META BAND -->
+<div class="metaband">
+  <div class="wrap">
+    <div class="meta">
+      <div class="meta-col"><div class="lbl">MY ROLE</div><div class="val"><span>UI Design</span><span>Design System</span><span>Usability Testing</span><span>Prototyping</span></div></div>
+      <div class="meta-col"><div class="lbl">PLATFORM</div><div class="val"><span>Mobile App</span></div></div>
+      <div class="meta-col"><div class="lbl">TEAM</div><div class="val"><span>UX Designers</span><span>SME</span></div></div>
+      <div class="meta-col"><div class="lbl">DOMAIN</div><div class="val"><span>Fintech</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM / MY ROLE / OUTCOME -->
+<div class="wrap">
+  <div class="cards3">
+    <div class="card3"><h3>Problem</h3><p>Redesign the electronic programme guide, create the mobile-to-TV experience and design the subscription experience on TV</p></div>
+    <div class="card3"><h3>My Role</h3><p>I led the design and testing of the TV UI, using moderated usability testing.</p></div>
+    <div class="card3"><h3>Outcome</h3><p>1.5x increase in Airtel DTH’s user base</p></div>
+  </div>
+</div>
+
+<!-- EPG DARK BLOCK -->
+<div class="wrap">
+  <section class="dark">
+    <div class="dark-tag">EPG</div>
+    <div class="dark-hero-img"><img src="Airtel%20DTH/Image-EPG.webp" alt="EPG redesign"></div>
+    <div class="dark-groups">
+      <div class="dg"><h3>EPG&nbsp;&nbsp;Redesign</h3><p>Revamped the Electronic Programme Guide (EPG) in Figma to boost usability and engagement</p></div>
+      <div class="dg"><h3>Language Identification</h3><p>Enabled quick recognition of available languages for enhanced accessibility</p></div>
+      <div class="dg"><h3>Added&nbsp;&nbsp;Features</h3><p>Integrated "Add to Favorites," "Set Reminder," "Record Show," and "Catch Up on Previous Episodes" for improved user control and convenience.</p></div>
+      <div class="dg"><h3>Impact</h3><p>The improved user experience contributed to a 1.5x increase in Airtel DTH s user base, showcasing the tangible value of thoughtful design and user-centered testing methodologies.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ADD CHANNEL ON TV -->
+<div class="wrap">
+  <section class="tvsec">
+    <h2>Add Channel on TV</h2>
+    <div class="tv-screens">
+      <div class="shot"><img src="Airtel%20DTH/image%20add%20channel%20-%201.webp" alt="Add Channel"></div>
+      <div class="shot"><img src="Airtel%20DTH/image%20add%20channel%20-%202.webp" alt="Hindi Entertainment Pack"></div>
+      <div class="shot"><img src="Airtel%20DTH/image%20add%20channel%20-%203.webp" alt="Hindi Entertainment Pack pop-up"></div>
+      <div class="shot"><img src="Airtel%20DTH/image%20add%20channel%20-%204.webp" alt="Add Channel confirmation pop-up"></div>
+      <div class="shot"><img src="Airtel%20DTH/image%20add%20channel%20-%205.webp" alt="Channel requested pop-up"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ADD CHANNEL ON APP DARK BLOCK -->
+<div class="wrap">
+  <section class="dark">
+    <div class="dg"><h3>Add Channel on App</h3><p>A three-tap path from discovering a channel to confirming the ₹18/month add-on, with a clear pricing</p></div>
+    <div class="app-phones">
+      <div class="p"><img src="Airtel%20DTH/image%20add%20channel%20on%20app%20-%201.webp" alt="Sampling screen — add channel"></div>
+      <div class="p"><img src="Airtel%20DTH/image%20add%20channel%20on%20app%20-%202.webp" alt="Select the set top box"></div>
+      <div class="p"><img src="Airtel%20DTH/image%20add%20channel%20on%20app%20-%203.webp" alt="Channel added"></div>
+    </div>
+
+    <div class="dark-tag rem-title">Schedule &amp; Reminder</div>
+    <div class="rem-flow">
+      <div class="rem-item"><div class="p"><img src="Airtel%20DTH/Image%20set%20reminder%20-%201.webp" alt="Set Reminder"></div><div class="cap">Set Reminder</div></div>
+      <div class="rem-arrow">&rarr;</div>
+      <div class="rem-item"><div class="p"><img src="Airtel%20DTH/Image%20set%20reminder%20-%202.webp" alt="Reminder Set"></div><div class="cap">Reminder Set</div></div>
+      <div class="rem-arrow">&rarr;</div>
+      <div class="rem-item"><div class="p"><img src="Airtel%20DTH/Image%20set%20reminder%20-%203.webp" alt="Reminder Removed"></div><div class="cap">Reminder Removed</div></div>
+      <div class="rem-arrow">&rarr;</div>
+      <div class="rem-item"><div class="p"><img src="Airtel%20DTH/Image%20set%20reminder%20-%204.webp" alt="Show will start at 2.00pm"></div><div class="cap">Show will start at 2.00pm</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<div class="wrap foot">
+  <div class="foot-line"></div>
+  <div class="foot-contact"><span>Contact</span><span>dhaval.design07@gmail.com</span><span>+91 95611 16517</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="Header/Favicon.svg">
+<title>5paisa — Marketing Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   5paisa — Figma node 73:2602 (1920 / 1278 content)
+   ============================================================ */
+:root{--paper:#FBF7EF;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden}
+img{display:block;max-width:100%}
+body{background:var(--paper);font-family:'Bricolage Grotesque',system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1278px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap-wide{max-width:1600px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+/* HEADER */
+header{height:108px;background:var(--paper);}
+.hd{height:108px;display:flex;align-items:center;justify-content:space-between;}
+.logo{width:189.878px;height:37.56px;flex:0 0 auto;}
+.logo img{width:100%;height:100%;object-fit:contain}
+.hd-contact{font-weight:600;font-size:16px;line-height:28px;color:#000;text-align:right;}
+
+/* HERO (blue) */
+.hero4{background:#3CA5F6;position:relative;overflow:hidden;}
+.hero4-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;min-height:980px;}
+.hero4-text{flex:0 1 569px;}
+.h4-title{font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(56px,9.5vw,122px);line-height:1;color:#B6D8FF;}
+.h4-sub{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.35;color:#fff;margin-top:28px;}
+.h4-sub p + p{margin-top:1.1em;}
+.hero4-img{flex:0 0 auto;width:862px;max-width:52%;}
+.hero4-img img{width:100%;height:auto;}
+.hero-back{position:absolute;top:40px;left:clamp(20px,5.2vw,100px);width:48px;height:48px;z-index:5;display:block;}
+.hero-back img{width:100%;height:100%;display:block;}
+
+/* ZIG-ZAG BLOCKS */
+.blocks{padding-top:138px;padding-bottom:0;display:flex;flex-direction:column;gap:140px;}
+.block{display:flex;gap:71px;align-items:center;}
+.block.reverse{flex-direction:row-reverse;}
+.b-text{flex:0 0 307px;}
+.b-text h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(30px,3.1vw,40px);color:#000;}
+.b-text p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.35;color:#000;margin-top:20px;}
+.b-img{flex:1 1 0;min-width:0;}
+.b-img img{width:100%;height:auto;}
+
+/* FOOTER */
+.foot{margin-top:120px;padding-bottom:33px;}
+.foot-line{height:1px;background:#000;width:100%;}
+.foot-contact{min-height:100px;padding:24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(16px,2.2vw,24px);line-height:1.3;color:#000;text-align:center;}
+
+/* responsive */
+@media(max-width:900px){
+  .hero4-inner{flex-direction:column;align-items:flex-start;min-height:0;padding-top:70px;padding-bottom:64px;gap:28px;}
+  .hero4-text{flex:none;width:100%;}
+  .hero4-img{width:100%;max-width:560px;align-self:center;}
+  .block,.block.reverse{flex-direction:column;gap:28px;}
+  .b-text{flex:auto;}
+  .b-img{flex:auto;width:100%;}
+  .blocks{padding-top:80px;gap:80px;}
+}
+@media(max-width:640px){.hd-contact{font-size:clamp(11px,2.4vw,16px)}}
+@media(min-width:641px){.foot-contact{flex-flow:row wrap;gap:0;font-size:clamp(16px,1.8vw,22px);}.foot-contact span{white-space:nowrap;}.foot-contact span:nth-child(2)::before{content:"\2192";margin:0 10px;}.foot-contact span:nth-child(3)::before{content:"|";margin:0 10px;font-weight:400;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap-wide hd">
+    <a class="logo" href="index.html"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero4">
+  <a class="hero-back" href="index.html" aria-label="Back to home"><img src="Header/back%20arrow.svg" alt="Back"></a>
+  <div class="wrap-wide hero4-inner">
+    <div class="hero4-text">
+      <div class="h4-title">5paisa</div>
+      <div class="h4-sub">
+        <p>5paisa is an online trading platform that lets investors and traders invest at a lower cost through zero-brokerage and flat per-order pricing.</p>
+        <p>My role was to design the marketing website  landing pages and the sign-up flow with a focus on driving demat-account registrations and improving conversion from visitor to lead.</p>
+      </div>
+    </div>
+    <div class="hero4-img"><img src="5%20Paisa/monitor_hero.webp" alt="5paisa marketing website"></div>
+  </div>
+</section>
+
+<!-- ZIG-ZAG BLOCKS -->
+<div class="wrap blocks">
+
+  <div class="block">
+    <div class="b-text">
+      <h2>Products</h2>
+      <p>An interactive view of all the products i.e. Stocks, Derivatives, Commodities, Currencies, Mutual Funds, Digital Gold, Loans and Insurance.</p>
+    </div>
+    <div class="b-img"><img src="5%20Paisa/Product%20ImageImage-Product.webp" alt="5paisa products"></div>
+  </div>
+
+  <div class="block reverse">
+    <div class="b-text">
+      <h2>Features</h2>
+      <p>Be it Investors or Traders 5paisa helps it’s users starting from building the portfolio  to teaching them about trading and investments</p>
+    </div>
+    <div class="b-img"><img src="5%20Paisa/Image%20Feautres.webp" alt="5paisa features"></div>
+  </div>
+
+  <div class="block">
+    <div class="b-text">
+      <h2>Calculators</h2>
+      <p>Margin Calculator for Equity, Currency and Commodity</p>
+    </div>
+    <div class="b-img"><img src="5%20Paisa/Image%20-%20Calculators.webp" alt="5paisa calculators"></div>
+  </div>
+
+  <div class="block reverse">
+    <div class="b-text">
+      <h2>APIs</h2>
+      <p>5paisa helps the companies to build their own APIs which is flexible with Python, JSON, Golang</p>
+    </div>
+    <div class="b-img"><img src="5%20Paisa/Image%20API.webp" alt="5paisa APIs"></div>
+  </div>
+
+  <div class="block">
+    <div class="b-text">
+      <h2>Fund Screener</h2>
+      <p>List of curated funds to help the user to select the right fund for their investment</p>
+    </div>
+    <div class="b-img"><img src="5%20Paisa/Image%20Fund%20Screener.webp" alt="5paisa fund screener"></div>
+  </div>
+
+  <div class="block reverse">
+    <div class="b-text">
+      <h2>Algo Trading</h2>
+      <p>5paisa Algo Trading helps users to trade with automated advanced trading tools.</p>
+    </div>
+    <div class="b-img"><img src="5%20Paisa/Image%20Algo%20Trading.webp" alt="5paisa algo trading"></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="wrap foot">
+  <div class="foot-line"></div>
+  <div class="foot-contact"><span>Contact</span><span>dhaval.design07@gmail.com</span><span>+91 95611 16517</span></div>
+</div>
+
+</body>
+</html>

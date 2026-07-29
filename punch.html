@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="Header/Favicon.svg">
+<title>Punch — India's 1st Single Screen Trading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Punch case study — Figma node 73:2396 (1920 / 1280 content)
+   ============================================================ */
+:root{--paper:#FBF7EF;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden}
+img{display:block;max-width:100%}
+body{background:var(--paper);font-family:'Bricolage Grotesque',system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap-wide{max-width:1600px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+/* HEADER */
+header{height:108px;background:var(--paper);}
+.hd{height:108px;display:flex;align-items:center;justify-content:space-between;}
+.logo{width:189.878px;height:37.56px;flex:0 0 auto;}
+.logo img{width:100%;height:100%;object-fit:contain}
+
+/* ---------- HERO (coral) ---------- */
+.hero{background:#FF6B4C;position:relative;}
+.hero-back{position:absolute;top:40px;left:clamp(20px,5.2vw,100px);width:48px;height:48px;z-index:5;display:block;}
+.hero-back img{width:100%;height:100%;display:block;}
+.hero-inner{display:flex;align-items:center;justify-content:space-between;min-height:937px;gap:40px;}
+.hero-text{flex:0 1 640px;}
+.hero-big{font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(52px,9.4vw,122.33px);line-height:.786em;color:#FFFC99;}
+.hero-sub{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.35;color:#fff;max-width:569px;margin-top:44px;}
+.hero-phone{flex:0 0 auto;height:800px;aspect-ratio:540/1212;border:3px solid #FFCC00;border-radius:24px;overflow:hidden;margin-right:130px;background:#0c0f1a;}
+.hero-phone img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* meta band */
+.meta{border-top:1px solid rgba(255,255,255,.4);border-bottom:1px solid rgba(255,255,255,.4);
+  display:grid;grid-template-columns:repeat(4,1fr);margin-top:55px;}
+.meta-col{padding:30px 32px;}
+.meta-col + .meta-col{border-left:1px solid rgba(255,255,255,.4);}
+.meta-col .lbl{font-family:'Inter',sans-serif;font-weight:400;font-size:20px;color:#fff;margin-bottom:16px;}
+.meta-col .val{font-family:'Inter',sans-serif;font-weight:700;font-size:20px;color:#FBF7EF;line-height:1.6;}
+.hero .pad{padding-bottom:55px;}
+
+/* ---------- CHALLENGE ---------- */
+.challenge{background:linear-gradient(180deg,#23293D,#000);border-radius:24px;margin-top:100px;overflow:hidden;
+  display:flex;align-items:center;gap:40px;padding:55px 80px;min-height:728px;}
+.challenge .c-text{flex:1;}
+.challenge h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:40px;color:#fff;}
+.challenge p{font-family:'Inter',sans-serif;font-weight:400;font-size:24px;line-height:1.4;color:#E9E9E9;max-width:501px;margin-top:20px;}
+.challenge .c-phone{flex:0 0 auto;width:267px;margin-right:160px;}
+.challenge .c-phone img{width:100%;border:1px solid #fff;border-radius:12px;}
+
+/* ---------- NARRATIVE ---------- */
+.sec{margin-top:120px;}
+.sec h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(30px,3.1vw,40px);color:#000;}
+.sec h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(20px,1.9vw,24px);color:#000;margin-top:32px;}
+.sec p,.sec li{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,20px);line-height:1.4;color:#423F3F;}
+.sec p{margin-top:16px;}
+.sec h2 + h3,.sec h3 + h3{margin-top:16px;}
+.sec ul{margin:16px 0 0 30px;}
+.sec li{margin-bottom:6px;}
+.rule{height:1px;background:#D9D5CC;margin-top:80px;}
+/* exact design gaps */
+.mt80{margin-top:80px!important}.mt100{margin-top:100px!important}.mt135{margin-top:135px!important}
+.g26{margin-top:26px!important}.g36{margin-top:36px!important}.g52{margin-top:52px!important}
+.g60{margin-top:60px!important}.g73{margin-top:73px!important}
+
+/* comparison pair (two phones) */
+.pair2{display:grid;grid-template-columns:1fr 1fr;gap:139px;margin-top:48px;align-items:start;}
+.pair2 figure > img{width:100%;height:auto;border-radius:24px;display:block;}
+.pair2 figcaption{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(22px,2.5vw,32px);color:#000;text-align:center;margin-top:27px;}
+.pairbox{aspect-ratio:1138/1456;border-radius:24px;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#040407 0%,#232c4c 55%,#425389 100%);}
+.vphone{height:78%;aspect-ratio:540/1212;border:2px solid #5F5F5F;border-radius:18px;overflow:hidden;background:#0c0f1a;}
+.vphone img,.vphone video{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ---------- DARK FEATURE BLOCK ---------- */
+.feat{background:linear-gradient(180deg,#23293D,#000);border-radius:24px;margin-top:80px;padding:72px clamp(24px,5.8vw,112px);}
+.feat-row{display:flex;align-items:center;justify-content:space-between;gap:60px;padding:56px 0;}
+.feat-row + .feat-row{border-top:1px solid rgba(255,255,255,.18);}
+.feat-text{flex:0 1 501px;}
+.feat-text h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(28px,3.1vw,40px);color:#fff;}
+.feat-text p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.4;color:#E9E9E9;margin-top:20px;}
+.feat-media{flex:0 0 auto;width:268px;border:1px solid #5F5F5F;border-radius:18px;overflow:hidden;background:#0c0f1a;}
+.feat-media img,.feat-media video{width:100%;height:auto;display:block;}
+
+/* ---------- DEVICE GRID (demat flow) ---------- */
+.devices{display:flex;flex-wrap:wrap;justify-content:center;gap:56px;margin-top:100px;}
+.devices .dev{width:326px;max-width:44%;}
+.devices .dev img{width:100%;height:auto;border-radius:20px;box-shadow:-14px 14px 24px rgba(0,0,0,.18);}
+
+/* ---------- ROLE BLOCK ---------- */
+.roleblock{background:var(--paper);border-radius:24px;margin-top:68px;}
+.roleblock .grp{max-width:1127px;margin-bottom:44px;}
+.roleblock .grp:last-child{margin-bottom:0;}
+.roleblock h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(24px,2.5vw,32px);color:#000;margin-bottom:12px;}
+.roleblock p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,20px);line-height:1.4;color:#423F3F;}
+.roleblock p + p{margin-top:1em;}
+
+/* core screens 2x2 */
+.core4{display:grid;grid-template-columns:1fr 1fr;column-gap:142px;row-gap:96px;margin-top:64px;}
+.core4 figure .shot{border:1.238px solid #676B84;border-radius:21.343px;overflow:hidden;background:#0c0f1a;}
+.core4 figure .shot img{width:100%;height:auto;display:block;}
+.core4 figcaption{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(18px,2vw,29.6px);color:#4C4C4C;text-align:center;margin-top:30px;}
+.core4 .off{margin-top:96px;}
+
+/* ---------- PUNCH PAIR (full width) ---------- */
+.pairband{background:linear-gradient(180deg,#526DBE,#281E3C);margin-top:100px;}
+.pairband-inner{display:flex;align-items:center;justify-content:space-between;gap:60px;min-height:728px;padding-top:72px;padding-bottom:72px;}
+.pairband .p-text{flex:0 1 597px;}
+.pairband h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(30px,3.1vw,40px);color:#fff;}
+.pairband p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.4;color:#E9E9E9;margin-top:20px;}
+.pairband .p-img{flex:0 0 auto;width:632px;max-width:50%;}
+.pairband .p-img img{width:100%;height:auto;border-radius:24px;}
+
+/* pair screens stacked */
+.pairshots{max-width:800px;margin:101px auto 0;display:flex;flex-direction:column;gap:77px;}
+.pairshots img{width:100%;height:auto;border-radius:12px;}
+
+/* ---------- FOOTER ---------- */
+.foot{margin-top:99px;padding-bottom:49px;}
+.foot-line{height:1px;background:#000;width:100%;}
+.foot-contact{min-height:100px;padding:24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(16px,2.2vw,24px);line-height:1.3;color:#000;text-align:center;}
+
+/* ---------- responsive ---------- */
+@media(max-width:1100px){
+  .hero-inner{flex-direction:column;align-items:flex-start;min-height:0;padding-top:70px;gap:28px;}
+  .hero-text{flex:none;width:100%;}
+  .hero-phone{height:auto;width:70%;max-width:320px;margin:0 auto;align-self:center;aspect-ratio:540/1212;}
+  .challenge{flex-direction:column;align-items:flex-start;padding:48px;min-height:0;}
+  .challenge .c-phone{width:60%;max-width:267px;align-self:center;margin-right:0;}
+  .feat-row{flex-direction:column;align-items:flex-start;gap:32px;}
+  .feat-text{flex:none;width:100%;}
+  .feat-media{align-self:center;}
+  .pairband-inner{flex-direction:column;align-items:flex-start;min-height:0;gap:40px;}
+  .pairband .p-text{flex:none;width:100%;}
+  .pairband .p-img{width:100%;max-width:640px;align-self:center;}
+  .pair2{gap:32px;}
+  .core4{column-gap:40px;row-gap:56px;}
+  .core4 .off{margin-top:0;}
+}
+@media(max-width:640px){
+  .meta{grid-template-columns:1fr 1fr;}
+  .meta-col{padding:24px;}
+  .meta-col + .meta-col{border-left:none;}
+  .meta-col:nth-child(2n){border-left:1px solid rgba(255,255,255,.4);}
+  .meta-col:nth-child(n+3){border-top:1px solid rgba(255,255,255,.4);}
+  .challenge h2{font-size:30px}.challenge p{font-size:18px}
+  .pair2,.core4{grid-template-columns:1fr;}
+  .devices .dev{max-width:80%;}
+  .devices{gap:32px;}
+  .pairshots{gap:32px;margin-top:56px;}
+}
+@media(min-width:641px){.foot-contact{flex-flow:row wrap;gap:0;font-size:clamp(16px,1.8vw,22px);}.foot-contact span{white-space:nowrap;}.foot-contact span:nth-child(2)::before{content:"\2192";margin:0 10px;}.foot-contact span:nth-child(3)::before{content:"|";margin:0 10px;font-weight:400;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap-wide hd">
+    <a class="logo" href="index.html"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <a class="hero-back" href="index.html" aria-label="Back to home"><img src="Header/back%20arrow.svg" alt="Back"></a>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-big">SINGLE<br>SCREEN<br>TRADING</div>
+        <p class="hero-sub">Designed the Punch options trading app from the ground up, unifying charts, option chain, orders, positions, P&amp;L, and analysis tools into one fluid, single-screen layout. Over 4 years, I worked across multiple projects within Punch including the original 0→1 build, the Punch 2.0 redesign, Punch Pair, and the desktop design system shaping the product as it evolved alongside its users.</p>
+      </div>
+      <div class="hero-phone"><img src="Hero%20Banner/mobile%20gif.gif" alt="Punch single screen trading app"></div>
+    </div>
+    <div class="pad">
+      <div class="meta">
+        <div class="meta-col">
+          <div class="lbl">MY ROLE</div>
+          <div class="val">UI Design<br>Design System<br>Usability Testing<br>Prototyping</div>
+        </div>
+        <div class="meta-col">
+          <div class="lbl">PLATFORM</div>
+          <div class="val">Mobile App</div>
+        </div>
+        <div class="meta-col">
+          <div class="lbl">TEAM</div>
+          <div class="val">UX Designers<br>SME</div>
+        </div>
+        <div class="meta-col">
+          <div class="lbl">DOMAIN</div>
+          <div class="val">Fintech</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGE -->
+<div class="wrap">
+  <section class="challenge">
+    <div class="c-text">
+      <h2>Challenge</h2>
+      <p>Punch started as a single screen mobile app for beginner traders with low capital. As it grew, the real users turned out to be high frequency scalpers trading across mobile and desktop, expecting professional speed and control, not a beginner friendly experience.</p>
+      <p>The brief: transform Punch into a multi device platform, mobile and desktop, built for scalper speed and precision.</p>
+    </div>
+    <div class="c-phone"><img src="Punch%20App/phone_challenge.webp" alt="Punch challenge screen"></div>
+  </section>
+</div>
+
+<!-- PUNCH 1.0 -> 2.0 -->
+<div class="wrap">
+  <section class="sec">
+    <h2>Punch 1.0 → Punch 2.0: Designing for a Maturing User Base</h2>
+    <h3>Overview</h3>
+    <p>Punch launched as a 0→1 product built to bring charting, order execution, positions, and holdings into a single mobile screen for options traders. Over 4 years, the product evolved through continuous research and iteration the most significant shift being the move from Punch 1.0 to Punch 2.0, driven by a clearer understanding of who was actually using the app.</p>
+
+    <h3 class="g60">Insight</h3>
+    <p>As usage data and direct feedback accumulated, a clearer picture of the Punch user emerged: the majority weren't casual or first-time traders. They were seasoned, experienced traders who already understood the market and valued speed and information density over guided simplicity.</p>
+    <p>For this audience, every full screen dedicated to positions or holdings was a screen pulling attention away from the one thing that mattered most the live chart.</p>
+
+    <div class="pair2 g60">
+      <figure>
+        <img src="Punch%20App/Punch%201.0.webp" alt="Punch 1.0">
+        <figcaption>Punch 1.0</figcaption>
+      </figure>
+      <figure>
+        <div class="pairbox"><div class="vphone"><img src="Hero%20Banner/mobile%20gif.gif" alt="Punch 2.0"></div></div>
+        <figcaption>Punch 2.0</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="g60">The Redesign: Punch 2.0</h3>
+    <h3>Overlay cards replace dedicated screens.</h3>
+    <p>Positions, order book, and holdings moved from standalone screens into lightweight overlay cards that surface on top of the live chart on demand. The chart stayed in view at all times the single biggest shift in the redesign — while experienced traders still reached their data in fewer taps than before.</p>
+
+    <div class="rule"></div>
+  </section>
+</div>
+
+<!-- DARK FEATURE BLOCK -->
+<div class="wrap">
+  <section class="feat">
+    <div class="feat-row">
+      <div class="feat-text">
+        <h3>Drag and drop SL/TP on chart</h3>
+        <p>Easily manage your SL/TP from your charts. Set both together without extra margin works for scalping, intraday, and swing.</p>
+      </div>
+      <div class="feat-media"><video src="Punch%20App/drag-drop-sl-tp.mp4" autoplay loop muted playsinline></video></div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-text">
+        <h3>Scalper joystick with preset SL/TP and split charts</h3>
+        <p>Trade index options in 1-tap with automatic SL and Target placement using presets defined by you. Execute orders in 0.01s for serious scalping on mobile.</p>
+      </div>
+      <div class="feat-media"><img src="Punch%20App/scalper%20joystick.webp" alt="Scalper joystick"></div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-text">
+        <h3>Heat-Map view for stock trading</h3>
+        <p>Create unlimited dashboards with full customisations of layouts and widgets</p>
+      </div>
+      <div class="feat-media"><img src="Punch%20App/heatmap%20view.webp" alt="Heat-map view"></div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-text">
+        <h3>Trade from high speed advanced charts</h3>
+        <p>Sophisticated in-house charts that rival TradingView multi-layouts, full indicator customisations, drawing tools. Trade directly from chart with powerful technical analysis.</p>
+      </div>
+      <div class="feat-media"><img src="Punch%20App/split%20chart.webp" alt="Advanced split charts"></div>
+    </div>
+  </section>
+</div>
+
+<!-- MY ROLE / CORE SCREENS / OUTCOME -->
+<div class="wrap">
+  <section class="roleblock">
+    <div class="grp">
+      <h3>My Role</h3>
+      <p>I owned the visual and interaction design across the app. Built a comprehensive component library, design tokens, color system, typography scale, and icon library the building blocks for consistency and speed.</p>
+    </div>
+    <div class="grp">
+      <h3>Core Screens</h3>
+      <p>Designed the widgets layer, order form, option chain, watchlist, P&amp;L section, and premium tabs integrated directly into the chart. Each solved a specific friction point while maintaining sight of the core the chart stayed in view, always.</p>
+    </div>
+    <div class="grp">
+      <h3>Outcome</h3>
+      <p>The clearest signal of impact: the pattern got copied. INDstocks Flash, Upstox Chart360, Groww, Sahi, and Lemonn have since shipped their own versions of single-screen trading, following the structure Punch established first.</p>
+      <p>That reframing became the turning point for the product. Once the trading flow was pared down to only what mattered, trader behavior shifted in a big way people executed trades at a much higher rate, put meaningfully more money on the line, and stayed active well beyond their first session. New user activation surged to almost three times prior levels, both fresh and existing traders showed a marked jump in day-to-day usage, and retention held at rates rarely matched in the category</p>
+    </div>
+  </section>
+</div>
+
+<!-- PUNCH PAIR -->
+<div class="pairband">
+  <div class="wrap pairband-inner">
+    <div class="p-text">
+      <h2>Punch Pair</h2>
+      <p>Punch Pair lets a trader watch charts on their desktop and place trades from their phone at the same time, with both screens kept in sync. The phone becomes a simple, fast “trading remote.” It works only for index trading (NIFTY / SENSEX / BANKNIFTY).</p>
+    </div>
+    <div class="p-img"><img src="Punch%20App/punch_pair.webp" alt="Punch Pair desktop and mobile"></div>
+  </div>
+</div>
+
+<!-- PAIR SCREENS -->
+<div class="wrap">
+  <div class="pairshots">
+    <img src="Punch%20App/Pair%201.webp" alt="Punch Pair screen 1">
+    <img src="Punch%20App/Pair%202.webp" alt="Punch Pair screen 2">
+    <img src="Punch%20App/Pair%203.webp" alt="Punch Pair screen 3">
+    <img src="Punch%20App/Pair%204.webp" alt="Punch Pair screen 4">
+  </div>
+</div>
+
+<!-- WHY IT MATTERS -->
+<div class="wrap">
+  <section class="sec mt135">
+    <h3>Why it matters</h3>
+    <p>Fast traders (scalpers) make most of their money in short bursts. They lose good entries when placing an order takes too many taps, or when they have to keep switching screens. Punch Pair gives them one tap to buy, one tap to sell, one tap to exit and a connection that is either rock-solid or fails clearly and safely. It must never fail silently, and it must never place an order twice.</p>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<div class="wrap foot">
+  <div class="foot-line"></div>
+  <div class="foot-contact"><span>Contact</span><span>dhaval.design07@gmail.com</span><span>+91 95611 16517</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="Header/Favicon.svg">
+<title>Punch — Desktop Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Punch — Desktop Design System — Figma node 73:2475 (1920 / 1280 content)
+   ============================================================ */
+:root{--paper:#FBF7EF;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden}
+img{display:block;max-width:100%}
+body{background:var(--paper);font-family:'Bricolage Grotesque',system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap-wide{max-width:1600px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+/* HEADER */
+header{height:108px;background:var(--paper);}
+.hd{height:108px;display:flex;align-items:center;justify-content:space-between;}
+.logo{width:189.878px;height:37.56px;flex:0 0 auto;}
+.logo img{width:100%;height:100%;object-fit:contain}
+.hd-contact{font-weight:600;font-size:16px;line-height:28px;color:#000;text-align:right;}
+
+/* HERO (purple) */
+.hero3{background:#6D4DF6;position:relative;overflow:hidden;}
+.hero3-inner{position:relative;max-width:1920px;margin:0 auto;aspect-ratio:1920/980;}
+.ds-monitor{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:0;}
+.ds-screen{position:absolute;left:22.6%;top:29.96%;width:54.8%;height:60.39%;overflow:hidden;border-radius:clamp(2px,0.45vw,8px);z-index:1;}
+.ds-screen img{width:100%;height:100%;object-fit:cover;display:block;}
+.ds-title{position:absolute;top:8.7%;left:0;right:0;text-align:center;z-index:2;
+  font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(40px,6.35vw,122px);color:#AD98FF;line-height:1;}
+.hero-back{position:absolute;top:40px;left:clamp(20px,5.2vw,100px);width:48px;height:48px;z-index:5;display:block;}
+.hero-back img{width:100%;height:100%;display:block;}
+
+/* INTRO paragraph */
+.intro{padding-top:64px;padding-bottom:64px;}
+.intro p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,24px);line-height:1.4;color:#000;max-width:1148px;margin:0 auto;text-align:left;}
+.intro p + p{margin-top:1.2em;}
+
+/* MAIN CONTENT panel */
+.panel{background:#E9E9E9;border-radius:24px;padding:80px clamp(24px,7.4vw,95px);}
+.panel-inner{max-width:1090px;margin:0 auto;}
+.ds-sec{margin-bottom:84px;}
+.ds-sec:last-child{margin-bottom:0;}
+.ds-h{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(28px,3.1vw,40px);color:#000;}
+.ds-copy{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,24px);line-height:1.4;color:#000;margin-top:20px;max-width:1052px;}
+.ds-img{width:100%;border-radius:12px;overflow:hidden;margin-top:40px;}
+.ds-img img{width:100%;height:auto;display:block;}
+.ds-sub{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(22px,2.2vw,28px);color:#000;margin-top:40px;}
+.ds-img.left{max-width:765px;}
+.ds-img.left2{max-width:888px;}
+
+/* order form grid — equal width columns so all align */
+.of-wrap{margin-top:24px;}
+.of-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start;}
+.of-row + .of-row{margin-top:28px;}
+.of-row img{width:100%;height:auto;display:block;}
+@media(max-width:640px){
+  .of-row{grid-template-columns:1fr;justify-items:center;}
+  .of-row img{max-width:420px;}
+}
+
+/* IMPACT */
+.impact{padding-top:64px;padding-bottom:64px;}
+.impact h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(30px,3.1vw,40px);color:#000;}
+.impact .copy{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,24px);line-height:1.4;color:#000;margin-top:16px;max-width:1278px;}
+.impact .copy .sp{display:block;height:1em;}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;}
+.stat3{background:#E5E5E5;border:1px solid #364689;border-radius:12px;padding:20px 28px 19px 24px;min-height:200px;}
+.stat3 .n{font-family:'Bricolage Grotesque';font-weight:800;font-size:48px;color:#318AFF;}
+.stat3 .t1{font-family:'Bricolage Grotesque';font-weight:700;font-size:24px;color:#3E3C3C;margin-top:14px;}
+.stat3 .t2{font-family:'Bricolage Grotesque';font-weight:400;font-size:24px;color:#676767;margin-top:2px;line-height:1.15;}
+@media(max-width:820px){.stats3{grid-template-columns:1fr;gap:20px}.stat3{min-height:0}}
+
+/* FOOTER */
+.foot{margin-top:40px;padding-bottom:49px;}
+.foot-line{height:1px;background:#000;width:100%;}
+.foot-contact{min-height:100px;padding:24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(16px,2.2vw,24px);line-height:1.3;color:#000;text-align:center;}
+
+@media(max-width:640px){.hd-contact{font-size:clamp(11px,2.4vw,16px)}}
+@media(min-width:641px){.foot-contact{flex-flow:row wrap;gap:0;font-size:clamp(16px,1.8vw,22px);}.foot-contact span{white-space:nowrap;}.foot-contact span:nth-child(2)::before{content:"\2192";margin:0 10px;}.foot-contact span:nth-child(3)::before{content:"|";margin:0 10px;font-weight:400;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap-wide hd">
+    <a class="logo" href="index.html"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero3">
+  <a class="hero-back" href="index.html" aria-label="Back to home"><img src="Header/back%20arrow.svg" alt="Back"></a>
+  <div class="hero3-inner">
+    <h1 class="ds-title">Desktop Design System</h1>
+    <img class="ds-monitor" src="Hero%20Banner/hero_banner_design_system.webp" alt="Punch desktop trading platform">
+    <div class="ds-screen"><img src="Hero%20Banner/desktop%20gif.gif" alt="Punch desktop trading chart"></div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="wrap intro">
+  <p>I built a complete design system from scratch, color tokens, typography, light, blue &amp; dark themes, and a full library of scalable components that unified the product team. This is first design system I made from scratch, earlier I had worked on design system which were already in place.</p>
+  <p>Created reusable, domain specific UI components for trading workflows, enabling faster feature delivery, greater consistency, and reduced design and engineering overhead. Defined design standards, documentation, and developer handoff practices that ensured strong design development alignment and supported rapid product evolution from MVP to 10M+ downloads.</p>
+  <p>Fostered scalable UI practices by advocating for system thinking, reusable patterns, and consistency across the product, enabling teams to build faster without compromising user experience</p>
+</div>
+
+<!-- MAIN CONTENT PANEL -->
+<div class="wrap">
+  <section class="panel">
+    <div class="panel-inner">
+
+      <div class="ds-sec">
+        <div class="ds-h">Typography</div>
+        <p class="ds-copy">I Built a complete design system from scratch, color tokens, typography, light, blue &amp; dark themes, and a full library of scalable components that unified the product team. This is first design system I made from scratch, earlier I had worked on design system which were already in place.</p>
+        <div class="ds-img"><img src="Desktop%20Design%20system/Typography.webp" alt="Typography scale"></div>
+      </div>
+
+      <div class="ds-sec">
+        <div class="ds-h">Colors</div>
+        <p class="ds-copy">Defined a full token-based color system with three modes: Light for clean interfaces, Blue for branded moments, and Dark for focused environments (So many user asked for Dark theme). Every color is a token no hardcoded hex values.</p>
+        <div class="ds-img"><img src="Desktop%20Design%20system/colors.webp" alt="Color tokens, three themes"></div>
+      </div>
+
+      <div class="ds-sec">
+        <div class="ds-h">Iconography</div>
+        <p class="ds-copy">Designed icon library tailored to trading workflows  order actions, chart tools, indicators, alerts, and settings. Every icon follows the same grid, stroke, and corner rules for visual consistency, ships as reusable components, and inherits color from tokens so it works across Light, Blue, and Dark modes.</p>
+        <div class="ds-img"><img src="Desktop%20Design%20system/Iconography.webp" alt="Icon library"></div>
+      </div>
+
+      <div class="ds-sec">
+        <div class="ds-h">Components</div>
+        <p class="ds-copy">I Created a full library of scalable components buttons, inputs, cards, modals, navigation, tabs, badges, and more. All built to adapt across themes automatically.</p>
+        <div class="ds-sub">Orderform</div>
+        <div class="of-wrap">
+          <div class="of-row of-top">
+            <img src="Desktop%20Design%20system/orderform%20limit.webp" alt="Order form — limit">
+            <img src="Desktop%20Design%20system/orderform%20market.webp" alt="Order form — market">
+            <img src="Desktop%20Design%20system/orderform%20trigger.webp" alt="Order form — trigger">
+          </div>
+          <div class="of-row of-bot">
+            <img src="Desktop%20Design%20system/orderform%20limit%20expanded.webp" alt="Order form — limit expanded">
+            <img src="Desktop%20Design%20system/orderform%20market%20expanded.webp" alt="Order form — market expanded">
+            <img src="Desktop%20Design%20system/orderform%20trigger%20expanded.webp" alt="Order form — trigger expanded">
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sec">
+        <div class="ds-sub">Premium and P&amp;L Buttons</div>
+        <div class="ds-img left"><img src="Desktop%20Design%20system/premium%20and%20p%26l%20buttons.webp" alt="Premium and P&L buttons"></div>
+      </div>
+
+      <div class="ds-sec">
+        <div class="ds-sub">Header Tabs</div>
+        <div class="ds-img left2"><img src="Desktop%20Design%20system/header%20tabs.webp" alt="Header tabs"></div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- IMPACT -->
+<div class="wrap impact">
+  <h2>Impact</h2>
+  <div class="copy">Faster. Consistent. Unified.<span class="sp"></span>Once the system was in place, the team's velocity jumped. Designs were made faster, decisions were clearer, and everyone spoke the same visual language.</div>
+  <div class="stats3">
+    <div class="stat3"><div class="n">3×</div><div class="t1">Faster design delivery</div><div class="t2">New screens built in hours, not days</div></div>
+    <div class="stat3"><div class="n">100%</div><div class="t1">Theme coverage</div><div class="t2">Light, Blue &amp; Dark every component</div></div>
+    <div class="stat3"><div class="n">1 Source</div><div class="t1">of truth for the whole team</div><div class="t2">1 library, 0 inconsistencies</div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="wrap foot">
+  <div class="foot-line"></div>
+  <div class="foot-contact"><span>Contact</span><span>dhaval.design07@gmail.com</span><span>+91 95611 16517</span></div>
+</div>
+
+</body>
+</html>

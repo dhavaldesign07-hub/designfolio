@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="Header/Favicon.svg">
+<title>Dhaval Darji - DesignFolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&family=Poppins:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Homepage — Figma node 73:2287 (1920 canvas, 1280 content)
+   ============================================================ */
+:root{
+  --paper:#FBF7EF;
+  --ink-blue:#153A5B;
+  --title:#FBF7EF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden}
+img{display:block;max-width:100%}
+body{
+  background:var(--paper);
+  font-family:'Bricolage Grotesque',system-ui,sans-serif;
+  color:#000;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+
+/* content columns: header = 1600 (160px margins on 1920), grid/footer = 1280 (320px margins) */
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap-wide{max-width:1600px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+/* ---------- HEADER (108px) ---------- */
+header{height:108px;background:var(--paper);}
+.hd{height:108px;display:flex;align-items:center;justify-content:space-between;}
+.logo{width:189.878px;height:37.56px;flex:0 0 auto;}
+.logo img{width:100%;height:100%;object-fit:contain}
+
+/* ---------- HERO ---------- */
+.hero{text-align:center;padding-top:92px;}
+.hero h1{font-family:'Bricolage Grotesque';font-weight:700;font-size:40px;line-height:normal;color:var(--ink-blue);}
+.hero p{font-family:'Inter',sans-serif;font-weight:400;font-size:24px;line-height:32px;color:var(--ink-blue);max-width:924px;margin:20px auto 0;}
+
+/* ---------- MY WORK ---------- */
+.mywork{text-align:center;font-family:'Bricolage Grotesque';font-weight:600;font-size:36px;color:#000;margin-top:113px;}
+
+/* ---------- WORK GRID ---------- */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:42px;}
+.card{
+  aspect-ratio:624/640;
+  border-radius:24px;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+}
+.thumb{
+  width:100%;
+  aspect-ratio:568/460;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  container-type:inline-size;
+}
+.thumb>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.title{
+  font-family:'Bricolage Grotesque';font-weight:600;font-size:32px;line-height:normal;
+  color:var(--title);margin-top:28px;text-align:left;
+}
+
+/* card colours (outer / inner) — exact from Figma */
+.c-punch{background:#FF6B4C}   .c-punch  .thumb{background:#FF836A}
+.c-ds{background:#6D4DF6}      .c-ds     .thumb{background:#8469F8}
+.c-dth{background:#FF4C4C}     .c-dth    .thumb{background:#FF6A6A}
+.c-5paisa{background:#3CA5F6}  .c-5paisa .thumb{background:#60B4F8}
+.c-iot{background:#FF7EB7}     .c-iot    .thumb{background:#FF94C3}
+.c-river{background:#09123D}   .c-river  .thumb{background:#303456}
+.c-fortis{background:#24B918}  .c-fortis .thumb{background:#9FE6AA}
+
+/* Punch — big "SINGLE SCREEN TRADING" text behind the phone */
+.punch-text{
+  position:absolute;left:6.7%;top:36%;z-index:0;
+  font-family:'Bricolage Grotesque';font-weight:700;color:#FFD199;
+  font-size:22.56cqw;line-height:17.97cqw;letter-spacing:-.01em;white-space:nowrap;
+}
+.c-punch .thumb>img{object-fit:contain;z-index:1;}
+
+/* ---------- FOOTER CONTACT ---------- */
+.foot{margin-top:107px;padding-bottom:53px;}
+.foot-line{height:1px;background:#000;width:100%;}
+.foot-contact{
+  min-height:100px;padding:24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(16px,2.2vw,24px);line-height:1.3;color:#000;text-align:center;
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .hero{padding-top:56px}
+  .hero h1{font-size:clamp(28px,6vw,40px)}
+  .hero p{font-size:clamp(16px,2.4vw,24px);line-height:1.35}
+  .mywork{margin-top:72px;font-size:clamp(26px,5vw,36px)}
+}
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr;gap:22px}
+  .title{font-size:clamp(20px,5vw,32px)}
+}
+@media(min-width:641px){
+  .foot-contact{flex-flow:row wrap;gap:0;font-size:clamp(16px,1.8vw,22px);}
+  .foot-contact span{white-space:nowrap;}
+  .foot-contact span:nth-child(2)::before{content:"\2192";margin:0 10px;}
+  .foot-contact span:nth-child(3)::before{content:"|";margin:0 10px;font-weight:400;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap-wide hd">
+    <a class="logo" href="index.html"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
+  </div>
+</header>
+
+<section class="wrap hero">
+  <h1>Hi! I am Dhaval Darji</h1>
+  <p>I design digital products at the intersection of agency versatility and product thinking. Working across both design agencies and product teams has given me the ability to move from exploring bold ideas to building scalable, intuitive experiences for web, mobile, and desktop. From 0→1 products to evolving mature platforms, I enjoy simplifying complex workflows into seamless user experiences.</p>
+</section>
+
+<div class="wrap">
+  <h2 class="mywork">My work</h2>
+
+  <div class="grid">
+
+    <!-- Punch — India's 1st Single Screen Trading -->
+    <a class="card c-punch" href="punch.html">
+      <div class="thumb">
+        <div class="punch-text">SINGLE<br>SCREEN<br>TRADING</div>
+        <img src="Thumbnails/Thumbnail-Airtel%20App.webp" alt="Punch single screen trading app">
+      </div>
+      <div class="title">Punch - India's 1st Single Screen Trading</div>
+    </a>
+
+    <!-- Punch — Desktop Design System -->
+    <a class="card c-ds" href="design-system.html">
+      <div class="thumb"><img src="Thumbnails/Thumbnail-Punch%20Design%20System.webp" alt="Punch desktop design system"></div>
+      <div class="title">Punch - Desktop Design System</div>
+    </a>
+
+    <!-- Airtel DTH -->
+    <a class="card c-dth" href="airtel-dth.html">
+      <div class="thumb"><img src="Thumbnails/Thumbnail-%20Airtel%20DTH.webp" alt="Airtel DTH"></div>
+      <div class="title">Airtel DTH</div>
+    </a>
+
+    <!-- 5 Paisa -->
+    <a class="card c-5paisa" href="5paisa.html">
+      <div class="thumb"><img src="Thumbnails/thumbnail_5paisa.webp" alt="5 Paisa"></div>
+      <div class="title">5 Paisa</div>
+    </a>
+
+    <!-- Airtel IoT -->
+    <a class="card c-iot" href="airtel-iot.html">
+      <div class="thumb"><img src="Thumbnails/thumbnail_airtel_iot.webp" alt="Airtel IoT"></div>
+      <div class="title">Airtel IoT</div>
+    </a>
+
+    <!-- Riverwalk - Pitch -->
+    <a class="card c-river" href="riverwalk.html">
+      <div class="thumb"><img src="Thumbnails/thumbnail_riverwalk.webp" alt="Riverwalk pitch"></div>
+      <div class="title">Riverwalk - Pitch</div>
+    </a>
+
+    <!-- Fortis Hospital - Pitch -->
+    <a class="card c-fortis" href="fortis-hospital.html">
+      <div class="thumb"><img src="Thumbnails/thumbnail_fortis_hospital.webp" alt="Fortis Hospital pitch"></div>
+      <div class="title">Fortis Hospital - Pitch</div>
+    </a>
+
+  </div>
+
+  <div class="foot">
+    <div class="foot-line"></div>
+    <div class="foot-contact"><span>Contact</span><span>dhaval.design07@gmail.com</span><span>+91 95611 16517</span></div>
+  </div>
+</div>
+
+</body>
+</html>
