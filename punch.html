@@ -102,6 +102,12 @@ header{height:108px;background:var(--paper);}
 .roleblock h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(24px,2.5vw,32px);color:#000;margin-bottom:12px;}
 .roleblock p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,20px);line-height:1.4;color:#423F3F;}
 .roleblock p + p{margin-top:1em;}
+/* Outcome stat callouts */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+.stat{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;padding:clamp(24px,3vw,36px);}
+.stat-num{font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1;color:#FF6B4C;letter-spacing:-.01em;}
+.stat-cap{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(15px,1.4vw,18px);line-height:1.45;color:#423F3F;margin-top:16px;}
+@media(max-width:640px){.stats{grid-template-columns:1fr;}}
 
 /* core screens 2x2 */
 .core4{display:grid;grid-template-columns:1fr 1fr;column-gap:142px;row-gap:96px;margin-top:64px;}
@@ -293,6 +299,16 @@ header{height:108px;background:var(--paper);}
       <h3>Outcome</h3>
       <p>The clearest signal of impact: the pattern got copied. INDstocks Flash, Upstox Chart360, Groww, Sahi, and Lemonn have since shipped their own versions of single-screen trading, following the structure Punch established first.</p>
       <p>That reframing became the turning point for the product. Once the trading flow was pared down to only what mattered, trader behavior shifted in a big way people executed trades at a much higher rate, put meaningfully more money on the line, and stayed active well beyond their first session. New user activation surged to almost three times prior levels, both fresh and existing traders showed a marked jump in day-to-day usage, and retention held at rates rarely matched in the category</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">100 &rarr; 350</div>
+          <div class="stat-cap">Average monthly orders per retained user, a 3.5&times; jump once the flow was pared down to only what mattered.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">65%</div>
+          <div class="stat-cap">of all trades came from just the top 20% of traders, proof Punch drew in the high-frequency traders it was built for.</div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
