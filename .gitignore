@@ -2,3 +2,6 @@
 *.zip
 node_modules/
 Thumbs.db
+
+# Local-only backups (not published)
+_backups/
