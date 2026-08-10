@@ -40,7 +40,7 @@ header{height:108px;background:var(--paper);}
 /* META BAND (red) */
 .metaband{background:var(--red);padding:clamp(32px,4vw,56px) 0;}
 .meta{border-top:1px solid rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.5);
-  display:grid;grid-template-columns:repeat(4,1fr);}
+  display:grid;grid-template-columns:repeat(3,1fr);}
 .meta-col{padding:30px 32px;}
 .meta-col + .meta-col{border-left:1px solid rgba(255,255,255,.5);}
 .meta-col .lbl{font-family:'Inter',sans-serif;font-weight:400;font-size:20px;color:#fff;margin-bottom:16px;}
@@ -99,11 +99,9 @@ header{height:108px;background:var(--paper);}
   .rem-item{flex:0 0 44%;}
 }
 @media(max-width:640px){
-  .meta{grid-template-columns:1fr 1fr;}
+  .meta{grid-template-columns:1fr;}
   .meta-col{padding:24px;}
-  .meta-col + .meta-col{border-left:none;}
-  .meta-col:nth-child(2n){border-left:1px solid rgba(255,255,255,.5);}
-  .meta-col:nth-child(n+3){border-top:1px solid rgba(255,255,255,.5);}
+  .meta-col + .meta-col{border-left:none;border-top:1px solid rgba(255,255,255,.5);}
   .app-phones{grid-template-columns:1fr;max-width:320px;}
   .hd-contact{font-size:clamp(11px,2.4vw,16px)}
   .rem-item{width:100%;}
@@ -130,9 +128,8 @@ header{height:108px;background:var(--paper);}
 <div class="metaband">
   <div class="wrap">
     <div class="meta">
-      <div class="meta-col"><div class="lbl">MY ROLE</div><div class="val"><span>UI Design</span><span>Design System</span><span>Usability Testing</span><span>Prototyping</span></div></div>
+      <div class="meta-col"><div class="lbl">MY ROLE</div><div class="val"><span>UI/UX Design</span><span>Design System</span><span>Usability Testing</span><span>Prototyping</span></div></div>
       <div class="meta-col"><div class="lbl">PLATFORM</div><div class="val"><span>Mobile App</span></div></div>
-      <div class="meta-col"><div class="lbl">TEAM</div><div class="val"><span>UX Designers</span><span>SME</span></div></div>
       <div class="meta-col"><div class="lbl">DOMAIN</div><div class="val"><span>Fintech</span></div></div>
     </div>
   </div>

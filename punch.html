@@ -40,7 +40,7 @@ header{height:108px;background:var(--paper);}
 
 /* meta band */
 .meta{border-top:1px solid rgba(255,255,255,.4);border-bottom:1px solid rgba(255,255,255,.4);
-  display:grid;grid-template-columns:repeat(4,1fr);margin-top:55px;}
+  display:grid;grid-template-columns:repeat(3,1fr);margin-top:55px;}
 .meta-col{padding:30px 32px;}
 .meta-col + .meta-col{border-left:1px solid rgba(255,255,255,.4);}
 .meta-col .lbl{font-family:'Inter',sans-serif;font-weight:400;font-size:20px;color:#fff;margin-bottom:16px;}
@@ -152,11 +152,9 @@ header{height:108px;background:var(--paper);}
   .core4 .off{margin-top:0;}
 }
 @media(max-width:640px){
-  .meta{grid-template-columns:1fr 1fr;}
+  .meta{grid-template-columns:1fr;}
   .meta-col{padding:24px;}
-  .meta-col + .meta-col{border-left:none;}
-  .meta-col:nth-child(2n){border-left:1px solid rgba(255,255,255,.4);}
-  .meta-col:nth-child(n+3){border-top:1px solid rgba(255,255,255,.4);}
+  .meta-col + .meta-col{border-left:none;border-top:1px solid rgba(255,255,255,.4);}
   .challenge h2{font-size:30px}.challenge p{font-size:18px}
   .pair2,.core4{grid-template-columns:1fr;}
   .devices .dev{max-width:80%;}
@@ -189,15 +187,11 @@ header{height:108px;background:var(--paper);}
       <div class="meta">
         <div class="meta-col">
           <div class="lbl">MY ROLE</div>
-          <div class="val">UI Design<br>Design System<br>Usability Testing<br>Prototyping</div>
+          <div class="val">UI/UX Design<br>Design System<br>Usability Testing<br>Prototyping</div>
         </div>
         <div class="meta-col">
           <div class="lbl">PLATFORM</div>
           <div class="val">Mobile App</div>
-        </div>
-        <div class="meta-col">
-          <div class="lbl">TEAM</div>
-          <div class="val">UX Designers<br>SME</div>
         </div>
         <div class="meta-col">
           <div class="lbl">DOMAIN</div>
