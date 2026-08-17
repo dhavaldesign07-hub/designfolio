@@ -149,11 +149,13 @@
   // SIMULATE 30s LATER SCENARIO button on "if_not_stab" screen (pixel scan: x=1586–1883, y=33–79)
   const SIMULATE = { x1: 1570, y1: 20, x2: 1900, y2: 92 };
 
-  // Reason buttons (pixel-recalibrated 17 Aug; modal buttons at y=477–570)
+  // Reason buttons (pixel-recalibrated 17 Aug; 5 buttons, 3 rows at y=444–596)
   const REASON_BUTTONS = [
-    { x1: 1100, y1: 470, x2: 1350, y2: 520 }, // Low data confidence
-    { x1: 1355, y1: 470, x2: 1600, y2: 520 }, // Customer impact
-    { x1: 1100, y1: 524, x2: 1350, y2: 578 }, // Others, type reason
+    { x1: 1100, y1: 440, x2: 1350, y2: 488 }, // Low data confidence
+    { x1: 1355, y1: 440, x2: 1600, y2: 488 }, // Customer impact
+    { x1: 1100, y1: 496, x2: 1350, y2: 544 }, // Outage Risk
+    { x1: 1355, y1: 496, x2: 1600, y2: 544 }, // Cost is high
+    { x1: 1100, y1: 552, x2: 1350, y2: 600 }, // Others, type reason
   ];
 
   // ── S4 hit regions (images 0–5, pixel-calibrated) ────────────────
