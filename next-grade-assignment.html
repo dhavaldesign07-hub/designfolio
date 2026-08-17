@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEXGRID S3 — Plan Selection</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #111214;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #screen {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+    display: block;
+    cursor: default;
+  }
+
+  #back-btn {
+    display: none;
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    background: rgba(0,0,0,0.6);
+    color: #e2e8f0;
+    font: 13px/1 -apple-system, sans-serif;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 10;
+    border: 1px solid #3a3d47;
+    letter-spacing: 0.02em;
+  }
+  #back-btn:hover { background: rgba(255,255,255,0.1); }
+
+  /* Breathing dot overlay */
+  #pulse-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+
+  #pulse-dot .core {
+    position: absolute;
+    inset: 0;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: breathe 2.2s ease-in-out infinite;
+  }
+
+  #pulse-dot .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #ef4444;
+    opacity: 0;
+    animation: ping 2.2s ease-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(0.85); opacity: 0.85; }
+    50%       { transform: scale(1.15); opacity: 1; }
+  }
+
+  @keyframes ping {
+    0%   { transform: scale(1);   opacity: 0.6; }
+    100% { transform: scale(2.8); opacity: 0; }
+  }
+
+  /* Tap ripple effect */
+  .ripple {
+    position: fixed;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(255, 255, 255, 0.30);
+    animation: ripple-anim 0.45s ease-out forwards;
+    pointer-events: none;
+    z-index: 200;
+  }
+
+  @keyframes ripple-anim {
+    0%   { transform: translate(-50%, -50%) scale(0);   opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <img id="screen" src="Images/No plan selected.png" alt="NEXGRID Scenario 3">
+  <div id="pulse-dot"><div class="ring"></div><div class="core"></div></div>
+  <div id="back-btn" onclick="goBack()">← Back</div>
+</div>
+
+<script>
+  // ── Hit regions in original 1920×1080 image coords ───────────────
+
+  const CARDS = {
+    A: { x1: 828,  y1: 245, x2: 1170, y2: 735 },
+    B: { x1: 1187, y1: 245, x2: 1526, y2: 735 },
+    C: { x1: 1543, y1: 245, x2: 1882, y2: 735 },
+  };
+
+  const APPROVE = { x1: 1046, y1: 815, x2: 1357, y2: 862 };
+  const DECLINE = { x1: 1357, y1: 815, x2: 1670, y2: 862 };
+
+  const IMGS = {
+    none:           'Images/No plan selected.png',
+    A:              'Images/Plan A selected.png',
+    B:              'Images/Plan B selected.png',
+    C:              'Images/Plan C selected.png',
+    approved:       'Images/If approved.png',
+    declined:       'Images/If decline - Reason.png',
+    stabilized:     'Images/If stablizes Calm.png',
+    not_stabilized: 'Images/If decline and does not stablize.png',
+    if_not_stab:    'Images/If not stabilized.png',
+    s4_none:        'Images/0.png',
+    s4_A:           'Images/1.png',
+    s4_B:           'Images/2.png',
+    s4_C:           'Images/3.png',
+    s4_approved:    'Images/4.png',
+    s4_kept:        'Images/5.png',
+    s4_final_ok:    'Images/6.png',
+    s4_final_kept:  'Images/7.png',
+  };
+
+  // OKAY on "If approved" → stabilized
+  const OKAY_APPROVED = { x1: 1209, y1: 810, x2: 1506, y2: 869 };
+
+  // OKAY on "not_stabilized" → if_not_stab (green pixel scan: y=815–861, x=1209–1506)
+  const OKAY_NOT_STAB = { x1: 1180, y1: 805, x2: 1540, y2: 875 };
+
+  // SIMULATE 30s LATER SCENARIO button on "if_not_stab" screen (pixel scan: x=1586–1883, y=33–79)
+  const SIMULATE = { x1: 1570, y1: 20, x2: 1900, y2: 92 };
+
+  // Reason buttons (pixel-recalibrated 17 Aug; modal buttons at y=477–570)
+  const REASON_BUTTONS = [
+    { x1: 1100, y1: 470, x2: 1350, y2: 520 }, // Low data confidence
+    { x1: 1355, y1: 470, x2: 1600, y2: 520 }, // Customer impact
+    { x1: 1100, y1: 524, x2: 1350, y2: 578 }, // Others, type reason
+  ];
+
+  // ── S4 hit regions (images 0–5, pixel-calibrated) ────────────────
+  const S4_CARDS = {
+    A: { x1: 828,  y1: 245, x2: 1170, y2: 735 },
+    B: { x1: 1187, y1: 245, x2: 1526, y2: 735 },
+    C: { x1: 1543, y1: 245, x2: 1882, y2: 735 },
+  };
+  const S4_APPROVE = { x1: 1046, y1: 815, x2: 1357, y2: 862 };
+  const S4_KEEP    = { x1: 1357, y1: 815, x2: 1670, y2: 862 };
+  const S4_OKAY    = { x1: 1209, y1: 815, x2: 1506, y2: 862 };
+
+  let current = 'none';
+  const screen  = document.getElementById('screen');
+  const backBtn = document.getElementById('back-btn');
+
+  // ── Coordinate helper ─────────────────────────────────────────────
+  function getImgCoords(e) {
+    const rect = screen.getBoundingClientRect();
+    const naturalRatio = screen.naturalWidth / screen.naturalHeight;
+    const elementRatio = rect.width / rect.height;
+    let renderedW, renderedH, offsetX;
+    if (naturalRatio > elementRatio) {
+      renderedW = rect.width;
+      renderedH = rect.width / naturalRatio;
+      offsetX   = 0;
+    } else {
+      renderedH = rect.height;
+      renderedW = rect.height * naturalRatio;
+      offsetX   = (rect.width - renderedW) / 2;
+    }
+    return {
+      x: (e.clientX - rect.left - offsetX) * (screen.naturalWidth  / renderedW),
+      y: (e.clientY - rect.top)            * (screen.naturalHeight / renderedH),
+    };
+  }
+
+  function inZone(px, py, zone) {
+    return px >= zone.x1 && px <= zone.x2 && py >= zone.y1 && py <= zone.y2;
+  }
+
+  // ── Tap ripple ────────────────────────────────────────────────────
+  function ripple(e) {
+    const el = document.createElement('div');
+    el.className = 'ripple';
+    el.style.left = e.clientX + 'px';
+    el.style.top  = e.clientY + 'px';
+    document.querySelector('.stage').appendChild(el);
+    setTimeout(() => el.remove(), 500);
+  }
+
+  // ── Click handler ─────────────────────────────────────────────────
+  screen.addEventListener('click', function(e) {
+    const { x, y } = getImgCoords(e);
+
+    if (current === 'approved') {
+      if (inZone(x, y, OKAY_APPROVED)) { ripple(e); setState('stabilized'); }
+      return;
+    }
+
+    if (current === 'declined') {
+      if (REASON_BUTTONS.some(z => inZone(x, y, z))) { ripple(e); setState('not_stabilized'); }
+      return;
+    }
+
+    if (current === 'not_stabilized') {
+      if (inZone(x, y, OKAY_NOT_STAB)) { ripple(e); setState('if_not_stab'); }
+      return;
+    }
+
+    if (current === 'if_not_stab') {
+      if (inZone(x, y, SIMULATE)) { ripple(e); setState('s4_none'); }
+      return;
+    }
+
+    // ── S4 states ─────────────────────────────────────────────────
+    if (current === 's4_approved') {
+      if (inZone(x, y, S4_OKAY)) { ripple(e); setState('s4_final_ok'); }
+      return;
+    }
+    if (current === 's4_kept') {
+      if (inZone(x, y, S4_OKAY)) { ripple(e); setState('s4_final_kept'); }
+      return;
+    }
+
+    // Terminal S4 result screens — Back button only
+    if (current === 's4_final_ok' || current === 's4_final_kept') return;
+
+    const S4_STATES = ['s4_none', 's4_A', 's4_B', 's4_C'];
+    if (S4_STATES.includes(current)) {
+      // KEEP MY DECISION — always active
+      if (inZone(x, y, S4_KEEP)) { ripple(e); setState('s4_kept'); return; }
+      // APPROVE — only active when a plan is selected
+      if (inZone(x, y, S4_APPROVE) && current !== 's4_none') { ripple(e); setState('s4_approved'); return; }
+      // Plan card selection — toggle like S3
+      for (const [plan, zone] of Object.entries(S4_CARDS)) {
+        if (inZone(x, y, zone)) {
+          ripple(e);
+          current = (current === 's4_' + plan) ? 's4_none' : 's4_' + plan;
+          screen.src = IMGS[current];
+          return;
+        }
+      }
+      return;
+    }
+
+    // Terminal — no interactions
+    if (current === 'stabilized') return;
+
+    if (inZone(x, y, APPROVE) && current !== 'none') {
+      ripple(e); setState('approved'); return;
+    }
+
+    if (inZone(x, y, DECLINE)) {
+      ripple(e); setState('declined'); return;
+    }
+
+    for (const [plan, zone] of Object.entries(CARDS)) {
+      if (inZone(x, y, zone)) {
+        ripple(e);
+        current = (current === plan) ? 'none' : plan;
+        screen.src = IMGS[current];
+        return;
+      }
+    }
+  });
+
+  const RESULT_STATES    = ['approved', 'declined', 'stabilized', 'not_stabilized', 'if_not_stab',
+                            's4_none', 's4_A', 's4_B', 's4_C', 's4_approved', 's4_kept',
+                            's4_final_ok', 's4_final_kept'];
+  const GREEN_DOT_STATES = ['approved', 'stabilized', 's4_approved', 's4_kept', 's4_final_ok'];
+  const S4_STATES_ALL    = ['s4_none', 's4_A', 's4_B', 's4_C', 's4_approved', 's4_kept',
+                            's4_final_ok', 's4_final_kept'];
+
+  function setState(state) {
+    current = state;
+    screen.src = IMGS[state];
+    backBtn.style.display = RESULT_STATES.includes(state) ? 'block' : 'none';
+    pulseDot.style.display = GREEN_DOT_STATES.includes(state) ? 'none' : 'block';
+  }
+
+  function goBack() {
+    // s4 result screens go back to the s4 selection screen;
+    // the s4 selection screens go back to the S3 start; everything else → S3 start
+    if (['s4_approved', 's4_kept', 's4_final_ok', 's4_final_kept'].includes(current)) { setState('s4_none'); return; }
+    current = 'none';
+    screen.src = IMGS['none'];
+    backBtn.style.display = 'none';
+    pulseDot.style.display = 'block';
+  }
+
+  // ── Breathing dot positioning ─────────────────────────────────────
+  const DOT_IMG  = { x: 39, y: 55 };
+  const pulseDot = document.getElementById('pulse-dot');
+
+  function positionDot() {
+    const rect = screen.getBoundingClientRect();
+    const naturalRatio = screen.naturalWidth / screen.naturalHeight;
+    const elementRatio = rect.width / rect.height;
+    let renderedW, renderedH, offsetX;
+    if (naturalRatio > elementRatio) {
+      renderedW = rect.width;
+      renderedH = rect.width / naturalRatio;
+      offsetX   = 0;
+    } else {
+      renderedH = rect.height;
+      renderedW = rect.height * naturalRatio;
+      offsetX   = (rect.width - renderedW) / 2;
+    }
+    const scaleX = renderedW / screen.naturalWidth;
+    const scaleY = renderedH / screen.naturalHeight;
+    pulseDot.style.left = (rect.left + offsetX + DOT_IMG.x * scaleX) + 'px';
+    pulseDot.style.top  = (rect.top  +           DOT_IMG.y * scaleY) + 'px';
+  }
+
+  screen.addEventListener('load', positionDot);
+  window.addEventListener('resize', positionDot);
+  positionDot();
+
+  // ── Cursor feedback ───────────────────────────────────────────────
+  screen.addEventListener('mousemove', function(e) {
+    if (current === 'stabilized') { this.style.cursor = 'default'; return; }
+    const { x, y } = getImgCoords(e);
+    let hot = false;
+    if      (current === 'approved')       hot = inZone(x, y, OKAY_APPROVED);
+    else if (current === 'not_stabilized') hot = inZone(x, y, OKAY_NOT_STAB);
+    else if (current === 'declined')       hot = REASON_BUTTONS.some(z => inZone(x, y, z));
+    else if (current === 'if_not_stab')    hot = inZone(x, y, SIMULATE);
+    else if (current === 's4_approved' || current === 's4_kept')
+                                           hot = inZone(x, y, S4_OKAY);
+    else if (current === 's4_final_ok' || current === 's4_final_kept')
+                                           hot = false;
+    else if (['s4_none','s4_A','s4_B','s4_C'].includes(current)) {
+      hot = Object.values(S4_CARDS).some(z => inZone(x, y, z))
+          || inZone(x, y, S4_KEEP)
+          || (inZone(x, y, S4_APPROVE) && current !== 's4_none');
+    } else {
+      hot = Object.values(CARDS).some(z => inZone(x, y, z))
+          || (inZone(x, y, APPROVE) && current !== 'none')
+          || inZone(x, y, DECLINE);
+    }
+    this.style.cursor = hot ? 'pointer' : 'default';
+  });
+</script>
+
+</body>
+</html>
