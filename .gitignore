@@ -5,3 +5,7 @@ Thumbs.db
 
 # Local-only backups (not published)
 _backups/
+
+# Local-only Claude context (not published)
+CLAUDE.md
+PLAN.md
