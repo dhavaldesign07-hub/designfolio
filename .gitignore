@@ -9,3 +9,5 @@ _backups/
 # Local-only Claude context (not published)
 CLAUDE.md
 PLAN.md
+_preview_howstarted.html
+_preview_withbanner.html

@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="right arrow">
+<foreignObject x="-4" y="-4" width="56" height="56"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(2px);clip-path:url(#bgblur_0_0_10_clip_path);height:100%;width:100%"></div></foreignObject><circle id="Ellipse 241" data-figma-bg-blur-radius="4" cx="24" cy="24" r="24" transform="matrix(-1 0 0 1 48 0)" fill="#EDE4D3"/>
+<g id="Vector">
+</g>
+<g id="Group 1707479778">
+<path id="Vector_2" d="M28 24L19.2 32.8" stroke="#677584" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M28 24.0002L19.2 15.2002" stroke="#677584" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_10_clip_path" transform="translate(4 4)"><circle cx="24" cy="24" r="24" transform="matrix(-1 0 0 1 48 0)"/>
+</clipPath></defs>
+</svg>
