@@ -102,6 +102,13 @@ header{height:108px;background:var(--paper);}
 .roleblock h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(24px,2.5vw,32px);color:#000;margin-bottom:12px;}
 .roleblock p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,20px);line-height:1.4;color:#423F3F;}
 .roleblock p + p{margin-top:1em;}
+/* Outcome stat containers (matches design-system card format) */
+.stats3{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:32px;}
+.stat3{background:#EAE7E0;border:1px solid rgba(0,0,0,.10);border-radius:16px;padding:28px 30px 26px;}
+.stat3 .n{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(40px,5vw,56px);line-height:1;color:#FF6B4C;letter-spacing:-.01em;}
+.stat3 .t1{font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(20px,2vw,24px);color:#3E3C3C;margin-top:16px;line-height:1.2;}
+.stat3 .t2{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(15px,1.5vw,18px);color:#676767;margin-top:6px;line-height:1.35;}
+@media(max-width:640px){.stats3{grid-template-columns:1fr;}}
 
 /* core screens 2x2 */
 .core4{display:grid;grid-template-columns:1fr 1fr;column-gap:142px;row-gap:96px;margin-top:64px;}
@@ -294,6 +301,18 @@ header{height:108px;background:var(--paper);}
       <h3>Outcome</h3>
       <p>The clearest signal of impact: the pattern got copied. Multiple players across the industry have since shipped their own versions of single-screen trading, following the structure Punch established first.</p>
 <p>That reframing became the turning point for the product. Once the trading flow was pared down to only what mattered, trader behavior shifted in a big way people executed trades at a much higher rate, put meaningfully more money on the line, and stayed active well beyond their first session. New user activation surged to almost three times prior levels, both fresh and existing traders showed a marked jump in day-to-day usage, and retention held at rates rarely matched in the category</p>
+      <div class="stats3">
+        <div class="stat3">
+          <div class="n">100 &rarr; 350</div>
+          <div class="t1">Monthly orders per retained user</div>
+          <div class="t2">A 3.5&times; jump once the flow was pared down to only what mattered.</div>
+        </div>
+        <div class="stat3">
+          <div class="n">65%</div>
+          <div class="t1">of all trades from the top 20% of traders</div>
+          <div class="t2">Proof Punch drew in the high-frequency traders it was built for.</div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
