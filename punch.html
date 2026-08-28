@@ -127,6 +127,7 @@ header{height:108px;background:var(--paper);}
 .doc .m29{margin-top:29px}.doc .m52{margin-top:52px}.doc .m69{margin-top:69px}.doc .m30{margin-top:30px}.doc .m71{margin-top:71px}
 /* diagrams: the #364689 outline and 20px corners are baked into the PNGs — centred at native size */
 .doc .diagram{display:block;height:auto;max-width:none;}  /* beat global img{max-width:100%} so these stay native 1:1 */
+.diagram-scroll{-webkit-overflow-scrolling:touch;}
 .diagram-1282{width:1282px;margin-left:-1px;}
 .diagram-1288{width:1288px;margin-left:-4px;}
 .diagram-1164{width:1164px;height:494px;box-sizing:content-box;border:1px solid #364689;border-radius:20px;
@@ -283,6 +284,50 @@ header{height:108px;background:var(--paper);}
   .qb-phone{position:static;width:100%;max-width:299px;margin:44px auto 0;}
   .qb-phone img{width:100%;height:auto;aspect-ratio:299/576;}
 }
+/* ---------- MOBILE / TABLET FALLBACKS ----------
+   Everything below 1359 leaves the fixed 1280 Figma grid. These selectors are scoped
+   to match the base rules' specificity (.quoteblock .qb-* is 2 classes, so a bare
+   .quoteblock p fallback loses to it). */
+@media(max-width:1359px){
+  /* quote block */
+  .quoteblock .qb-quote,.quoteblock .qb-src,.quoteblock .qb-copy,.quoteblock .qb-statement{
+    position:static;width:100%;transform:none;}
+  .quoteblock .qb-phone{position:static;width:100%;max-width:299px;margin:44px auto 0;}
+  .quoteblock .qb-phone img{width:100%;height:auto;}
+
+  /* section headings */
+  .doc h2,.cardsec h2{font-size:clamp(28px,6vw,40px);}
+
+  /* card grids: 3 -> 2 -> 1 */
+  .cardgrid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));width:100%;}
+  .card{width:100%;height:auto;min-height:142px;}
+  .card .txt,.card .ph,.card .dur{width:100%;}
+
+  /* long-form diagrams */
+  .doc .diagram{width:100%;max-width:100%;height:auto;box-sizing:border-box;margin-left:0;margin-right:0;}
+
+  /* screen rows (interaction model + UI screens) */
+  .screenrow{width:100%;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2.6vw,50px);}
+  .screenrow img{width:100%;height:auto;}
+  .screenrow img.gif{height:auto;}
+  .uiscreens p{width:100%;}
+
+  /* order form */
+  .ofgrid{grid-template-columns:1fr;gap:48px;}
+  .ofgrid figure{margin:0 auto;max-width:569px;width:100%;}
+  .ofgrid img{width:100%;height:auto;}
+  .ofgrid figcaption{font-size:clamp(22px,4.4vw,32px);}
+}
+/* Phone: three 307px screenshots side by side become illegible (~108px each), so the
+   rows turn into a swipeable strip at native size instead. */
+@media(max-width:700px){
+  .screenrow{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;padding-bottom:8px;}
+  .screenrow img{flex:0 0 78%;max-width:307px;scroll-snap-align:start;}  /* the wide technical diagrams are unreadable scaled to phone width, so they scroll
+     horizontally at a legible size instead */
+  .doc .diagram{width:auto;min-width:860px;max-width:none;}
+  .diagram-scroll{overflow-x:auto;padding-bottom:8px;}
+}
 @media(max-width:1100px){
   .challenge{height:auto;display:flex;flex-direction:column;align-items:flex-start;padding:48px;min-height:0;gap:32px;}
   .challenge .c-text{position:static;width:100%;}
@@ -419,16 +464,16 @@ header{height:108px;background:var(--paper);}
 
     <h3 class="m40">2. Designing for the single-screen experience</h3>
     <p class="m20">The 48-px grid became the backbone of our single-screen trading concept. It allowed users to place trades directly on the chart without losing sight of candle movement or rapid price shifts, something critical for intraday and options traders.</p>
-    <img class="diagram diagram-1282 m40" src="Punch%20App/Image%201.png" alt="48-px grid structure for the single screen" width="1282" height="512">
+    <div class="diagram-scroll m40"><img class="diagram diagram-1282" src="Punch%20App/Image%201.png" alt="48-px grid structure for the single screen" width="1282" height="512"></div>
 
     <p class="m32">Contextual information like analysis tools, funds, and order details was placed where it naturally fit in the trader&rsquo;s journey: scrip and technical tools at the top, funds and trade-related data at the bottom, and the chart taking center stage. The chart itself could be panned vertically and horizontally to explore past performance.</p>
-    <img class="diagram diagram-1288 m70" src="Punch%20App/Image%202.png" alt="Grid variants tested against overlays and complex scenarios" width="1288" height="500">
+    <div class="diagram-scroll m70"><img class="diagram diagram-1288" src="Punch%20App/Image%202.png" alt="Grid variants tested against overlays and complex scenarios" width="1288" height="500"></div>
 
     <p class="m40">For options, the Y-axis wasn&rsquo;t a traditional price scale, it displayed strike prices instead, with spacing defined dynamically by the scrip. We ran multiple stress tests on this system to ensure it held up across volatile market states, unusual chart conditions, and edge-case trading scenarios.</p>
 
     <h3 class="m100">3. Contextual Information</h3>
     <p class="m20">&ldquo;Contextual information&rdquo; is what we called everything housed in the bottom area of the screen. This section surfaced information based on where the user was in their trade journey. The default sheet changed automatically depending on the step they were taking, and users could swipe left to access the other sheets. There were a maximum of six sheets, arranged in a single direction, meaning you couldn&rsquo;t loop from the last back to the first; you&rsquo;d have to swipe back through them in order.</p>
-    <img class="diagram diagram-1164 m32" src="Punch%20App/Image%203.webp" alt="Contextual information sheets in the bottom area of the screen" width="1164" height="494">
+    <div class="diagram-scroll m32"><img class="diagram diagram-1164" src="Punch%20App/Image%203.webp" alt="Contextual information sheets in the bottom area of the screen" width="1164" height="494"></div>
 
     <p class="m20">Each stage of the journey pre-trade, strike selected, preparing the order, in-trade, and post-trade required different information. In traditional apps, traders often jump across screens, apps, or even devices to gather this context. Our goal was to bring all of it into one place, timed and structured around the exact moment they needed it.</p>
 
