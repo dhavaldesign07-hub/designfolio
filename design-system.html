@@ -55,6 +55,12 @@ header{height:108px;background:var(--paper);}
 .ds-img img{width:100%;height:auto;display:block;}
 .ds-sub{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(22px,2.2vw,28px);color:#000;margin-top:40px;}
 .ds-img.left{max-width:765px;}
+.ds-video{width:100%;border-radius:12px;overflow:hidden;margin-top:40px;background:#0d0d0f;}
+.ds-video video{width:100%;height:auto;display:block;}
+.ds-rules{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,24px);line-height:1.4;color:#000;margin:20px 0 0 24px;}
+.ds-rules li{margin-bottom:6px;}
+.ds-link{display:inline-block;margin-top:24px;font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(16px,1.5vw,20px);color:#000;border-bottom:1px solid #000;padding-bottom:2px;}
 .ds-img.left2{max-width:888px;}
 
 /* order form grid — equal width columns so all align */
@@ -72,7 +78,7 @@ header{height:108px;background:var(--paper);}
 .impact h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(30px,3.1vw,40px);color:#000;}
 .impact .copy{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.6vw,24px);line-height:1.4;color:#000;margin-top:16px;max-width:1278px;}
 .impact .copy .sp{display:block;height:1em;}
-.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;}
+.stats3{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:48px;}
 .stat3{background:#E5E5E5;border:1px solid #364689;border-radius:12px;padding:20px 28px 19px 24px;min-height:200px;}
 .stat3 .n{font-family:'Bricolage Grotesque';font-weight:800;font-size:48px;color:#318AFF;}
 .stat3 .t1{font-family:'Bricolage Grotesque';font-weight:700;font-size:24px;color:#3E3C3C;margin-top:14px;}
@@ -121,7 +127,7 @@ header{height:108px;background:var(--paper);}
 
       <div class="ds-sec">
         <div class="ds-h">Typography</div>
-        <p class="ds-copy">I Built a complete design system from scratch, color tokens, typography, light, blue &amp; dark themes, and a full library of scalable components that unified the product team. This is first design system I made from scratch, earlier I had worked on design system which were already in place.</p>
+        <p class="ds-copy">Defined the type styles for the product, named and reused rather than picked per screen. Each style has a set size, line height and tracking, and works across Light, Blue and Dark.</p>
         <div class="ds-img"><img src="Desktop%20Design%20system/Typography.webp" alt="Typography scale"></div>
       </div>
 
@@ -165,6 +171,22 @@ header{height:108px;background:var(--paper);}
         <div class="ds-img left2"><img src="Desktop%20Design%20system/header%20tabs.webp" alt="Header tabs"></div>
       </div>
 
+      <div class="ds-sec">
+        <div class="ds-h">From Figma to Code</div>
+        <p class="ds-copy">Rebuilt the components in code and documented them in Storybook, with a live example for every variant and interactive state.</p>
+        <p class="ds-copy">In code, Figma's Status variant became real CSS states for hover, focus-visible and disabled. Icons are passed in as props.</p>
+        <p class="ds-copy">The repo has a contributing guide and a changelog. Both render inside Storybook from the actual files, so the docs stay in sync.</p>
+        <p class="ds-copy">Rules for adding a component:</p>
+        <ul class="ds-rules">
+          <li>No hardcoded hex where a token exists</li>
+          <li>Every variant and state documented</li>
+          <li>Visual check against Figma before it's done</li>
+        </ul>
+        <div class="ds-video">
+          <video src="Desktop%20Design%20system/storybook.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+      </div>
+
     </div>
   </section>
 </div>
@@ -172,11 +194,10 @@ header{height:108px;background:var(--paper);}
 <!-- IMPACT -->
 <div class="wrap impact">
   <h2>Impact</h2>
-  <div class="copy">Faster. Consistent. Unified.<span class="sp"></span>Once the system was in place, the team's velocity jumped. Designs were made faster, decisions were clearer, and everyone spoke the same visual language.</div>
+  <div class="copy">Two designers covered the whole desktop product. New screens were built from components that already existed, and anything added to the library worked across all three themes without extra design work.</div>
   <div class="stats3">
-    <div class="stat3"><div class="n">3×</div><div class="t1">Faster design delivery</div><div class="t2">New screens built in hours, not days</div></div>
     <div class="stat3"><div class="n">100%</div><div class="t1">Theme coverage</div><div class="t2">Light, Blue &amp; Dark every component</div></div>
-    <div class="stat3"><div class="n">1 Source</div><div class="t1">of truth for the whole team</div><div class="t2">1 library, 0 inconsistencies</div></div>
+    <div class="stat3"><div class="n">1 Source</div><div class="t1">of truth for the whole team</div><div class="t2">One library for design and engineering</div></div>
   </div>
 </div>
 
