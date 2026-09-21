@@ -202,18 +202,21 @@ themeBtn.addEventListener("click", () => {
     return out;
   }
 
-  const RUNNER_BODY = ["....########....","..############..",".##############.","################","################","###..######..###","###..######..###","################","################","################","###..........###",".##############.","..############..","....########...."];
-  const RUNNER_LEGS_A = ["...##......##...","..###......###.."];
-  const RUNNER_LEGS_B = ["..###......###..","...##......##..."];
-  const RUNNER_LEGS_AIR = ["..###......###..",".###........###."];
+  const BALLOON_BODY = ["....########....","..############..",".##############.","################","################","################","################","################",".##############.","..############..","...##########...","....########....",".....######.....","......####......",".......##......."];
+  const STRING_A = [".......##.......","........##......"];
+  const STRING_B = [".......##.......","......##........"];
+  const STRING_AIR = [".......##.......",".......##......."];
   const CLOUD = ["....#####.......","..########..##..","################",".##############."];
-  const BLOCK = ["..############..",".##############.","################","################","################","################","################","################","################","################","################","################","################","################",".##############.","..############.."];
-  const GLYPHS = [
-    ["..####..","..####..","..####..","..####..","...##...",".######.","........","........"],
-    ["........",".#....#.",".#....#.",".######.",".#....#.",".#....#.","........","........"],
-    ["........",".######.","....#...","...#....","..#.....",".######.","........","........"],
-    ["........","..####..",".#....#.",".#....#.",".#....#.","..####..","........","........"]
-  ];
+  const CACTUS_SOLO = ["......##........","......####..##..","......########..","......####......","......#.##......",".##...####......",".#########......","......####......","......##.#......","......####......","......####......"];
+  const CACTUS_BASE = ["......####......","......####......","......####......","......#.##......","......####......","......####......","......####......","......##.#......","......####......","......####......","......####......"];
+  const CACTUS_MID  = ["......####......","......####......","......####......","......####......","......####......","......##.#......","......####......","......####......","......####......","......####......","......####......"];
+  const CACTUS_TOP  = ["......##........","......####..##..","......########..","......####......","......#.##......",".##...####......",".#########......","......####......","......##.#......","......####......","......####......"];
+  function cactusSprite(i, stack){
+    if (stack <= 1) return CACTUS_SOLO;
+    if (i === 0) return CACTUS_BASE;
+    if (i === stack-1) return CACTUS_TOP;
+    return CACTUS_MID;
+  }
   const FONT = {
     "0":["###","#.#","#.#","#.#","###"], "1":[".#.","##.",".#.",".#.","###"],
     "2":["###","..#","###","#..","###"], "3":["###","..#","###","..#","###"],
@@ -249,7 +252,7 @@ themeBtn.addEventListener("click", () => {
 
     function fresh(best, played){
       return { t:0, dist:0, speed:startSpeed, playerY:0, playerV:0, grounded:true,
-        obstacles:[], clouds:[], dead:false, deadAt:0, score:0, best, nextGap:180, seed:20260818, played };
+        obstacles:[], clouds:[], burst:[], dead:false, deadAt:0, score:0, best, nextGap:180, seed:20260818, played };
     }
     let world = fresh(0, false);
     let idle = 1e9;
@@ -271,8 +274,8 @@ themeBtn.addEventListener("click", () => {
         }
       }
     }
-    function blit(rows, ox, oy, unit, alpha, knock){
-      ctx.fillStyle = inkAt(alpha);
+    function blit(rows, ox, oy, unit, alpha, knock, fillFn){
+      ctx.fillStyle = (fillFn || inkAt)(alpha);
       stamp(rows, ox, oy, unit);
       if (knock){
         const prev = ctx.globalCompositeOperation;
@@ -313,15 +316,25 @@ themeBtn.addEventListener("click", () => {
       for (const ob of world.obstacles){
         const bu = BLOCK_UNITS*px;
         for (let i=0;i<ob.stack;i++){
-          blit(BLOCK, ob.x, groundY-(i+1)*bu, bu/16, A_SPRITE, GLYPHS[(ob.glyph+i)%GLYPHS.length]);
+          blit(cactusSprite(i, ob.stack), ob.x, groundY-(i+1)*bu, bu/11, A_SPRITE);
         }
       }
 
-      const bodyH = RUNNER_BODY.length*px;
-      const feet = groundY - world.playerY;
-      blit(RUNNER_BODY, playerX, feet-bodyH-2*px, px, A_SPRITE);
-      const legs = !world.grounded ? RUNNER_LEGS_AIR : (Math.floor(world.dist/(28*S))%2 ? RUNNER_LEGS_A : RUNNER_LEGS_B);
-      blit(legs, playerX, feet-2*px, px, A_SPRITE);
+      if (world.dead){
+        const deadT = world.t - world.deadAt;
+        const burstAlpha = Math.max(0, 1 - deadT/0.9) * A_SPRITE;
+        ctx.fillStyle = inkAt(burstAlpha);
+        for (const p of world.burst){
+          const s = Math.max(1, 3*S*(1-deadT/0.9));
+          ctx.fillRect(Math.round(p.x-s/2), Math.round(p.y-s/2), Math.round(s), Math.round(s));
+        }
+      } else {
+        const bodyH = BALLOON_BODY.length*px;
+        const feet = groundY - world.playerY;
+        blit(BALLOON_BODY, playerX, feet-bodyH-2*px, px, A_SPRITE);
+        const str = !world.grounded ? STRING_AIR : (Math.floor(world.dist/(28*S))%2 ? STRING_A : STRING_B);
+        blit(str, playerX, feet-2*px, px, A_SPRITE);
+      }
 
       if (!showHud) return;
       const fpx = 2.85*S;
@@ -373,10 +386,10 @@ themeBtn.addEventListener("click", () => {
       ];
       const sp = startSpeed*S;
       world.obstacles = [];
-      for (const [at,want,glyph] of [[0.62,2,0],[1.02,1,2]]){
+      for (const [at,want] of [[0.62,2],[1.02,1]]){
         let stack = want;
         while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
-        if (stack>0) world.obstacles.push({ x: w*at, stack, glyph });
+        if (stack>0) world.obstacles.push({ x: w*at, stack });
       }
       world.dist = 40*px;
     }
@@ -391,6 +404,11 @@ themeBtn.addEventListener("click", () => {
       idle += dt;
 
       if (world.dead){
+        for (const p of world.burst){
+          p.vy += 700*S*dt;
+          p.x += p.vx*dt;
+          p.y += p.vy*dt;
+        }
         if (world.t - world.deadAt > 0.9){
           const best = Math.max(world.best, world.score);
           const played = world.played;
@@ -422,7 +440,7 @@ themeBtn.addEventListener("click", () => {
         const r = rng(world);
         let stack = r<0.55 ? 1 : r<0.87 ? 2 : 3;
         while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
-        if (stack>0) world.obstacles.push({ x: w+8*px, stack, glyph: Math.floor(rng(world)*GLYPHS.length) });
+        if (stack>0) world.obstacles.push({ x: w+8*px, stack });
         world.nextGap = rng(world)*380;
       }
 
@@ -454,6 +472,13 @@ themeBtn.addEventListener("click", () => {
         const box = { x: ob.x+bu*0.12, y: groundY-ob.stack*bu, w: bu*0.76, h: ob.stack*bu };
         if (pl.x<box.x+box.w && pl.x+pl.w>box.x && pl.y<box.y+box.h && pl.y+pl.h>box.y){
           world.dead = true; world.deadAt = world.t; world.best = Math.max(world.best, world.score);
+          const bx = playerX + 8*px, by = groundY - world.playerY - BALLOON_BODY.length*px/2 - 2*px;
+          world.burst = [];
+          for (let k=0; k<16; k++){
+            const ang = rng(world) * 6.283;
+            const spd = (50 + rng(world)*180) * S;
+            world.burst.push({ x: bx, y: by, vx: Math.cos(ang)*spd, vy: Math.sin(ang)*spd });
+          }
           break;
         }
       }

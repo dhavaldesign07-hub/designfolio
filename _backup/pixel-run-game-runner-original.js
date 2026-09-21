@@ -1,132 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="Header/Favicon.svg">
-<title>Fortis Hospital — Pitch</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--paper:#FFFFFF;--ink:#17212B;--muted:#5A636D;--card:#F6F6F6;--line:rgba(23,33,43,.12);--outline:#C6B9B9;--footer-bg:#F6F6F6;--hero-bg:#CFDCD1;--hero-ink:#7F9782;}
-[data-theme="dark"]{--paper:#15191E;--ink:#F3EFE8;--muted:#9AA3AD;--card:#1C2025;--line:rgba(243,239,232,.16);--outline:#716B76;--footer-bg:#111419;--hero-bg:#1E2621;--hero-ink:#8FAE93;}
-*{box-sizing:border-box;margin:0;padding:0}
-html{overflow-x:hidden}
-img{display:block;max-width:100%}
-body{background:var(--paper);font-family:'Manrope',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .2s ease,color .2s ease;}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,64px)}
-
-/* HEADER */
-header{height:80px;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,64px);}
-header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition:filter .2s ease;}
-[data-theme="dark"] header img{filter:brightness(0) saturate(100%) invert(1);}
-#theme-toggle{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;
-  display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;line-height:1;
-  color:var(--ink);transition:background .2s ease,border-color .2s ease;}
-#theme-toggle:hover{background:var(--line);}
-
-/* HERO (green) */
-.f-hero{background:var(--hero-bg);position:relative;overflow:hidden;padding:86px 0 clamp(56px,9.5vw,137px);text-align:center;transition:background .2s ease;}
-.hero-back{position:absolute;top:40px;left:clamp(24px,5vw,64px);width:48px;height:48px;border-radius:50%;background:var(--paper);
-  display:flex;align-items:center;justify-content:center;z-index:5;}
-.hero-back svg{width:20px;height:20px;}
-.f-title{font-family:'Manrope';font-weight:800;font-size:clamp(40px,6.35vw,96px);line-height:1.05;color:var(--hero-ink);letter-spacing:-.01em;}
-.f-sub{font-family:'Manrope';font-weight:400;font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--ink);max-width:1000px;margin:36px auto 0;}
-.f-shot{margin:56px auto 0;width:100%;aspect-ratio:1276/718;border-radius:clamp(16px,2vw,32px);overflow:hidden;}
-.f-shot img{width:100%;height:100%;object-fit:cover;display:block;}
-
-/* FULL LONG PAGE */
-.f-full{margin-top:clamp(48px,6vw,78px);}
-.f-full-inner{max-width:1052px;margin:0 auto;border-radius:clamp(20px,3.3vw,42px);overflow:hidden;box-shadow:0 4.655px 139.646px rgba(52,102,93,0.05);}
-.f-full-inner img{width:100%;height:auto;display:block;}
-
-@media(max-width:640px){.f-title{white-space:normal}}
-</style>
-</head>
-<body>
-
-<header>
-  <a href="index.html" aria-label="DesignFolio home"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
-  <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-</header>
-
-<!-- HERO -->
-<section class="f-hero">
-  <a class="hero-back" href="index.html" aria-label="Back to home">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-  <div class="wrap">
-    <h1 class="f-title">Fortis Hospital - Pitch</h1>
-    <p class="f-sub">Fortis Healthcare Limited is a chain of private hospitals headquartered in India. I did a pitch for Fortis Bangalore. No matter what the purpose of visit may be, nobody likes to be in a hospital. It is always seen as a scary place. How do we make Fortis look more approachable and modern? This was redesign project where client wanted a complete new look &amp; feel for their existing website. The metric was to increase the number of appointments with new website.</p>
-    <div class="f-shot"><img src="Hero%20Banner/hero_banner_fortis_horpital.webp" alt="Fortis Hospital website hero"></div>
-  </div>
-</section>
-
-<!-- FULL LONG PAGE DESIGN -->
-<div class="wrap f-full">
-  <div class="f-full-inner"><img src="Fortis%20Hospital/Image%201.webp" alt="Fortis Hospital full website redesign"></div>
-</div>
-
-<!-- FOOTER -->
-<div class="foot">
-  <div class="foot-contact">
-    <div class="wrap foot-contact-inner">
-      <div class="foot-left">
-        <span class="foot-hello">Say Hello</span>
-        <div class="foot-info">
-          <a href="mailto:dhaval.design07@gmail.com">dhaval.design07@gmail.com</a>
-          <a href="tel:+919561116517">+91 95611 16517</a>
-        </div>
-      </div>
-      <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        BACK TO TOP
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 7.5L6 4L9.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-    <div class="foot-game" id="foot-game" aria-hidden="true"></div>
-    <p class="wrap foot-credit">Designed in Figma. Vibe coded with AI ❤️</p>
-  </div>
-</div>
-
-<style>
-.foot{margin-top:96px;}
-.foot-contact{background:var(--footer-bg);padding-bottom:32px;}
-.foot-contact-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:72px clamp(24px,5vw,64px) 0;}
-.foot-left{display:flex;align-items:center;gap:64px;}
-.foot-hello{font-family:'Manrope';font-weight:500;font-size:70px;text-transform:uppercase;color:var(--muted);letter-spacing:-.01em;white-space:nowrap;}
-.foot-info{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:500;font-size:clamp(14px,1.6vw,17px);color:var(--ink);}
-.foot-info a{opacity:.9;transition:opacity .15s ease;}
-.foot-info a:hover{opacity:1;text-decoration:underline;}
-.back-to-top{display:flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;
-  font-family:'Manrope';font-weight:600;font-size:12px;letter-spacing:.08em;color:var(--ink);white-space:nowrap;
-  padding:0;opacity:.75;transition:opacity .15s ease;}
-.back-to-top:hover{opacity:1;}
-.foot-game{height:380px;margin-top:48px;overflow:hidden;}
-.foot-credit{font-family:'Manrope';font-size:13px;font-weight:400;color:var(--muted);
-  padding:32px clamp(24px,5vw,64px) 0;box-sizing:border-box;}
-@media(max-width:560px){.foot-contact-inner{flex-direction:column;align-items:flex-start;gap:20px;}}
-</style>
-
-<script>
-document.getElementById('back-to-top').addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// dark / light mode toggle
-const themeBtn = document.getElementById("theme-toggle");
-function applyTheme(t){
-  document.documentElement.setAttribute("data-theme", t);
-  themeBtn.textContent = t === "dark" ? "☀️" : "🌙";
-}
-applyTheme(localStorage.getItem("theme") || "light");
-themeBtn.addEventListener("click", () => {
-  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-  localStorage.setItem("theme", next);
-  applyTheme(next);
-});
-
 // ---------- Pixel Run Game (footer) ----------
 (function(){
   const REF_W = 1440, REF_H = 512;
@@ -198,21 +69,18 @@ themeBtn.addEventListener("click", () => {
     return out;
   }
 
-  const BALLOON_BODY = ["....########....","..############..",".##############.","################","################","################","################","################",".##############.","..############..","...##########...","....########....",".....######.....","......####......",".......##......."];
-  const STRING_A = [".......##.......","........##......"];
-  const STRING_B = [".......##.......","......##........"];
-  const STRING_AIR = [".......##.......",".......##......."];
+  const RUNNER_BODY = ["....########....","..############..",".##############.","################","################","###..######..###","###..######..###","################","################","################","###..........###",".##############.","..############..","....########...."];
+  const RUNNER_LEGS_A = ["...##......##...","..###......###.."];
+  const RUNNER_LEGS_B = ["..###......###..","...##......##..."];
+  const RUNNER_LEGS_AIR = ["..###......###..",".###........###."];
   const CLOUD = ["....#####.......","..########..##..","################",".##############."];
-  const CACTUS_SOLO = ["......##........","......####..##..","......########..","......####......","......#.##......",".##...####......",".#########......","......####......","......##.#......","......####......","......####......"];
-  const CACTUS_BASE = ["......####......","......####......","......####......","......#.##......","......####......","......####......","......####......","......##.#......","......####......","......####......","......####......"];
-  const CACTUS_MID  = ["......####......","......####......","......####......","......####......","......####......","......##.#......","......####......","......####......","......####......","......####......","......####......"];
-  const CACTUS_TOP  = ["......##........","......####..##..","......########..","......####......","......#.##......",".##...####......",".#########......","......####......","......##.#......","......####......","......####......"];
-  function cactusSprite(i, stack){
-    if (stack <= 1) return CACTUS_SOLO;
-    if (i === 0) return CACTUS_BASE;
-    if (i === stack-1) return CACTUS_TOP;
-    return CACTUS_MID;
-  }
+  const BLOCK = ["..############..",".##############.","################","################","################","################","################","################","################","################","################","################","################","################",".##############.","..############.."];
+  const GLYPHS = [
+    ["..####..","..####..","..####..","..####..","...##...",".######.","........","........"],
+    ["........",".#....#.",".#....#.",".######.",".#....#.",".#....#.","........","........"],
+    ["........",".######.","....#...","...#....","..#.....",".######.","........","........"],
+    ["........","..####..",".#....#.",".#....#.",".#....#.","..####..","........","........"]
+  ];
   const FONT = {
     "0":["###","#.#","#.#","#.#","###"], "1":[".#.","##.",".#.",".#.","###"],
     "2":["###","..#","###","#..","###"], "3":["###","..#","###","..#","###"],
@@ -248,7 +116,7 @@ themeBtn.addEventListener("click", () => {
 
     function fresh(best, played){
       return { t:0, dist:0, speed:startSpeed, playerY:0, playerV:0, grounded:true,
-        obstacles:[], clouds:[], burst:[], dead:false, deadAt:0, score:0, best, nextGap:180, seed:20260818, played };
+        obstacles:[], clouds:[], dead:false, deadAt:0, score:0, best, nextGap:180, seed:20260818, played };
     }
     let world = fresh(0, false);
     let idle = 1e9;
@@ -270,8 +138,8 @@ themeBtn.addEventListener("click", () => {
         }
       }
     }
-    function blit(rows, ox, oy, unit, alpha, knock, fillFn){
-      ctx.fillStyle = (fillFn || inkAt)(alpha);
+    function blit(rows, ox, oy, unit, alpha, knock){
+      ctx.fillStyle = inkAt(alpha);
       stamp(rows, ox, oy, unit);
       if (knock){
         const prev = ctx.globalCompositeOperation;
@@ -312,25 +180,15 @@ themeBtn.addEventListener("click", () => {
       for (const ob of world.obstacles){
         const bu = BLOCK_UNITS*px;
         for (let i=0;i<ob.stack;i++){
-          blit(cactusSprite(i, ob.stack), ob.x, groundY-(i+1)*bu, bu/11, A_SPRITE);
+          blit(BLOCK, ob.x, groundY-(i+1)*bu, bu/16, A_SPRITE, GLYPHS[(ob.glyph+i)%GLYPHS.length]);
         }
       }
 
-      if (world.dead){
-        const deadT = world.t - world.deadAt;
-        const burstAlpha = Math.max(0, 1 - deadT/0.9) * A_SPRITE;
-        ctx.fillStyle = inkAt(burstAlpha);
-        for (const p of world.burst){
-          const s = Math.max(1, 3*S*(1-deadT/0.9));
-          ctx.fillRect(Math.round(p.x-s/2), Math.round(p.y-s/2), Math.round(s), Math.round(s));
-        }
-      } else {
-        const bodyH = BALLOON_BODY.length*px;
-        const feet = groundY - world.playerY;
-        blit(BALLOON_BODY, playerX, feet-bodyH-2*px, px, A_SPRITE);
-        const str = !world.grounded ? STRING_AIR : (Math.floor(world.dist/(28*S))%2 ? STRING_A : STRING_B);
-        blit(str, playerX, feet-2*px, px, A_SPRITE);
-      }
+      const bodyH = RUNNER_BODY.length*px;
+      const feet = groundY - world.playerY;
+      blit(RUNNER_BODY, playerX, feet-bodyH-2*px, px, A_SPRITE);
+      const legs = !world.grounded ? RUNNER_LEGS_AIR : (Math.floor(world.dist/(28*S))%2 ? RUNNER_LEGS_A : RUNNER_LEGS_B);
+      blit(legs, playerX, feet-2*px, px, A_SPRITE);
 
       if (!showHud) return;
       const fpx = 2.85*S;
@@ -382,10 +240,10 @@ themeBtn.addEventListener("click", () => {
       ];
       const sp = startSpeed*S;
       world.obstacles = [];
-      for (const [at,want] of [[0.62,2],[1.02,1]]){
+      for (const [at,want,glyph] of [[0.62,2,0],[1.02,1,2]]){
         let stack = want;
         while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
-        if (stack>0) world.obstacles.push({ x: w*at, stack });
+        if (stack>0) world.obstacles.push({ x: w*at, stack, glyph });
       }
       world.dist = 40*px;
     }
@@ -400,11 +258,6 @@ themeBtn.addEventListener("click", () => {
       idle += dt;
 
       if (world.dead){
-        for (const p of world.burst){
-          p.vy += 700*S*dt;
-          p.x += p.vx*dt;
-          p.y += p.vy*dt;
-        }
         if (world.t - world.deadAt > 0.9){
           const best = Math.max(world.best, world.score);
           const played = world.played;
@@ -436,7 +289,7 @@ themeBtn.addEventListener("click", () => {
         const r = rng(world);
         let stack = r<0.55 ? 1 : r<0.87 ? 2 : 3;
         while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
-        if (stack>0) world.obstacles.push({ x: w+8*px, stack });
+        if (stack>0) world.obstacles.push({ x: w+8*px, stack, glyph: Math.floor(rng(world)*GLYPHS.length) });
         world.nextGap = rng(world)*380;
       }
 
@@ -468,13 +321,6 @@ themeBtn.addEventListener("click", () => {
         const box = { x: ob.x+bu*0.12, y: groundY-ob.stack*bu, w: bu*0.76, h: ob.stack*bu };
         if (pl.x<box.x+box.w && pl.x+pl.w>box.x && pl.y<box.y+box.h && pl.y+pl.h>box.y){
           world.dead = true; world.deadAt = world.t; world.best = Math.max(world.best, world.score);
-          const bx = playerX + 8*px, by = groundY - world.playerY - BALLOON_BODY.length*px/2 - 2*px;
-          world.burst = [];
-          for (let k=0; k<16; k++){
-            const ang = rng(world) * 6.283;
-            const spd = (50 + rng(world)*180) * S;
-            world.burst.push({ x: bx, y: by, vx: Math.cos(ang)*spd, vy: Math.sin(ang)*spd });
-          }
           break;
         }
       }
@@ -534,12 +380,11 @@ themeBtn.addEventListener("click", () => {
   const gameHost = document.getElementById("foot-game");
   if (gameHost){
     initPixelRunGame(gameHost, {
-      getBackground: () => getComputedStyle(document.documentElement).getPropertyValue("--footer-bg").trim() || "#F6F6F6",
-      getInk: () => getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#17212B"
+      getBackground: () => getComputedStyle(document.documentElement).getPropertyValue("--footer-bg").trim(),
+      getInk: () => getComputedStyle(document.documentElement).getPropertyValue("--ink").trim()
     });
   }
 })();
-
 </script>
 
 </body>
