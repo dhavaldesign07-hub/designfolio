@@ -7,125 +7,115 @@
 <title>Dhaval Darji - DesignFolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&family=Poppins:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   Homepage — Figma node 73:2287 (1920 canvas, 1280 content)
-   ============================================================ */
-:root{
-  --paper:#FBF7EF;
-  --ink-blue:#153A5B;
-  --title:#FBF7EF;
-}
+:root{--paper:#FFFFFF;--ink:#17212B;--coral:#FF6B4C;--muted:#5A636D;--line:rgba(23,33,43,.14);--card:#F6F6F6;--outline:#C6B9B9;--footer-bg:#F6F6F6;}
+[data-theme="dark"]{--paper:#15191E;--ink:#F3EFE8;--coral:#FF8266;--muted:#9AA3AD;--line:rgba(243,239,232,.16);--card:#1C2025;--outline:#716B76;--footer-bg:#111419;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{overflow-x:hidden}
 img{display:block;max-width:100%}
-body{
-  background:var(--paper);
-  font-family:'Bricolage Grotesque',system-ui,sans-serif;
-  color:#000;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
+body{background:var(--paper);font-family:'Manrope',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .2s ease,color .2s ease;}
 a{color:inherit;text-decoration:none}
 
-/* content columns: header = 1600 (160px margins on 1920), grid/footer = 1280 (320px margins) */
-.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
-.wrap-wide{max-width:1600px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,64px)}
 
-/* ---------- HEADER (108px) ---------- */
-header{height:108px;background:var(--paper);}
-.hd{height:108px;display:flex;align-items:center;justify-content:space-between;}
-.logo{width:189.878px;height:37.56px;flex:0 0 auto;}
-.logo img{width:100%;height:100%;object-fit:contain}
+/* ---------- HEADER ---------- */
+header{height:80px;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,64px);}
+header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition:filter .2s ease;}
+[data-theme="dark"] header img{filter:brightness(0) saturate(100%) invert(1);}
+#theme-toggle{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;
+  display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;line-height:1;
+  color:var(--ink);transition:background .2s ease,border-color .2s ease;}
+#theme-toggle:hover{background:var(--line);}
 
 /* ---------- HERO ---------- */
-.hero{text-align:center;padding-top:92px;}
-.hero h1{font-family:'Bricolage Grotesque';font-weight:700;font-size:40px;line-height:normal;color:var(--ink-blue);}
-.hero p{font-family:'Inter',sans-serif;font-weight:400;font-size:24px;line-height:32px;color:var(--ink-blue);max-width:924px;margin:20px auto 0;}
+.hero{position:relative;min-height:calc(100vh - 80px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  max-width:1280px;margin:0 auto;padding:60px clamp(24px,5vw,64px) 80px;text-align:left;}
+.head{font-family:'Manrope',sans-serif;font-weight:700;line-height:1.12;letter-spacing:-.01em;
+  font-size:clamp(34px,6vw,72px);color:var(--ink);}
+.head .l2{display:block;margin-top:2px;}
+#word-canvas{display:inline-block;vertical-align:middle;position:relative;top:-0.05em;}
+.sub{font-family:'Manrope',sans-serif;font-weight:400;font-size:clamp(17px,1.7vw,20px);line-height:1.6;color:var(--muted);
+  margin-top:32px;max-width:860px;}
+.scroll-cue{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;}
+#arrow-canvas{display:block;}
+.scroll-label{font-family:'Manrope',sans-serif;font-weight:600;font-size:10px;letter-spacing:.08em;color:var(--muted);}
 
 /* ---------- MY WORK ---------- */
-.mywork{text-align:center;font-family:'Bricolage Grotesque';font-weight:600;font-size:36px;color:#000;margin-top:113px;}
+.mywork{font-family:'Manrope';font-weight:700;font-size:36px;color:var(--ink);margin-top:40px;}
 
 /* ---------- WORK GRID ---------- */
-.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:42px;}
-.card{
-  aspect-ratio:624/640;
-  border-radius:24px;
-  padding:28px;
-  display:flex;
-  flex-direction:column;
-}
-.thumb{
-  width:100%;
-  aspect-ratio:568/460;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-  container-type:inline-size;
-}
-.thumb>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
-.title{
-  font-family:'Bricolage Grotesque';font-weight:600;font-size:32px;line-height:normal;
-  color:var(--title);margin-top:28px;text-align:left;
-}
-
-/* card colours (outer / inner) — exact from Figma */
-.c-punch{background:#FF6B4C}   .c-punch  .thumb{background:#FF836A}
-.c-ds{background:#6D4DF6}      .c-ds     .thumb{background:#8469F8}
-.c-dth{background:#FF4C4C}     .c-dth    .thumb{background:#FF6A6A}
-.c-5paisa{background:#3CA5F6}  .c-5paisa .thumb{background:#60B4F8}
-.c-iot{background:#FF7EB7}     .c-iot    .thumb{background:#FF94C3}
-.c-river{background:#09123D}   .c-river  .thumb{background:#303456}
-.c-fortis{background:#24B918}  .c-fortis .thumb{background:#9FE6AA}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:32px;row-gap:100px;margin-top:42px;}
+.card{display:flex;flex-direction:column;}
+.thumb{width:100%;aspect-ratio:624/460;border-radius:20px;overflow:hidden;position:relative;background:var(--card);container-type:inline-size;
+  display:flex;align-items:center;justify-content:flex-start;}
+.thumb>img{position:static;display:block;width:auto;height:auto;max-width:none;margin:0 auto;}
+/* each mockup is sized to match its actual scale in the Figma card — not stretched to fill */
+.c-dth .thumb>img{width:83%;}
+.c-ds .thumb>img{width:68%;}
+/* 5 Paisa asset includes its full stand+shadow below the monitor; top-align and let the card clip the excess, matching Figma */
+.c-5paisa .thumb{align-items:flex-start;}
+.c-5paisa .thumb>img{width:80%;margin-top:10%;}
+.c-river .thumb>img{width:56%;}
+.c-fortis .thumb>img{width:100%;}
+/* Airtel IoT — shifted right, clipped by the card's right edge */
+.c-iot .thumb>img{width:100%;margin:0 0 0 15.5%;}
+.title{font-family:'Manrope';font-weight:700;font-size:24px;line-height:1.25;color:var(--ink);margin-top:24px;text-align:left;}
 
 /* Punch — big "SINGLE SCREEN TRADING" text behind the phone */
-.punch-text{
-  position:absolute;left:6.7%;top:36%;z-index:0;
-  font-family:'Bricolage Grotesque';font-weight:700;color:#FFD199;
+.punch-text{position:absolute;left:6.7%;top:36%;z-index:0;font-family:'Manrope';font-weight:800;
   font-size:22.56cqw;line-height:17.97cqw;letter-spacing:-.01em;white-space:nowrap;
-}
-.c-punch .thumb>img{object-fit:contain;z-index:1;}
+  background:linear-gradient(to bottom, #A687F0 0%, rgba(166,135,240,0) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px var(--outline);}
+/* Punch phone — measured from Figma: ~30% of card width, centered */
+.c-punch .thumb>img{inset:auto;position:absolute;top:22px;bottom:22px;left:50%;transform:translateX(-50%);
+  width:30%;height:auto;max-height:calc(100% - 44px);z-index:1;}
 
 /* ---------- FOOTER CONTACT ---------- */
-.foot{margin-top:107px;padding-bottom:53px;}
-.foot-credit{text-align:center;font-family:'Bricolage Grotesque';font-size:13px;font-weight:400;color:#000;opacity:0.4;margin:20px 0 0;}
-.foot-line{display:none;}  /* replaced by .foot-contact borders so both rules snap together */
-.foot-contact{border-top:1px solid #000;border-bottom:1px solid #000;
-  min-height:100px;padding:24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(16px,2.2vw,24px);line-height:1.3;color:#000;text-align:center;
-}
+.foot{margin-top:107px;}
+.foot-contact{background:var(--footer-bg);padding-bottom:32px;}
+.foot-contact-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:72px clamp(24px,5vw,64px) 0;}
+.foot-left{display:flex;align-items:center;gap:64px;}
+.foot-hello{font-family:'Manrope';font-weight:500;font-size:70px;text-transform:uppercase;color:var(--muted);letter-spacing:-.01em;white-space:nowrap;}
+.foot-info{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:500;font-size:clamp(14px,1.6vw,17px);color:var(--ink);}
+.foot-info a{opacity:.9;transition:opacity .15s ease;}
+.foot-info a:hover{opacity:1;text-decoration:underline;}
+.back-to-top{display:flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;
+  font-family:'Manrope';font-weight:600;font-size:12px;letter-spacing:.08em;color:var(--ink);white-space:nowrap;
+  padding:0;opacity:.75;transition:opacity .15s ease;}
+.back-to-top:hover{opacity:1;}
+.foot-game{height:380px;margin-top:48px;overflow:hidden;}
+.foot-credit{font-family:'Manrope';font-size:13px;font-weight:400;color:var(--muted);
+  padding:32px clamp(24px,5vw,64px) 0;box-sizing:border-box;}
 
 /* ---------- responsive ---------- */
 @media(max-width:900px){
-  .hero{padding-top:56px}
-  .hero h1{font-size:clamp(28px,6vw,40px)}
-  .hero p{font-size:clamp(16px,2.4vw,24px);line-height:1.35}
-  .mywork{margin-top:72px;font-size:clamp(26px,5vw,36px)}
+  .mywork{font-size:clamp(26px,5vw,36px)}
 }
 @media(max-width:760px){
   .grid{grid-template-columns:1fr;gap:22px}
-  .title{font-size:clamp(20px,5vw,32px)}
+  .title{font-size:clamp(18px,5vw,24px)}
 }
-@media(min-width:641px){
-  .foot-contact{flex-flow:row wrap;gap:0;font-size:clamp(16px,1.8vw,22px);}
-  .foot-contact span{white-space:nowrap;}
-  .foot-contact span:nth-child(2)::before{content:"\2192";margin:0 10px;}
-  .foot-contact span:nth-child(3)::before{content:"|";margin:0 10px;font-weight:400;}
+@media(max-width:560px){
+  .foot-contact-inner{flex-direction:column;align-items:flex-start;gap:20px;}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap-wide hd">
-    <a class="logo" href="index.html"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
-  </div>
+  <img src="Header/Designfolio%20Logo.svg" alt="DesignFolio">
+  <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </header>
 
-<section class="wrap hero">
-  <h1>Hi! I am Dhaval Darji</h1>
-  <p>I design digital products at the intersection of agency versatility and product thinking. Working across both design agencies and product teams has given me the ability to move from exploring bold ideas to building scalable, intuitive experiences for web, mobile, and desktop. From 0→1 products to evolving mature platforms, I enjoy simplifying complex workflows into seamless user experiences.</p>
+<section class="hero">
+  <h1 class="head">
+    Product designer working
+    <span class="l2">across <canvas id="word-canvas" aria-label="UX / UI, Design Systems"></canvas></span>
+  </h1>
+  <p class="sub">I design digital products at the intersection of agency versatility and product thinking. Working across both design agencies and product teams has given me the ability to move from exploring bold ideas to building scalable, intuitive experiences for web, mobile, and desktop. From 0&rarr;1 products to evolving mature platforms, I enjoy simplifying complex workflows into seamless user experiences.</p>
+  <div class="scroll-cue" aria-hidden="true"><canvas id="arrow-canvas"></canvas><span class="scroll-label">SCROLL DOWN</span></div>
 </section>
 
 <div class="wrap">
@@ -137,7 +127,7 @@ header{height:108px;background:var(--paper);}
     <a class="card c-punch" href="punch.html">
       <div class="thumb">
         <div class="punch-text">SINGLE<br>SCREEN<br>TRADING</div>
-        <img src="Thumbnails/Thumbnail-Airtel%20App.webp" alt="Punch single screen trading app">
+        <img src="Thumbnails/Thumbnail-Punch%20Single%20Screen%20Trading.webp" alt="Punch single screen trading app">
       </div>
       <div class="title">Punch - India's 1st Single Screen Trading</div>
     </a>
@@ -179,12 +169,619 @@ header{height:108px;background:var(--paper);}
     </a>
 
   </div>
+</div>
 
-  <div class="foot">
-    <div class="foot-contact"><span>Contact</span><span>dhaval.design07@gmail.com</span><span>+91 95611 16517</span></div>
-    <p class="foot-credit">Designed in Figma. Vibe coded with AI ❤️</p>
+<div class="foot">
+  <div class="foot-contact">
+    <div class="wrap foot-contact-inner">
+      <div class="foot-left">
+        <span class="foot-hello">Say Hello</span>
+        <div class="foot-info">
+          <a href="mailto:dhaval.design07@gmail.com">dhaval.design07@gmail.com</a>
+          <a href="tel:+919561116517">+91 95611 16517</a>
+        </div>
+      </div>
+      <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        BACK TO TOP
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 7.5L6 4L9.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="foot-game" id="foot-game" aria-hidden="true"></div>
+    <p class="wrap foot-credit">Designed in Figma. Vibe coded with AI ❤️</p>
   </div>
 </div>
+
+<script>
+const WORDS = ["UX / UI", "Design Systems"];
+const CORAL = "#FF6B4C";
+const canvas = document.getElementById("word-canvas");
+const ctx = canvas.getContext("2d");
+let dpr = Math.max(1, window.devicePixelRatio || 1);
+let fontSize = 60, pool = [], wordIndex = 0;
+
+function computeFontSize(){ return Math.min(Math.max(window.innerWidth * 0.06, 34), 72); }
+
+function sampleWord(word, fs){
+  const off = document.createElement("canvas");
+  const octx = off.getContext("2d");
+  const font = `700 ${fs}px "Manrope", sans-serif`;
+  octx.font = font;
+  const w = Math.ceil(octx.measureText(word).width) + 8;
+  const h = Math.ceil(fs * 1.35);
+  off.width = w; off.height = h;
+  octx.font = font;
+  octx.fillStyle = "#000";
+  octx.textBaseline = "alphabetic";
+  octx.fillText(word, 2, fs);
+  const data = octx.getImageData(0, 0, w, h).data;
+  const step = Math.max(2, Math.round(fs / 26));
+  const pts = [];
+  for (let y = 0; y < h; y += step){
+    for (let x = 0; x < w; x += step){
+      if (data[(y * w + x) * 4 + 3] > 128) pts.push({x, y});
+    }
+  }
+  return { pts, w, h };
+}
+
+let maxW = 10, boxH = 10;
+function rebuild(){
+  fontSize = computeFontSize();
+  const sampled = WORDS.map(w => sampleWord(w, fontSize));
+  maxW = Math.max(...sampled.map(s => s.w));
+  boxH = Math.max(...sampled.map(s => s.h));
+  window._sampled = sampled;
+  canvas.style.width = maxW + "px";
+  canvas.style.height = boxH + "px";
+  canvas.width = Math.round(maxW * dpr);
+  canvas.height = Math.round(boxH * dpr);
+  ctx.scale(dpr, dpr);
+  setWord(wordIndex);
+}
+
+function setWord(idx){
+  const s = window._sampled[idx];
+  pool = s.pts.map(p => {
+    const tx = p.x + (Math.random()-0.5)*1.2;
+    const ty = p.y + (Math.random()-0.5)*1.2;
+    return { x: tx, y: ty, tx, ty, vx: 0, vy: 0 };
+  });
+}
+
+const SPRING = 0.012, FRICTION = 0.86, WANDER = 0.22;
+let mouse = null;
+const REPEL_R = 34, REPEL_FORCE = 2.0;
+
+canvas.addEventListener("mousemove", (e) => {
+  const r = canvas.getBoundingClientRect();
+  mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+});
+canvas.addEventListener("mouseleave", () => { mouse = null; });
+
+const FADE = 380, HOLD = 2200;
+let phase = "in", elapsed = 0, alpha = 0, lastFrame = null;
+
+function tick(now){
+  if (lastFrame === null) lastFrame = now;
+  const dt = now - lastFrame;
+  lastFrame = now;
+
+  if (!mouse){
+    elapsed += dt;
+    if (phase === "in"){
+      alpha = Math.min(1, elapsed / FADE);
+      if (elapsed >= FADE){ phase = "hold"; elapsed = 0; }
+    } else if (phase === "hold"){
+      alpha = 1;
+      if (elapsed >= HOLD){ phase = "out"; elapsed = 0; }
+    } else {
+      alpha = 1 - Math.min(1, elapsed / FADE);
+      if (elapsed >= FADE){
+        wordIndex = (wordIndex + 1) % WORDS.length;
+        setWord(wordIndex);
+        phase = "in"; elapsed = 0;
+      }
+    }
+  }
+
+  ctx.clearRect(0, 0, maxW, boxH);
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = CORAL;
+  for (let i = 0; i < pool.length; i++){
+    const p = pool[i];
+    p.vx += (p.tx - p.x) * SPRING + (Math.random()-0.5) * WANDER;
+    p.vy += (p.ty - p.y) * SPRING + (Math.random()-0.5) * WANDER;
+    if (mouse){
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < REPEL_R && dist > 0.01){
+        const push = (REPEL_R - dist) / REPEL_R;
+        p.vx += (dx / dist) * push * REPEL_FORCE;
+        p.vy += (dy / dist) * push * REPEL_FORCE;
+      }
+    }
+    p.vx *= FRICTION; p.vy *= FRICTION;
+    p.x += p.vx; p.y += p.vy;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 1.7, 0, 6.283);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(tick);
+}
+
+// down-facing scroll arrow — same dot/particle technique as the word canvas
+const arrowCanvas = document.getElementById("arrow-canvas");
+const actx = arrowCanvas.getContext("2d");
+let arrowPool = [], arrowW = 10, arrowH = 10;
+
+function sampleArrow(size){
+  const off = document.createElement("canvas");
+  const octx = off.getContext("2d");
+  const w = size, h = Math.round(size * 0.6);
+  off.width = w; off.height = h;
+  octx.strokeStyle = "#000";
+  octx.lineWidth = Math.min(4, size * 0.08);
+  octx.lineCap = "round";
+  octx.lineJoin = "round";
+  octx.beginPath();
+  octx.moveTo(w * 0.15, h * 0.18);
+  octx.lineTo(w * 0.5, h * 0.82);
+  octx.lineTo(w * 0.85, h * 0.18);
+  octx.stroke();
+  const data = octx.getImageData(0, 0, w, h).data;
+  const step = Math.max(2, Math.round(size / 26));
+  const pts = [];
+  for (let y = 0; y < h; y += step){
+    for (let x = 0; x < w; x += step){
+      if (data[(y * w + x) * 4 + 3] > 128) pts.push({x, y});
+    }
+  }
+  return { pts, w, h };
+}
+
+function rebuildArrow(){
+  const size = Math.max(36, Math.min(52, window.innerWidth * 0.035));
+  const s = sampleArrow(size);
+  arrowW = s.w; arrowH = s.h;
+  arrowCanvas.style.width = arrowW + "px";
+  arrowCanvas.style.height = arrowH + "px";
+  arrowCanvas.width = Math.round(arrowW * dpr);
+  arrowCanvas.height = Math.round(arrowH * dpr);
+  actx.scale(dpr, dpr);
+  arrowPool = s.pts.map(p => {
+    const tx = p.x, ty = p.y;
+    return { x: tx, y: ty, tx, ty, vx: 0, vy: 0 };
+  });
+}
+
+function tickArrow(now){
+  const bob = Math.sin(now / 900) * 4; // gentle up/down breathing to hint "scroll"
+  actx.clearRect(0, 0, arrowW, arrowH);
+  actx.fillStyle = CORAL;
+  for (let i = 0; i < arrowPool.length; i++){
+    const p = arrowPool[i];
+    const ty = p.ty + bob;
+    p.vx += (p.tx - p.x) * SPRING + (Math.random()-0.5) * WANDER;
+    p.vy += (ty - p.y) * SPRING + (Math.random()-0.5) * WANDER;
+    p.vx *= FRICTION; p.vy *= FRICTION;
+    p.x += p.vx; p.y += p.vy;
+    actx.beginPath();
+    actx.arc(p.x, p.y, 1.7, 0, 6.283);
+    actx.fill();
+  }
+  requestAnimationFrame(tickArrow);
+}
+
+let rz;
+window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { dpr = Math.max(1, window.devicePixelRatio||1); rebuild(); rebuildArrow(); }, 150); });
+
+document.fonts.ready.then(() => { rebuild(); requestAnimationFrame(tick); rebuildArrow(); requestAnimationFrame(tickArrow); });
+
+const themeBtn = document.getElementById("theme-toggle");
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  themeBtn.textContent = t === "dark" ? "☀️" : "🌙";
+}
+applyTheme(localStorage.getItem("theme") || "light");
+themeBtn.addEventListener("click", () => {
+  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", next);
+  applyTheme(next);
+});
+
+document.getElementById("back-to-top").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ---------- Pixel Run Game (footer) ----------
+(function(){
+  const REF_W = 1440, REF_H = 512;
+  const ART = 4.8;
+  const GROUND_RATIO = 393 / REF_H;
+  const NEAR_DASH_RATIO = 422.5 / REF_H;
+  const FAR_DASH_RATIO = 448 / REF_H;
+  const HORIZON_THICK = 4.5, DASH_THICK = 5, DASH_PERIOD = 128;
+  const NEAR_DASH_ON = 45, FAR_DASH_ON = 23;
+  const A_HORIZON = 0.331, A_NEAR = 0.199, A_FAR = 0.15, A_SPRITE = 0.331, A_CLOUD = 0.26;
+  const BLOCK_UNITS = 11;
+  const IDLE_RESUME = 4;
+  const A_HUD_LABEL = 0.33, A_HUD_VALUE = 0.42;
+
+  const COLOR_CACHE = new Map();
+  const clamp01 = n => n < 0 ? 0 : n > 1 ? 1 : n;
+
+  function hslToRgb(h, s, l){
+    const hh = ((h % 360) + 360) % 360;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs(((hh / 60) % 2) - 1));
+    const m = l - c / 2;
+    let r=0,g=0,b=0;
+    if (hh<60) [r,g,b]=[c,x,0]; else if (hh<120) [r,g,b]=[x,c,0]; else if (hh<180) [r,g,b]=[0,c,x];
+    else if (hh<240) [r,g,b]=[0,x,c]; else if (hh<300) [r,g,b]=[x,0,c]; else [r,g,b]=[c,0,x];
+    return [Math.round((r+m)*255), Math.round((g+m)*255), Math.round((b+m)*255)];
+  }
+
+  function parseColorRaw(raw, fallback){
+    let s = raw.trim();
+    if (s.charAt(0) === "#"){
+      let h = s.slice(1).trim();
+      if (h.length===3||h.length===4) h = h.split("").map(c=>c+c).join("");
+      if (h.length!==6 && h.length!==8) return fallback;
+      const ch = i => parseInt(h.slice(i,i+2),16);
+      const r=ch(0), g=ch(2), b=ch(4);
+      if (!Number.isFinite(r)||!Number.isFinite(g)||!Number.isFinite(b)) return fallback;
+      const a = h.length===8 ? ch(6)/255 : 1;
+      return [r,g,b, clamp01(Number.isFinite(a)?a:1)];
+    }
+    const fn = s.match(/^(rgba?|hsla?)\(([^)]*)\)$/i);
+    if (fn){
+      const name = fn[1].toLowerCase();
+      const parts = fn[2].split(/[,/\s]+/).filter(Boolean);
+      if (parts.length<3) return fallback;
+      const num = t => parseFloat(t);
+      const alphaTok = parts[3];
+      const alpha = alphaTok===undefined ? 1 : (alphaTok.endsWith("%") ? num(alphaTok)/100 : num(alphaTok));
+      if (!Number.isFinite(alpha)) return fallback;
+      if (name.charAt(0)==="r"){
+        const chan = t => t.endsWith("%") ? Math.round(num(t)*255/100) : Math.round(num(t));
+        const r=chan(parts[0]), g=chan(parts[1]), b=chan(parts[2]);
+        if (!Number.isFinite(r)||!Number.isFinite(g)||!Number.isFinite(b)) return fallback;
+        return [r,g,b, clamp01(alpha)];
+      }
+      const hue=num(parts[0]), sat=num(parts[1])/100, lig=num(parts[2])/100;
+      if (!Number.isFinite(hue)||!Number.isFinite(sat)||!Number.isFinite(lig)) return fallback;
+      const [r,g,b] = hslToRgb(hue, clamp01(sat), clamp01(lig));
+      return [r,g,b, clamp01(alpha)];
+    }
+    return fallback;
+  }
+  function parseColor(input, fallback){
+    if (!input) return fallback;
+    const hit = COLOR_CACHE.get(input);
+    if (hit) return hit;
+    const out = parseColorRaw(input, fallback);
+    COLOR_CACHE.set(input, out);
+    return out;
+  }
+
+  const RUNNER_BODY = ["....########....","..############..",".##############.","################","################","###..######..###","###..######..###","################","################","################","###..........###",".##############.","..############..","....########...."];
+  const RUNNER_LEGS_A = ["...##......##...","..###......###.."];
+  const RUNNER_LEGS_B = ["..###......###..","...##......##..."];
+  const RUNNER_LEGS_AIR = ["..###......###..",".###........###."];
+  const CLOUD = ["....#####.......","..########..##..","################",".##############."];
+  const BLOCK = ["..############..",".##############.","################","################","################","################","################","################","################","################","################","################","################","################",".##############.","..############.."];
+  const GLYPHS = [
+    ["..####..","..####..","..####..","..####..","...##...",".######.","........","........"],
+    ["........",".#....#.",".#....#.",".######.",".#....#.",".#....#.","........","........"],
+    ["........",".######.","....#...","...#....","..#.....",".######.","........","........"],
+    ["........","..####..",".#....#.",".#....#.",".#....#.","..####..","........","........"]
+  ];
+  const FONT = {
+    "0":["###","#.#","#.#","#.#","###"], "1":[".#.","##.",".#.",".#.","###"],
+    "2":["###","..#","###","#..","###"], "3":["###","..#","###","..#","###"],
+    "4":["#.#","#.#","###","..#","..#"], "5":["###","#..","###","..#","###"],
+    "6":["###","#..","###","#.#","###"], "7":["###","..#","..#","..#","..#"],
+    "8":["###","#.#","###","#.#","###"], "9":["###","#.#","###","..#","###"],
+    "S":["###","#..","###","..#","###"], "C":["###","#..","#..","#..","###"],
+    "O":["###","#.#","#.#","#.#","###"], "R":["###","#.#","###","#.#","#.#"],
+    "E":["###","#..","###","#..","###"], "B":["##.","#.#","##.","#.#","##."],
+    "T":["###",".#.",".#.",".#.",".#."], " ":["...","...","...","...","..."]
+  };
+
+  function rng(w){ w.seed = (w.seed * 1664525 + 1013904223) >>> 0; return w.seed / 4294967296; }
+
+  function initPixelRunGame(host, options){
+    const opts = options || {};
+    const startSpeed = opts.startSpeed ?? 420;
+    const maxSpeed = opts.maxSpeed ?? 980;
+    const gravity = opts.gravity ?? 4780;
+    const jumpV = opts.jump ?? 1480;
+    const showHud = opts.showHud ?? true;
+    const attract = opts.attract ?? true;
+    const farDashSpeed = opts.farDashSpeed ?? 100;
+    const getBackground = opts.getBackground || (() => "#00164C");
+    const getInk = opts.getInk || (() => "#ffffff");
+
+    const canvas = document.createElement("canvas");
+    canvas.style.display = "block";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    host.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+
+    function fresh(best, played){
+      return { t:0, dist:0, speed:startSpeed, playerY:0, playerV:0, grounded:true,
+        obstacles:[], clouds:[], dead:false, deadAt:0, score:0, best, nextGap:180, seed:20260818, played };
+    }
+    let world = fresh(0, false);
+    let idle = 1e9;
+    let hovering = false;
+
+    const inkAt = a => { const [r,g,b,ia] = parseColor(getInk(), [255,255,255,1]); return `rgba(${r},${g},${b},${a*ia})`; };
+    const bgFill = () => { const [r,g,b,a] = parseColor(getBackground(), [0,0,0,1]); return `rgba(${r},${g},${b},${a})`; };
+
+    function stamp(rows, ox, oy, unit){
+      for (let r=0;r<rows.length;r++){
+        const y0 = Math.round(oy+r*unit), y1 = Math.round(oy+(r+1)*unit);
+        let c=0;
+        while (c<rows[r].length){
+          if (rows[r][c]!=="#"){ c++; continue; }
+          let e=c; while (e<rows[r].length && rows[r][e]==="#") e++;
+          const x0=Math.round(ox+c*unit), x1=Math.round(ox+e*unit);
+          ctx.fillRect(x0,y0,x1-x0,y1-y0);
+          c=e;
+        }
+      }
+    }
+    function blit(rows, ox, oy, unit, alpha, knock){
+      ctx.fillStyle = inkAt(alpha);
+      stamp(rows, ox, oy, unit);
+      if (knock){
+        const prev = ctx.globalCompositeOperation;
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fillStyle = "#000";
+        const kx = ox + ((rows[0].length - knock[0].length)/2)*unit;
+        const ky = oy + ((rows.length - knock.length)/2)*unit;
+        stamp(knock, kx, ky, unit);
+        ctx.globalCompositeOperation = prev;
+      }
+    }
+
+    function paint(w,h){
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      const px = ART*S;
+      const groundY = h*GROUND_RATIO;
+      const playerX = w*0.08;
+
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = bgFill();
+      ctx.fillRect(0,0,w,h);
+
+      for (const cl of world.clouds) blit(CLOUD, cl.x, cl.y*h, px*cl.scale, A_CLOUD*(0.7+0.3*cl.depth));
+
+      ctx.fillStyle = inkAt(A_HORIZON);
+      ctx.fillRect(0, Math.round(groundY), w, Math.max(1, Math.round(HORIZON_THICK*S)));
+
+      function dashRow(ratio, on, alpha, phase){
+        const period = DASH_PERIOD*S, len = on*S, y = Math.round(h*ratio), th = Math.max(1, Math.round(DASH_THICK*S));
+        ctx.fillStyle = inkAt(alpha);
+        const start = -((phase % period)+period)%period;
+        for (let x=start; x<w; x+=period) ctx.fillRect(Math.round(x), y, Math.round(len), th);
+      }
+      dashRow(NEAR_DASH_RATIO, NEAR_DASH_ON, A_NEAR, world.dist);
+      const farMul = farDashSpeed/100;
+      dashRow(FAR_DASH_RATIO, FAR_DASH_ON, A_FAR, world.dist*farMul);
+
+      for (const ob of world.obstacles){
+        const bu = BLOCK_UNITS*px;
+        for (let i=0;i<ob.stack;i++){
+          blit(BLOCK, ob.x, groundY-(i+1)*bu, bu/16, A_SPRITE, GLYPHS[(ob.glyph+i)%GLYPHS.length]);
+        }
+      }
+
+      const bodyH = RUNNER_BODY.length*px;
+      const feet = groundY - world.playerY;
+      blit(RUNNER_BODY, playerX, feet-bodyH-2*px, px, A_SPRITE);
+      const legs = !world.grounded ? RUNNER_LEGS_AIR : (Math.floor(world.dist/(28*S))%2 ? RUNNER_LEGS_A : RUNNER_LEGS_B);
+      blit(legs, playerX, feet-2*px, px, A_SPRITE);
+
+      if (!showHud) return;
+      const fpx = 2.85*S;
+      function text(s, rightX, y, alpha){
+        const cw = 4*fpx, total = s.length*cw - fpx;
+        let x = rightX - total;
+        ctx.fillStyle = inkAt(alpha);
+        for (const ch of s){
+          const g = FONT[ch] ?? FONT[" "];
+          for (let r=0;r<5;r++) for (let c=0;c<3;c++) if (g[r][c]==="#")
+            ctx.fillRect(Math.round(x+c*fpx), Math.round(y+r*fpx), Math.round(x+(c+1)*fpx)-Math.round(x+c*fpx), Math.round(y+(r+1)*fpx)-Math.round(y+r*fpx));
+          x += cw;
+        }
+      }
+      const pad = n => String(Math.floor(n)).padStart(5,"0").slice(-5);
+      const rightBest = w - 77*S, rightScore = rightBest - 190*S;
+      const labelY = h*0.07, valueY = h*0.133;
+      text("SCORE", rightScore, labelY, A_HUD_LABEL);
+      text(pad(world.score), rightScore, valueY, A_HUD_VALUE);
+      text("BEST", rightBest, labelY, A_HUD_LABEL);
+      text(pad(world.best), rightBest, valueY, A_HUD_VALUE);
+    }
+
+    function jumpWindow(stack, sp, S){
+      const px = ART*S, v = jumpV*S, g = gravity*S, top = stack*BLOCK_UNITS*px;
+      const disc = v*v - 2*g*top;
+      const tX = (10*px + BLOCK_UNITS*px*0.76)/sp;
+      if (disc<=0) return { ok:false, lead:0 };
+      const root = Math.sqrt(disc), t1=(v-root)/g, t2=(v+root)/g;
+      return { ok: t2-t1 > tX*1.25, lead: t1 + (t2-t1-tX)/2 };
+    }
+
+    function doJump(){
+      if (world.dead || !world.grounded) return;
+      const r = host.getBoundingClientRect();
+      const w = r.width || REF_W, h = r.height || REF_H;
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      world.playerV = jumpV*S;
+      world.grounded = false;
+    }
+
+    function seed(w,h){
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      const px = ART*S;
+      world.clouds = [
+        { x:w*0.17, y:0.18, scale:1.15, depth:0.2 },
+        { x:w*0.44, y:0.11, scale:0.85, depth:0.7 },
+        { x:w*0.78, y:0.26, scale:1.35, depth:0.45 }
+      ];
+      const sp = startSpeed*S;
+      world.obstacles = [];
+      for (const [at,want,glyph] of [[0.62,2,0],[1.02,1,2]]){
+        let stack = want;
+        while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
+        if (stack>0) world.obstacles.push({ x: w*at, stack, glyph });
+      }
+      world.dist = 40*px;
+    }
+
+    function step(dt, w, h){
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      const px = ART*S;
+      const groundY = h*GROUND_RATIO;
+      const playerX = w*0.08;
+
+      world.t += dt;
+      idle += dt;
+
+      if (world.dead){
+        if (world.t - world.deadAt > 0.9){
+          const best = Math.max(world.best, world.score);
+          const played = world.played;
+          world = fresh(best, played);
+          seed(w,h);
+        }
+        return;
+      }
+
+      const cap = Math.max(startSpeed, maxSpeed);
+      const sp = Math.min(cap, startSpeed + world.dist/260) * S;
+      world.speed = sp;
+      world.dist += sp*dt;
+      world.score = world.dist/24;
+
+      if (!world.grounded){
+        world.playerV -= gravity*S*dt;
+        world.playerY += world.playerV*dt;
+        if (world.playerY<=0){ world.playerY=0; world.playerV=0; world.grounded=true; }
+      }
+
+      for (const ob of world.obstacles) ob.x -= sp*dt;
+      world.obstacles = world.obstacles.filter(o=>o.x > -20*px);
+      const last = world.obstacles.length ? Math.max(...world.obstacles.map(o=>o.x)) : -Infinity;
+
+      const flight = 2*jumpV/gravity;
+      const clear = (sp/S)*flight + (BLOCK_UNITS+20)*ART;
+      if (last < w - (clear+world.nextGap)*S){
+        const r = rng(world);
+        let stack = r<0.55 ? 1 : r<0.87 ? 2 : 3;
+        while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
+        if (stack>0) world.obstacles.push({ x: w+8*px, stack, glyph: Math.floor(rng(world)*GLYPHS.length) });
+        world.nextGap = rng(world)*380;
+      }
+
+      for (const cl of world.clouds) cl.x -= sp*dt*(0.12+0.22*cl.depth);
+      world.clouds = world.clouds.filter(c=>c.x > -30*px);
+      if (world.clouds.length<5 && rng(world)<0.012){
+        world.clouds.push({ x:w+10*px, y:0.1+rng(world)*0.42, scale:0.75+rng(world)*0.9, depth:rng(world) });
+      }
+
+      const auto = attract && (!world.played || idle > IDLE_RESUME);
+      if (auto && world.grounded){
+        const bu = BLOCK_UNITS*px;
+        const plFront = playerX + 13*px;
+        let next=null, gap=Infinity;
+        for (const ob of world.obstacles){
+          const left = ob.x + bu*0.12;
+          if (left + bu*0.76 <= plFront) continue;
+          if (left - plFront < gap){ gap = left - plFront; next = ob; }
+        }
+        if (next){
+          const win = jumpWindow(next.stack, sp, S);
+          if (win.ok && gap <= sp*win.lead) doJump();
+        }
+      }
+
+      const pl = { x: playerX+3*px, y: groundY-world.playerY-16*px+2*px, w:10*px, h:14*px };
+      for (const ob of world.obstacles){
+        const bu = BLOCK_UNITS*px;
+        const box = { x: ob.x+bu*0.12, y: groundY-ob.stack*bu, w: bu*0.76, h: ob.stack*bu };
+        if (pl.x<box.x+box.w && pl.x+pl.w>box.x && pl.y<box.y+box.h && pl.y+pl.h>box.y){
+          world.dead = true; world.deadAt = world.t; world.best = Math.max(world.best, world.score);
+          break;
+        }
+      }
+    }
+
+    let w=0, h=0;
+    function measure(){
+      const r = host.getBoundingClientRect();
+      const cw = Math.max(1, Math.round(host.clientWidth || r.width || REF_W));
+      const ch = Math.max(1, Math.round(host.clientHeight || r.height || REF_H));
+      if (cw===w && ch===h) return false;
+      w=cw; h=ch;
+      const dpr = Math.min(2, window.devicePixelRatio||1);
+      canvas.width = Math.round(w*dpr);
+      canvas.height = Math.round(h*dpr);
+      canvas.style.width = w+"px";
+      canvas.style.height = h+"px";
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      return true;
+    }
+
+    measure();
+    if (!world.obstacles.length) seed(w,h);
+    paint(w,h);
+
+    const ro = new ResizeObserver(() => { if (measure()) paint(w,h); });
+    ro.observe(host);
+
+    let last = 0;
+    function frame(now){
+      const prev = last || now;
+      last = now;
+      const dt = Math.min(0.05, (now-prev)/1000);
+      if (dt>0) step(dt,w,h);
+      paint(w,h);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    function play(){ world.played = true; idle = 0; }
+    host.tabIndex = 0;
+    host.style.outline = "none";
+    host.style.cursor = "pointer";
+    host.style.touchAction = "manipulation";
+    window.addEventListener("keydown", (e) => {
+      const mine = hovering || document.activeElement === host;
+      if (!mine) return;
+      if (e.code==="Space" || e.code==="ArrowUp" || e.key===" " || e.key==="ArrowUp"){
+        e.preventDefault(); play(); doJump();
+      }
+    }, { passive:false });
+    host.addEventListener("pointerdown", (e) => { e.preventDefault(); play(); doJump(); });
+    host.addEventListener("pointerenter", () => { hovering = true; });
+    host.addEventListener("pointerleave", () => { hovering = false; });
+  }
+
+  const gameHost = document.getElementById("foot-game");
+  if (gameHost){
+    initPixelRunGame(gameHost, {
+      getBackground: () => getComputedStyle(document.documentElement).getPropertyValue("--footer-bg").trim(),
+      getInk: () => getComputedStyle(document.documentElement).getPropertyValue("--ink").trim()
+    });
+  }
+})();
+</script>
 
 </body>
 </html>

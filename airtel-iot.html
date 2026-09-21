@@ -7,174 +7,591 @@
 <title>Airtel IoT — Connectivity Management Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   Airtel IoT — Figma node 73:2648 (1920 / 1280 content)
-   ============================================================ */
-:root{--paper:#FBF7EF;}
+:root{--paper:#FFFFFF;--ink:#17212B;--muted:#5A636D;--card:#F6F6F6;--line:rgba(23,33,43,.12);--outline:#C6B9B9;--footer-bg:#F6F6F6;--hero-bg:#EDEDED;}
+[data-theme="dark"]{--paper:#15191E;--ink:#F3EFE8;--muted:#9AA3AD;--card:#1C2025;--line:rgba(243,239,232,.16);--outline:#716B76;--footer-bg:#111419;--hero-bg:#1C2025;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{overflow-x:hidden}
 img{display:block;max-width:100%}
-body{background:var(--paper);font-family:'Bricolage Grotesque',system-ui,sans-serif;color:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body{background:var(--paper);font-family:'Manrope',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .2s ease,color .2s ease;}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
-.wrap-wide{max-width:1600px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,64px)}
 
 /* HEADER */
-header{height:108px;background:var(--paper);}
-.hd{height:108px;display:flex;align-items:center;justify-content:space-between;}
-.logo{width:189.878px;height:37.56px;flex:0 0 auto;}
-.logo img{width:100%;height:100%;object-fit:contain}
-.hd-contact{font-weight:600;font-size:16px;line-height:28px;color:#000;text-align:right;}
+header{height:80px;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,64px);}
+header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition:filter .2s ease;}
+[data-theme="dark"] header img{filter:brightness(0) saturate(100%) invert(1);}
+#theme-toggle{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;
+  display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;line-height:1;
+  color:var(--ink);transition:background .2s ease,border-color .2s ease;}
+#theme-toggle:hover{background:var(--line);}
 
-/* HERO (grey) */
-.iot-hero{background:#E4E2E2;position:relative;text-align:center;padding:86px 0 120px;}
-.iot-title{font-family:'Bricolage Grotesque';font-weight:700;font-size:clamp(52px,9.5vw,122px);line-height:1;color:#858585;}
-.iot-sub{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.35;color:#000;max-width:1065px;margin:64px auto 0;}
-.hero-back{position:absolute;top:40px;left:clamp(20px,5.2vw,100px);width:48px;height:48px;z-index:5;display:block;}
-.hero-back img{width:100%;height:100%;display:block;}
-.iot-col{max-width:1159px;margin:0 auto;}
-.iot-illus{width:100%;margin:-100px 0 0;position:relative;z-index:2;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -30px rgba(0,0,0,.25);}
-.iot-illus img{width:100%;height:auto;display:block;}
+/* HERO */
+.iot-hero{background:var(--hero-bg);position:relative;text-align:center;padding:96px 0 60px;transition:background .2s ease;}
+.hero-back{position:absolute;top:40px;left:clamp(24px,5vw,64px);width:48px;height:48px;border-radius:50%;background:var(--paper);
+  display:flex;align-items:center;justify-content:center;z-index:5;}
+.hero-back svg{width:20px;height:20px;}
+.iot-title{font-family:'Manrope';font-weight:800;font-size:clamp(46px,7vw,96px);line-height:1;color:var(--muted);letter-spacing:-.01em;}
+.iot-sub{font-family:'Manrope';font-weight:400;font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--ink);max-width:900px;margin:40px auto 0;}
 
-/* CONTENT (Objective etc.) */
-.iot-content{padding-top:110px;display:flex;flex-direction:column;gap:48px;width:100%;}
-.iot-content h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(26px,2.6vw,32px);color:#000;margin-bottom:12px;}
-.iot-content h3{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,24px);color:#000;margin-bottom:12px;}
-.iot-content p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,20px);line-height:1.4;color:#423F3F;}
-.iot-content p + p{margin-top:1em;}
+/* BANNER — image already has its own framing baked in, no extra wrapper styling */
+.iot-banner{margin:-20px auto 0;max-width:1100px;position:relative;z-index:2;}
+.iot-banner img{width:100%;height:auto;display:block;}
 
-/* GREY PANELS */
-.gpanel{background:#E5E5E5;border-radius:24px;padding:clamp(32px,7.4vw,95px);margin-top:80px;}
-.gpanel-inner{max-width:1090px;margin:0 auto;display:flex;flex-direction:column;gap:84px;}
-.gblock{display:flex;flex-direction:column;gap:40px;}
-.gblock .gh{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(28px,3.1vw,40px);color:#000;}
-.gblock .gh.sm{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,24px);}
-.gblock p{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.35;color:#000;max-width:1052px;}
-.gblock p .res{font-weight:600;display:block;margin-top:1em;}
-.gblock .gtxt{display:flex;flex-direction:column;gap:20px;}
-.gblock .gimg img{width:100%;height:auto;display:block;}
+/* SECTION LAYOUT */
+.section{padding:56px 0 96px;}
+.row{display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start;}
+.row + .row{margin-top:48px;}
+.label{font-family:'Manrope';font-weight:700;font-size:20px;letter-spacing:0;text-transform:uppercase;color:var(--muted);line-height:1.65;margin:0;}
+.copy{font-family:'Manrope';font-weight:400;font-size:18px;line-height:1.65;color:var(--ink);margin:0;}
+.copy-col{display:flex;flex-direction:column;gap:20px;}
+.wide-copy{font-family:'Manrope';font-weight:400;font-size:18px;line-height:1.65;color:var(--ink);max-width:1000px;}
 
-/* LEARNING */
-.learn{margin-top:96px;}
-.learn p{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(24px,2.5vw,32px);line-height:1.3;color:#000;max-width:1265px;}
+/* card / image frame */
+.card{background:var(--card);border-radius:24px;padding:52px;margin-top:32px;}
+.card:first-child{margin-top:0;}
+.card img{border-radius:16px;width:100%;height:auto;display:block;}
 
-/* FOOTER */
-.foot{margin-top:96px;padding-bottom:33px;}
-.foot-line{display:none;}  /* replaced by .foot-contact borders so both rules snap together */
-.foot-credit{text-align:center;font-family:'Bricolage Grotesque';font-size:13px;font-weight:400;color:#000;opacity:0.4;margin:20px 0 0;}
-.foot-contact{border-top:1px solid #000;border-bottom:1px solid #000;min-height:100px;padding:24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(16px,2.2vw,24px);line-height:1.3;color:#000;text-align:center;}
-
-@media(max-width:640px){.hd-contact{font-size:clamp(11px,2.4vw,16px)}.iot-illus{margin-top:-40px}}
-@media(min-width:641px){.foot-contact{flex-flow:row wrap;gap:0;font-size:clamp(16px,1.8vw,22px);}.foot-contact span{white-space:nowrap;}.foot-contact span:nth-child(2)::before{content:"\2192";margin:0 10px;}.foot-contact span:nth-child(3)::before{content:"|";margin:0 10px;font-weight:400;}}
+@media(max-width:900px){
+  .row{grid-template-columns:1fr;gap:16px;}
+  .iot-banner{margin-top:-40px;}
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap-wide hd">
-    <a class="logo" href="index.html"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
-  </div>
+  <a href="index.html" aria-label="DesignFolio home"><img src="Header/Designfolio%20Logo.svg" alt="DesignFolio"></a>
+  <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 </header>
 
 <!-- HERO -->
 <section class="iot-hero">
-  <a class="hero-back" href="index.html" aria-label="Back to home"><img src="Header/back%20arrow.svg" alt="Back"></a>
+  <a class="hero-back" href="index.html" aria-label="Back to home">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
   <div class="wrap">
     <h1 class="iot-title">Airtel IoT</h1>
-    <p class="iot-sub">IoT CMP is a connectivity management platform used to manage sim cards provided to the devices which require IoT.  The users can change plans, request for new sim cards, deactivate sim cards and whitelist services through the portal. Earlier all these activities were done by the Airtel team. The clients used to raise tickets and an Airtel representative would take care of those requests. Now we are tried to tackle this problem by redesigning the portal to make it more usable for the clients.</p>
+    <p class="iot-sub">IoT CMP is a connectivity management platform used to manage sim cards provided to the devices which require IoT. The users can change plans, request for new sim cards, deactivate sim cards and whitelist services through the portal. Earlier all these activities were done by the Airtel team. The clients used to raise tickets and an Airtel representative would take care of those requests. Now we are tried to tackle this problem by redesigning the portal to make it more usable for the clients.</p>
   </div>
 </section>
-<div class="wrap">
-  <div class="iot-col">
-  <div class="iot-illus"><img src="Hero%20Banner/hero_banner_airtel_iot.webp" alt="Airtel M2M Connectivity Management Platform"></div>
 
-  <!-- CONTENT -->
-  <div class="iot-content">
-    <div>
-      <h2>Objective</h2>
-      <p>The client's traditional behaviour of invoice payments from cheque to online payment.</p>
-      <p>The clients used to pay the bills through cheque, which led to delay in payments. The payments used to get withhold for 5-6 months.</p>
-      <p>We decided to revamp the online payment system and make it easier for the users. We designed a widget for the dashboard for easy online payments and reduced the number of steps required for online payments.</p>
-    </div>
-    <div>
-      <h2>Problem Statement</h2>
-      <p>- The clients tend not to pay bills of past 3 &amp; more inovoices.<br>- The clients have difficulty while paying the amount online.</p>
-    </div>
-    <div>
-      <h3>Users</h3>
-      <p>- B2B airtel admins<br>- Client side employees e.g: finance guy &amp; supervisors</p>
-    </div>
-    <div>
-      <h3>Metrics/KPIs</h3>
-      <p>- Number of payments acquired digitally</p>
+<div class="iot-banner"><img src="Airtel%20IoT/Banner%20Image.png" alt="Airtel M2M Connectivity Management Platform"></div>
+
+<!-- OBJECTIVE / PROBLEM STATEMENT / USERS / METRICS-KPIS -->
+<div class="wrap section">
+  <div class="row">
+    <div class="label">Objective</div>
+    <div class="copy-col">
+      <div class="copy">The client's traditional behaviour of invoice payments from cheque to online payment.</div>
+      <div class="copy">The clients used to pay the bills through cheque, which led to delay in payments. The payments used to get withhold for 5-6 months.</div>
+      <div class="copy">We decided to revamp the online payment system and make it easier for the users. We designed a widget for the dashboard for easy online payments and reduced the number of steps required for online payments.</div>
     </div>
   </div>
+  <div class="row">
+    <div class="label">Problem Statement</div>
+    <div class="copy">- The clients tend not to pay bills of past 3 &amp; more invoices.<br>- The clients have difficulty while paying the amount online.</div>
+  </div>
+  <div class="row">
+    <div class="label">Users</div>
+    <div class="copy">- B2B airtel admins<br>- Client side employees e.g: finance guy &amp; supervisors</div>
+  </div>
+  <div class="row">
+    <div class="label">Metrics/KPIs</div>
+    <div class="copy-col">
+      <div class="copy">- Number of payments acquired digitally</div>
+      <div class="copy">We created journey where user can easily understand his payment statuses by simply selecting it from the dropdown i.e. Overdue, Outstanding, Completed. and make the payments.</div>
+    </div>
   </div>
 </div>
 
-<!-- GREY PANEL 1 — payment journeys -->
-<div class="wrap">
-  <section class="gpanel">
-    <div class="gpanel-inner">
-      <div class="gblock">
-        <div class="gtxt"><div class="gh sm">Metrics/KPIs</div><p>We created journey where user can easily understand his payment statuses by simply selecting it from the dropdown i.e. Overdue, Outstanding, Completed. and make the payments.</p></div>
-        <div class="gimg"><img src="Airtel%20IoT/Metric%20Image%20-%201.webp" alt="Payment statuses"></div>
-      </div>
-      <div class="gblock">
-        <div class="gtxt"><p>We created journey where user can easily understand his payment statuses by simply selecting it from the dropdown i.e. Overdue, Outstanding, Completed. and make the payments which is the goal of the business</p></div>
-        <div class="gimg"><img src="Airtel%20IoT/Metric%20Image%20-%202" alt="Payment journey"></div>
-      </div>
-      <div class="gblock">
-        <div class="gtxt"><p>Partial payment option</p></div>
-        <div class="gimg"><img src="Airtel%20IoT/Metric%20Image%20-%203.webp" alt="Partial payment option"></div>
-      </div>
-      <div class="gblock">
-        <div class="gtxt"><p>Here user can select which payment mode he wants to go with and complete the payment process</p></div>
-        <div class="gimg"><img src="Airtel%20IoT/Metric%20Image%20-%204.webp" alt="Payment mode selection"></div>
-      </div>
-      <div class="gblock">
-        <div class="gtxt"><p>Here user can select which payment mode he wants to go with and complete the payment process</p></div>
-        <div class="gimg"><img src="Airtel%20IoT/Metric%20Image%20-%205.webp" alt="Payment completion"></div>
-      </div>
-    </div>
-  </section>
+<!-- METRICS/KPIS — payment journeys -->
+<div class="wrap section" style="padding-top:0;">
+  <div class="card"><img src="Airtel%20IoT/Metric%20Image%20-%201.webp" alt="Payment statuses"></div>
+
+  <p class="wide-copy" style="margin-top:48px;">We created journey where user can easily understand his payment statuses by simply selecting it from the dropdown i.e. Overdue, Outstanding, Completed. and make the payments which is the goal of the business</p>
+  <div class="card"><img src="Airtel%20IoT/Metric%20Image%20-%202" alt="Payment journey"></div>
+
+  <p class="wide-copy" style="margin-top:48px;">Partial payment option</p>
+  <div class="card"><img src="Airtel%20IoT/Metric%20Image%20-%203.webp" alt="Partial payment option"></div>
+
+  <p class="wide-copy" style="margin-top:48px;">Here user can select which payment mode he wants to go with and complete the payment process</p>
+  <div class="card"><img src="Airtel%20IoT/Metric%20Image%20-%204.webp" alt="Payment mode selection"></div>
+
+  <p class="wide-copy" style="margin-top:48px;">Here user can select which payment mode he wants to go with and complete the payment process</p>
+  <div class="card"><img src="Airtel%20IoT/Metric%20Image%20-%205.webp" alt="Payment completion"></div>
 </div>
 
-<!-- GREY PANEL 2 — Help & Support -->
-<div class="wrap">
-  <section class="gpanel">
-    <div class="gpanel-inner">
-      <div class="gblock">
-        <div class="gtxt">
-          <div class="gh">Help &amp; Support</div>
-          <p>The existing help and support system was lacking usability and after sending the request the users had to wait for days for the reply from the technical experts. This used to increase the load on the customer service calls.<br><br>We designed a help and support system after analysing the types of questions asked by the user. Based on that data we created a conversational flow that changed based on the options selected by the user.<span class="res">Result</span>The solution helped to reduce the load of the customer service and it also increased the usability of the help and support system.</p>
-        </div>
-        <div class="gimg"><img src="Airtel%20IoT/help%20%26%20support%20Image%20-%201.webp" alt="Help and support system"></div>
-      </div>
-      <div class="gblock">
-        <div class="gtxt"><p>Basis on the research done by the airtel IoT team the problems which were raised by the users were common and folllowing the same pattern and hence we decided go with the selection method to solve the problem where user selects what problems he has and continues. If he has different problem then he can type it down.</p></div>
-        <div class="gimg"><img src="Airtel%20IoT/help%20%26%20support%20Image%20-%202.webp" alt="Selection method"></div>
-      </div>
-      <div class="gblock">
-        <div class="gtxt"><p>Basis on the research done by the airtel IoT team the problems which were raised by the users were common and folllowing the same pattern and hence we decided go with the selection method to solve the problem where user selects what problems he has and continues. If he has different problem then he can type it down.</p></div>
-        <div class="gimg"><img src="Airtel%20IoT/help%20%26%20support%20Image%20-%203.webp" alt="Conversational flow"></div>
-      </div>
+<!-- HELP & SUPPORT -->
+<div class="wrap section" style="padding-top:0;">
+  <div class="row">
+    <div class="label">Help &amp; Support</div>
+    <div class="copy-col">
+      <div class="copy">The existing help and support system was lacking usability and after sending the request the users had to wait for days for the reply from the technical experts. This used to increase the load on the customer service calls.</div>
+      <div class="copy">We designed a help and support system after analysing the types of questions asked by the user. Based on that data we created a conversational flow that changed based on the options selected by the user.</div>
     </div>
-  </section>
-</div>
+  </div>
+  <div class="row">
+    <div class="label">Result</div>
+    <div class="copy">The solution helped to reduce the load of the customer service and it also increased the usability of the help and support system.</div>
+  </div>
+  <div class="card"><img src="Airtel%20IoT/help%20%26%20support%20Image%20-%201.webp" alt="Help and support system"></div>
 
-<!-- LEARNING -->
-<div class="wrap learn">
-  <p>The product was very complex and it helped me understand how does a SAAS platform work. I learnt about: Project management, Designing dashboards, Usability testing, Sprint design, Atomic design, Design systems</p>
+  <p class="wide-copy" style="margin-top:48px;">Basis on the research done by the airtel IoT team the problems which were raised by the users were common and folllowing the same pattern and hence we decided go with the selection method to solve the problem where user selects what problems he has and continues. If he has different problem then he can type it down.</p>
+  <div class="card"><img src="Airtel%20IoT/help%20%26%20support%20Image%20-%202.webp" alt="Selection method"></div>
+
+  <p class="wide-copy" style="margin-top:48px;">Basis on the research done by the airtel IoT team the problems which were raised by the users were common and folllowing the same pattern and hence we decided go with the selection method to solve the problem where user selects what problems he has and continues. If he has different problem then he can type it down.</p>
+  <div class="card"><img src="Airtel%20IoT/help%20%26%20support%20Image%20-%203.webp" alt="Conversational flow"></div>
 </div>
 
 <!-- FOOTER -->
-<div class="wrap foot">
-  <div class="foot-contact"><span>Contact</span><span>dhaval.design07@gmail.com</span><span>+91 95611 16517</span></div>
-  <p class="foot-credit">Designed in Figma. Vibe coded with AI ❤️</p>
+<div class="foot">
+  <div class="foot-contact">
+    <div class="wrap foot-contact-inner">
+      <div class="foot-left">
+        <span class="foot-hello">Say Hello</span>
+        <div class="foot-info">
+          <a href="mailto:dhaval.design07@gmail.com">dhaval.design07@gmail.com</a>
+          <a href="tel:+919561116517">+91 95611 16517</a>
+        </div>
+      </div>
+      <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        BACK TO TOP
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 7.5L6 4L9.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="foot-game" id="foot-game" aria-hidden="true"></div>
+    <p class="wrap foot-credit">Designed in Figma. Vibe coded with AI ❤️</p>
+  </div>
 </div>
+
+<style>
+.foot{margin-top:0;}
+.foot-contact{background:var(--footer-bg);padding-bottom:32px;}
+.foot-contact-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:72px clamp(24px,5vw,64px) 0;}
+.foot-left{display:flex;align-items:center;gap:64px;}
+.foot-hello{font-family:'Manrope';font-weight:500;font-size:70px;text-transform:uppercase;color:var(--muted);letter-spacing:-.01em;white-space:nowrap;}
+.foot-info{display:flex;flex-direction:column;gap:6px;font-family:'Manrope';font-weight:500;font-size:clamp(14px,1.6vw,17px);color:var(--ink);}
+.foot-info a{opacity:.9;transition:opacity .15s ease;}
+.foot-info a:hover{opacity:1;text-decoration:underline;}
+.back-to-top{display:flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;
+  font-family:'Manrope';font-weight:600;font-size:12px;letter-spacing:.08em;color:var(--ink);white-space:nowrap;
+  padding:0;opacity:.75;transition:opacity .15s ease;}
+.back-to-top:hover{opacity:1;}
+.foot-game{height:380px;margin-top:48px;overflow:hidden;}
+.foot-credit{font-family:'Manrope';font-size:13px;font-weight:400;color:var(--muted);
+  padding:32px clamp(24px,5vw,64px) 0;box-sizing:border-box;}
+@media(max-width:560px){.foot-contact-inner{flex-direction:column;align-items:flex-start;gap:20px;}}
+</style>
+
+<script>
+document.getElementById('back-to-top').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// dark / light mode toggle
+const themeBtn = document.getElementById("theme-toggle");
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  themeBtn.textContent = t === "dark" ? "☀️" : "🌙";
+}
+applyTheme(localStorage.getItem("theme") || "light");
+themeBtn.addEventListener("click", () => {
+  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", next);
+  applyTheme(next);
+});
+
+// ---------- Pixel Run Game (footer) ----------
+(function(){
+  const REF_W = 1440, REF_H = 512;
+  const ART = 4.8;
+  const GROUND_RATIO = 393 / REF_H;
+  const NEAR_DASH_RATIO = 422.5 / REF_H;
+  const FAR_DASH_RATIO = 448 / REF_H;
+  const HORIZON_THICK = 4.5, DASH_THICK = 5, DASH_PERIOD = 128;
+  const NEAR_DASH_ON = 45, FAR_DASH_ON = 23;
+  const A_HORIZON = 0.331, A_NEAR = 0.199, A_FAR = 0.15, A_SPRITE = 0.331, A_CLOUD = 0.26;
+  const BLOCK_UNITS = 11;
+  const IDLE_RESUME = 4;
+  const A_HUD_LABEL = 0.33, A_HUD_VALUE = 0.42;
+
+  const COLOR_CACHE = new Map();
+  const clamp01 = n => n < 0 ? 0 : n > 1 ? 1 : n;
+
+  function hslToRgb(h, s, l){
+    const hh = ((h % 360) + 360) % 360;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs(((hh / 60) % 2) - 1));
+    const m = l - c / 2;
+    let r=0,g=0,b=0;
+    if (hh<60) [r,g,b]=[c,x,0]; else if (hh<120) [r,g,b]=[x,c,0]; else if (hh<180) [r,g,b]=[0,c,x];
+    else if (hh<240) [r,g,b]=[0,x,c]; else if (hh<300) [r,g,b]=[x,0,c]; else [r,g,b]=[c,0,x];
+    return [Math.round((r+m)*255), Math.round((g+m)*255), Math.round((b+m)*255)];
+  }
+
+  function parseColorRaw(raw, fallback){
+    let s = raw.trim();
+    if (s.charAt(0) === "#"){
+      let h = s.slice(1).trim();
+      if (h.length===3||h.length===4) h = h.split("").map(c=>c+c).join("");
+      if (h.length!==6 && h.length!==8) return fallback;
+      const ch = i => parseInt(h.slice(i,i+2),16);
+      const r=ch(0), g=ch(2), b=ch(4);
+      if (!Number.isFinite(r)||!Number.isFinite(g)||!Number.isFinite(b)) return fallback;
+      const a = h.length===8 ? ch(6)/255 : 1;
+      return [r,g,b, clamp01(Number.isFinite(a)?a:1)];
+    }
+    const fn = s.match(/^(rgba?|hsla?)\(([^)]*)\)$/i);
+    if (fn){
+      const name = fn[1].toLowerCase();
+      const parts = fn[2].split(/[,/\s]+/).filter(Boolean);
+      if (parts.length<3) return fallback;
+      const num = t => parseFloat(t);
+      const alphaTok = parts[3];
+      const alpha = alphaTok===undefined ? 1 : (alphaTok.endsWith("%") ? num(alphaTok)/100 : num(alphaTok));
+      if (!Number.isFinite(alpha)) return fallback;
+      if (name.charAt(0)==="r"){
+        const chan = t => t.endsWith("%") ? Math.round(num(t)*255/100) : Math.round(num(t));
+        const r=chan(parts[0]), g=chan(parts[1]), b=chan(parts[2]);
+        if (!Number.isFinite(r)||!Number.isFinite(g)||!Number.isFinite(b)) return fallback;
+        return [r,g,b, clamp01(alpha)];
+      }
+      const hue=num(parts[0]), sat=num(parts[1])/100, lig=num(parts[2])/100;
+      if (!Number.isFinite(hue)||!Number.isFinite(sat)||!Number.isFinite(lig)) return fallback;
+      const [r,g,b] = hslToRgb(hue, clamp01(sat), clamp01(lig));
+      return [r,g,b, clamp01(alpha)];
+    }
+    return fallback;
+  }
+  function parseColor(input, fallback){
+    if (!input) return fallback;
+    const hit = COLOR_CACHE.get(input);
+    if (hit) return hit;
+    const out = parseColorRaw(input, fallback);
+    COLOR_CACHE.set(input, out);
+    return out;
+  }
+
+  const RUNNER_BODY = ["....########....","..############..",".##############.","################","################","###..######..###","###..######..###","################","################","################","###..........###",".##############.","..############..","....########...."];
+  const RUNNER_LEGS_A = ["...##......##...","..###......###.."];
+  const RUNNER_LEGS_B = ["..###......###..","...##......##..."];
+  const RUNNER_LEGS_AIR = ["..###......###..",".###........###."];
+  const CLOUD = ["....#####.......","..########..##..","################",".##############."];
+  const BLOCK = ["..############..",".##############.","################","################","################","################","################","################","################","################","################","################","################","################",".##############.","..############.."];
+  const GLYPHS = [
+    ["..####..","..####..","..####..","..####..","...##...",".######.","........","........"],
+    ["........",".#....#.",".#....#.",".######.",".#....#.",".#....#.","........","........"],
+    ["........",".######.","....#...","...#....","..#.....",".######.","........","........"],
+    ["........","..####..",".#....#.",".#....#.",".#....#.","..####..","........","........"]
+  ];
+  const FONT = {
+    "0":["###","#.#","#.#","#.#","###"], "1":[".#.","##.",".#.",".#.","###"],
+    "2":["###","..#","###","#..","###"], "3":["###","..#","###","..#","###"],
+    "4":["#.#","#.#","###","..#","..#"], "5":["###","#..","###","..#","###"],
+    "6":["###","#..","###","#.#","###"], "7":["###","..#","..#","..#","..#"],
+    "8":["###","#.#","###","#.#","###"], "9":["###","#.#","###","..#","###"],
+    "S":["###","#..","###","..#","###"], "C":["###","#..","#..","#..","###"],
+    "O":["###","#.#","#.#","#.#","###"], "R":["###","#.#","###","#.#","#.#"],
+    "E":["###","#..","###","#..","###"], "B":["##.","#.#","##.","#.#","##."],
+    "T":["###",".#.",".#.",".#.",".#."], " ":["...","...","...","...","..."]
+  };
+
+  function rng(w){ w.seed = (w.seed * 1664525 + 1013904223) >>> 0; return w.seed / 4294967296; }
+
+  function initPixelRunGame(host, options){
+    const opts = options || {};
+    const startSpeed = opts.startSpeed ?? 420;
+    const maxSpeed = opts.maxSpeed ?? 980;
+    const gravity = opts.gravity ?? 4780;
+    const jumpV = opts.jump ?? 1480;
+    const showHud = opts.showHud ?? true;
+    const attract = opts.attract ?? true;
+    const farDashSpeed = opts.farDashSpeed ?? 100;
+    const getBackground = opts.getBackground || (() => "#00164C");
+    const getInk = opts.getInk || (() => "#ffffff");
+
+    const canvas = document.createElement("canvas");
+    canvas.style.display = "block";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    host.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+
+    function fresh(best, played){
+      return { t:0, dist:0, speed:startSpeed, playerY:0, playerV:0, grounded:true,
+        obstacles:[], clouds:[], dead:false, deadAt:0, score:0, best, nextGap:180, seed:20260818, played };
+    }
+    let world = fresh(0, false);
+    let idle = 1e9;
+    let hovering = false;
+
+    const inkAt = a => { const [r,g,b,ia] = parseColor(getInk(), [255,255,255,1]); return `rgba(${r},${g},${b},${a*ia})`; };
+    const bgFill = () => { const [r,g,b,a] = parseColor(getBackground(), [0,0,0,1]); return `rgba(${r},${g},${b},${a})`; };
+
+    function stamp(rows, ox, oy, unit){
+      for (let r=0;r<rows.length;r++){
+        const y0 = Math.round(oy+r*unit), y1 = Math.round(oy+(r+1)*unit);
+        let c=0;
+        while (c<rows[r].length){
+          if (rows[r][c]!=="#"){ c++; continue; }
+          let e=c; while (e<rows[r].length && rows[r][e]==="#") e++;
+          const x0=Math.round(ox+c*unit), x1=Math.round(ox+e*unit);
+          ctx.fillRect(x0,y0,x1-x0,y1-y0);
+          c=e;
+        }
+      }
+    }
+    function blit(rows, ox, oy, unit, alpha, knock){
+      ctx.fillStyle = inkAt(alpha);
+      stamp(rows, ox, oy, unit);
+      if (knock){
+        const prev = ctx.globalCompositeOperation;
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fillStyle = "#000";
+        const kx = ox + ((rows[0].length - knock[0].length)/2)*unit;
+        const ky = oy + ((rows.length - knock.length)/2)*unit;
+        stamp(knock, kx, ky, unit);
+        ctx.globalCompositeOperation = prev;
+      }
+    }
+
+    function paint(w,h){
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      const px = ART*S;
+      const groundY = h*GROUND_RATIO;
+      const playerX = w*0.08;
+
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = bgFill();
+      ctx.fillRect(0,0,w,h);
+
+      for (const cl of world.clouds) blit(CLOUD, cl.x, cl.y*h, px*cl.scale, A_CLOUD*(0.7+0.3*cl.depth));
+
+      ctx.fillStyle = inkAt(A_HORIZON);
+      ctx.fillRect(0, Math.round(groundY), w, Math.max(1, Math.round(HORIZON_THICK*S)));
+
+      function dashRow(ratio, on, alpha, phase){
+        const period = DASH_PERIOD*S, len = on*S, y = Math.round(h*ratio), th = Math.max(1, Math.round(DASH_THICK*S));
+        ctx.fillStyle = inkAt(alpha);
+        const start = -((phase % period)+period)%period;
+        for (let x=start; x<w; x+=period) ctx.fillRect(Math.round(x), y, Math.round(len), th);
+      }
+      dashRow(NEAR_DASH_RATIO, NEAR_DASH_ON, A_NEAR, world.dist);
+      const farMul = farDashSpeed/100;
+      dashRow(FAR_DASH_RATIO, FAR_DASH_ON, A_FAR, world.dist*farMul);
+
+      for (const ob of world.obstacles){
+        const bu = BLOCK_UNITS*px;
+        for (let i=0;i<ob.stack;i++){
+          blit(BLOCK, ob.x, groundY-(i+1)*bu, bu/16, A_SPRITE, GLYPHS[(ob.glyph+i)%GLYPHS.length]);
+        }
+      }
+
+      const bodyH = RUNNER_BODY.length*px;
+      const feet = groundY - world.playerY;
+      blit(RUNNER_BODY, playerX, feet-bodyH-2*px, px, A_SPRITE);
+      const legs = !world.grounded ? RUNNER_LEGS_AIR : (Math.floor(world.dist/(28*S))%2 ? RUNNER_LEGS_A : RUNNER_LEGS_B);
+      blit(legs, playerX, feet-2*px, px, A_SPRITE);
+
+      if (!showHud) return;
+      const fpx = 2.85*S;
+      function text(s, rightX, y, alpha){
+        const cw = 4*fpx, total = s.length*cw - fpx;
+        let x = rightX - total;
+        ctx.fillStyle = inkAt(alpha);
+        for (const ch of s){
+          const g = FONT[ch] ?? FONT[" "];
+          for (let r=0;r<5;r++) for (let c=0;c<3;c++) if (g[r][c]==="#")
+            ctx.fillRect(Math.round(x+c*fpx), Math.round(y+r*fpx), Math.round(x+(c+1)*fpx)-Math.round(x+c*fpx), Math.round(y+(r+1)*fpx)-Math.round(y+r*fpx));
+          x += cw;
+        }
+      }
+      const pad = n => String(Math.floor(n)).padStart(5,"0").slice(-5);
+      const rightBest = w - 77*S, rightScore = rightBest - 190*S;
+      const labelY = h*0.07, valueY = h*0.133;
+      text("SCORE", rightScore, labelY, A_HUD_LABEL);
+      text(pad(world.score), rightScore, valueY, A_HUD_VALUE);
+      text("BEST", rightBest, labelY, A_HUD_LABEL);
+      text(pad(world.best), rightBest, valueY, A_HUD_VALUE);
+    }
+
+    function jumpWindow(stack, sp, S){
+      const px = ART*S, v = jumpV*S, g = gravity*S, top = stack*BLOCK_UNITS*px;
+      const disc = v*v - 2*g*top;
+      const tX = (10*px + BLOCK_UNITS*px*0.76)/sp;
+      if (disc<=0) return { ok:false, lead:0 };
+      const root = Math.sqrt(disc), t1=(v-root)/g, t2=(v+root)/g;
+      return { ok: t2-t1 > tX*1.25, lead: t1 + (t2-t1-tX)/2 };
+    }
+
+    function doJump(){
+      if (world.dead || !world.grounded) return;
+      const r = host.getBoundingClientRect();
+      const w = r.width || REF_W, h = r.height || REF_H;
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      world.playerV = jumpV*S;
+      world.grounded = false;
+    }
+
+    function seed(w,h){
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      const px = ART*S;
+      world.clouds = [
+        { x:w*0.17, y:0.18, scale:1.15, depth:0.2 },
+        { x:w*0.44, y:0.11, scale:0.85, depth:0.7 },
+        { x:w*0.78, y:0.26, scale:1.35, depth:0.45 }
+      ];
+      const sp = startSpeed*S;
+      world.obstacles = [];
+      for (const [at,want,glyph] of [[0.62,2,0],[1.02,1,2]]){
+        let stack = want;
+        while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
+        if (stack>0) world.obstacles.push({ x: w*at, stack, glyph });
+      }
+      world.dist = 40*px;
+    }
+
+    function step(dt, w, h){
+      const S = Math.max(0.3, Math.min(w/REF_W, h/REF_H, 3));
+      const px = ART*S;
+      const groundY = h*GROUND_RATIO;
+      const playerX = w*0.08;
+
+      world.t += dt;
+      idle += dt;
+
+      if (world.dead){
+        if (world.t - world.deadAt > 0.9){
+          const best = Math.max(world.best, world.score);
+          const played = world.played;
+          world = fresh(best, played);
+          seed(w,h);
+        }
+        return;
+      }
+
+      const cap = Math.max(startSpeed, maxSpeed);
+      const sp = Math.min(cap, startSpeed + world.dist/260) * S;
+      world.speed = sp;
+      world.dist += sp*dt;
+      world.score = world.dist/24;
+
+      if (!world.grounded){
+        world.playerV -= gravity*S*dt;
+        world.playerY += world.playerV*dt;
+        if (world.playerY<=0){ world.playerY=0; world.playerV=0; world.grounded=true; }
+      }
+
+      for (const ob of world.obstacles) ob.x -= sp*dt;
+      world.obstacles = world.obstacles.filter(o=>o.x > -20*px);
+      const last = world.obstacles.length ? Math.max(...world.obstacles.map(o=>o.x)) : -Infinity;
+
+      const flight = 2*jumpV/gravity;
+      const clear = (sp/S)*flight + (BLOCK_UNITS+20)*ART;
+      if (last < w - (clear+world.nextGap)*S){
+        const r = rng(world);
+        let stack = r<0.55 ? 1 : r<0.87 ? 2 : 3;
+        while (stack>0 && !jumpWindow(stack, sp, S).ok) stack--;
+        if (stack>0) world.obstacles.push({ x: w+8*px, stack, glyph: Math.floor(rng(world)*GLYPHS.length) });
+        world.nextGap = rng(world)*380;
+      }
+
+      for (const cl of world.clouds) cl.x -= sp*dt*(0.12+0.22*cl.depth);
+      world.clouds = world.clouds.filter(c=>c.x > -30*px);
+      if (world.clouds.length<5 && rng(world)<0.012){
+        world.clouds.push({ x:w+10*px, y:0.1+rng(world)*0.42, scale:0.75+rng(world)*0.9, depth:rng(world) });
+      }
+
+      const auto = attract && (!world.played || idle > IDLE_RESUME);
+      if (auto && world.grounded){
+        const bu = BLOCK_UNITS*px;
+        const plFront = playerX + 13*px;
+        let next=null, gap=Infinity;
+        for (const ob of world.obstacles){
+          const left = ob.x + bu*0.12;
+          if (left + bu*0.76 <= plFront) continue;
+          if (left - plFront < gap){ gap = left - plFront; next = ob; }
+        }
+        if (next){
+          const win = jumpWindow(next.stack, sp, S);
+          if (win.ok && gap <= sp*win.lead) doJump();
+        }
+      }
+
+      const pl = { x: playerX+3*px, y: groundY-world.playerY-16*px+2*px, w:10*px, h:14*px };
+      for (const ob of world.obstacles){
+        const bu = BLOCK_UNITS*px;
+        const box = { x: ob.x+bu*0.12, y: groundY-ob.stack*bu, w: bu*0.76, h: ob.stack*bu };
+        if (pl.x<box.x+box.w && pl.x+pl.w>box.x && pl.y<box.y+box.h && pl.y+pl.h>box.y){
+          world.dead = true; world.deadAt = world.t; world.best = Math.max(world.best, world.score);
+          break;
+        }
+      }
+    }
+
+    let w=0, h=0;
+    function measure(){
+      const r = host.getBoundingClientRect();
+      const cw = Math.max(1, Math.round(host.clientWidth || r.width || REF_W));
+      const ch = Math.max(1, Math.round(host.clientHeight || r.height || REF_H));
+      if (cw===w && ch===h) return false;
+      w=cw; h=ch;
+      const dpr = Math.min(2, window.devicePixelRatio||1);
+      canvas.width = Math.round(w*dpr);
+      canvas.height = Math.round(h*dpr);
+      canvas.style.width = w+"px";
+      canvas.style.height = h+"px";
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      return true;
+    }
+
+    measure();
+    if (!world.obstacles.length) seed(w,h);
+    paint(w,h);
+
+    const ro = new ResizeObserver(() => { if (measure()) paint(w,h); });
+    ro.observe(host);
+
+    let last = 0;
+    function frame(now){
+      const prev = last || now;
+      last = now;
+      const dt = Math.min(0.05, (now-prev)/1000);
+      if (dt>0) step(dt,w,h);
+      paint(w,h);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    function play(){ world.played = true; idle = 0; }
+    host.tabIndex = 0;
+    host.style.outline = "none";
+    host.style.cursor = "pointer";
+    host.style.touchAction = "manipulation";
+    window.addEventListener("keydown", (e) => {
+      const mine = hovering || document.activeElement === host;
+      if (!mine) return;
+      if (e.code==="Space" || e.code==="ArrowUp" || e.key===" " || e.key==="ArrowUp"){
+        e.preventDefault(); play(); doJump();
+      }
+    }, { passive:false });
+    host.addEventListener("pointerdown", (e) => { e.preventDefault(); play(); doJump(); });
+    host.addEventListener("pointerenter", () => { hovering = true; });
+    host.addEventListener("pointerleave", () => { hovering = false; });
+  }
+
+  const gameHost = document.getElementById("foot-game");
+  if (gameHost){
+    initPixelRunGame(gameHost, {
+      getBackground: () => getComputedStyle(document.documentElement).getPropertyValue("--footer-bg").trim() || "#F6F6F6",
+      getInk: () => getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#17212B"
+    });
+  }
+})();
+
+</script>
 
 </body>
 </html>
