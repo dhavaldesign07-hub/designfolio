@@ -29,16 +29,21 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
 #theme-toggle:hover{background:var(--line);}
 
 /* ---------- HERO ---------- */
-.hero{position:relative;min-height:calc(100vh - 80px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
-  max-width:1280px;margin:0 auto;padding:60px clamp(24px,5vw,64px) 80px;text-align:left;}
+/* .hero is full-bleed so #mountain-canvas can reach the true viewport right edge;
+   .hero-inner carries the old 1280px content constraint for the heading/paragraph/scroll-cue. */
+.hero{position:relative;min-height:calc(100vh - 80px);width:100%;}
+.hero-inner{position:relative;z-index:1;min-height:calc(100vh - 80px);width:100%;box-sizing:border-box;
+  max-width:1280px;margin:0 auto;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  padding:60px clamp(24px,5vw,64px) 80px;text-align:left;}
 .head{font-family:'Manrope',sans-serif;font-weight:700;line-height:1.12;letter-spacing:-.01em;
   font-size:clamp(34px,6vw,72px);color:var(--ink);}
 .head .l2{display:block;margin-top:2px;}
 #word-canvas{display:inline-block;vertical-align:middle;position:relative;top:-0.05em;}
 .sub{font-family:'Manrope',sans-serif;font-weight:400;font-size:clamp(17px,1.7vw,20px);line-height:1.6;color:var(--muted);
   margin-top:32px;max-width:860px;}
-.scroll-cue{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);
+.scroll-cue{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:1;
   display:flex;flex-direction:column;align-items:center;gap:8px;}
+#mountain-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 #arrow-canvas{display:block;}
 .scroll-label{font-family:'Manrope',sans-serif;font-weight:600;font-size:10px;letter-spacing:.08em;color:var(--muted);}
 
@@ -49,7 +54,7 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
 .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:32px;row-gap:100px;margin-top:42px;}
 .card{display:flex;flex-direction:column;}
 .thumb{width:100%;aspect-ratio:624/460;border-radius:20px;overflow:hidden;position:relative;background:var(--card);container-type:inline-size;
-  display:flex;align-items:center;justify-content:flex-start;}
+  display:flex;align-items:center;justify-content:flex-start;contain:paint;}
 .thumb>img{position:static;display:block;width:auto;height:auto;max-width:none;margin:0 auto;}
 /* each mockup is sized to match its actual scale in the Figma card — not stretched to fill */
 .c-dth .thumb>img{width:83%;}
@@ -62,6 +67,15 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
 /* Airtel IoT — shifted right, clipped by the card's right edge */
 .c-iot .thumb>img{width:100%;margin:0 0 0 15.5%;}
 .title{font-family:'Manrope';font-weight:700;font-size:24px;line-height:1.25;color:var(--ink);margin-top:24px;text-align:left;}
+
+/* ---------- THUMBNAIL GLASS BLOB HOVER (refraction + chromatic dispersion) ---------- */
+.glass-blob{position:absolute;width:200px;height:200px;border-radius:50%;left:0;top:0;
+  transform:translate(-50%,-50%);pointer-events:none;opacity:0;z-index:2;
+  backdrop-filter:url(#glass-disperse) saturate(115%);-webkit-backdrop-filter:url(#glass-disperse) saturate(115%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.45), inset 0 -12px 24px rgba(255,255,255,.12), 0 10px 26px rgba(0,0,0,.18);
+  background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.35), rgba(255,255,255,0) 45%);
+  transition:opacity .25s ease;}
+.thumb:hover .glass-blob{opacity:1;}
 
 /* Punch — big "SINGLE SCREEN TRADING" text behind the phone */
 .punch-text{position:absolute;left:6.7%;top:36%;z-index:0;font-family:'Manrope';font-weight:800;
@@ -99,10 +113,26 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
 }
 @media(max-width:560px){
   .foot-contact-inner{flex-direction:column;align-items:flex-start;gap:20px;}
+  .foot-left{flex-direction:column;align-items:flex-start;gap:16px;}
+  .foot-hello{font-size:clamp(36px,12vw,70px);white-space:normal;}
 }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="glass-disperse" x="-30%" y="-30%" width="160%" height="160%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="110" xChannelSelector="R" yChannelSelector="G" result="disp"/>
+    <feColorMatrix in="disp" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="rCh"/>
+    <feOffset in="rCh" dx="3" dy="0" result="rSh"/>
+    <feColorMatrix in="disp" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="gSh"/>
+    <feColorMatrix in="disp" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="bCh"/>
+    <feOffset in="bCh" dx="-3" dy="0" result="bSh"/>
+    <feBlend in="rSh" in2="gSh" mode="screen" result="rg"/>
+    <feBlend in="rg" in2="bSh" mode="screen"/>
+  </filter>
+</svg>
 
 <header>
   <img src="Header/Designfolio%20Logo.svg" alt="DesignFolio">
@@ -110,12 +140,15 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
 </header>
 
 <section class="hero">
-  <h1 class="head">
-    Product designer working
-    <span class="l2">across <canvas id="word-canvas" aria-label="UX / UI, Design Systems"></canvas></span>
-  </h1>
-  <p class="sub">I design digital products at the intersection of agency versatility and product thinking. Working across both design agencies and product teams has given me the ability to move from exploring bold ideas to building scalable, intuitive experiences for web, mobile, and desktop. From 0&rarr;1 products to evolving mature platforms, I enjoy simplifying complex workflows into seamless user experiences.</p>
-  <div class="scroll-cue" aria-hidden="true"><canvas id="arrow-canvas"></canvas><span class="scroll-label">SCROLL DOWN</span></div>
+  <canvas id="mountain-canvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <h1 class="head">
+      Product designer working
+      <span class="l2">across <canvas id="word-canvas" aria-label="UX / UI, Design Systems, AI (yes, that too)"></canvas></span>
+    </h1>
+    <p class="sub">I design digital products at the intersection of agency versatility and product thinking. Working across both design agencies and product teams has given me the ability to move from exploring bold ideas to building scalable, intuitive experiences for web, mobile, and desktop. From 0&rarr;1 products to evolving mature platforms, I enjoy simplifying complex workflows into seamless user experiences.</p>
+    <div class="scroll-cue" aria-hidden="true"><canvas id="arrow-canvas"></canvas><span class="scroll-label">SCROLL DOWN</span></div>
+  </div>
 </section>
 
 <div class="wrap">
@@ -192,7 +225,7 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
 </div>
 
 <script>
-const WORDS = ["UX / UI", "Design Systems"];
+const WORDS = ["UX / UI", "Design Systems", "AI (yes, that too)"];
 const CORAL = "#FF6B4C";
 const canvas = document.getElementById("word-canvas");
 const ctx = canvas.getContext("2d");
@@ -377,6 +410,87 @@ let rz;
 window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { dpr = Math.max(1, window.devicePixelRatio||1); rebuild(); rebuildArrow(); }, 150); });
 
 document.fonts.ready.then(() => { rebuild(); requestAnimationFrame(tick); rebuildArrow(); requestAnimationFrame(tickArrow); });
+
+// ---------- Mountain range (hero, right side) — pointillist particle landscape ----------
+(function(){
+  // Low-key scattered dot background across the whole hero — decoration only,
+  // sparse enough that it never competes with the headline/paragraph for attention.
+  const mCanvas = document.getElementById("mountain-canvas");
+  if (!mCanvas) return;
+  const mctx = mCanvas.getContext("2d");
+  let mdpr = Math.max(1, window.devicePixelRatio || 1);
+  let mW = 0, mH = 0;
+  const GRAY = "#AEB3B8";
+  const CORAL = "#FF7058";
+  const CORAL_MIX = 0.12;
+  const DOT_COUNT_PER_PX2 = 0.00035; // sparse density
+
+  function makeRng(seed){
+    let s = seed >>> 0;
+    return function(){
+      s |= 0; s = (s + 0x6D2B79F5) | 0;
+      let t = Math.imul(s ^ (s >>> 15), 1 | s);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  let dots = [];
+
+  function buildScene(w, h){
+    const rng = makeRng(42);
+    const count = Math.round(w * h * DOT_COUNT_PER_PX2);
+    dots = [];
+    for (let i = 0; i < count; i++){
+      dots.push({
+        x: rng() * w,
+        y: rng() * h,
+        r: 0.7 + rng() * 1.3,
+        alpha: 0.22 + rng() * 0.35,
+        color: rng() < CORAL_MIX ? CORAL : GRAY,
+        seed: rng() * 1000,
+        amp: 1.5 + rng() * 3
+      });
+    }
+  }
+
+  function rebuildMountain(){
+    const rect = mCanvas.getBoundingClientRect();
+    mW = Math.max(1, Math.round(rect.width));
+    mH = Math.max(1, Math.round(rect.height));
+    if (mW < 20 || mH < 20) return;
+    mCanvas.width = Math.round(mW * mdpr);
+    mCanvas.height = Math.round(mH * mdpr);
+    mctx.setTransform(mdpr, 0, 0, mdpr, 0, 0);
+    buildScene(mW, mH);
+  }
+
+  function tickMountain(now){
+    requestAnimationFrame(tickMountain);
+    if (mW < 20 || mH < 20) return;
+    const t = now / 1000;
+    mctx.clearRect(0, 0, mW, mH);
+    for (let i = 0; i < dots.length; i++){
+      const d = dots[i];
+      const x = d.x + Math.sin(t * 0.15 + d.seed) * d.amp;
+      const y = d.y + Math.cos(t * 0.12 + d.seed) * d.amp * 0.6;
+      mctx.globalAlpha = d.alpha;
+      mctx.fillStyle = d.color;
+      mctx.beginPath();
+      mctx.arc(x, y, d.r, 0, 6.283);
+      mctx.fill();
+    }
+    mctx.globalAlpha = 1;
+  }
+
+  let mrz;
+  window.addEventListener("resize", () => {
+    clearTimeout(mrz);
+    mrz = setTimeout(() => { mdpr = Math.max(1, window.devicePixelRatio || 1); rebuildMountain(); }, 150);
+  });
+
+  document.fonts.ready.then(() => { rebuildMountain(); requestAnimationFrame(tickMountain); });
+})();
 
 const themeBtn = document.getElementById("theme-toggle");
 function applyTheme(t){
@@ -805,6 +919,41 @@ document.getElementById("back-to-top").addEventListener("click", () => {
       getInk: () => getComputedStyle(document.documentElement).getPropertyValue("--ink").trim()
     });
   }
+})();
+
+(function(){
+  document.querySelectorAll(".thumb").forEach((thumb) => {
+    const blob = document.createElement("div");
+    blob.className = "glass-blob";
+    thumb.appendChild(blob);
+
+    let tx = 0, ty = 0, bx = 0, by = 0, raf = null;
+
+    function loop(){
+      bx += (tx - bx) * 0.15;
+      by += (ty - by) * 0.15;
+      blob.style.left = bx + "px";
+      blob.style.top = by + "px";
+      raf = requestAnimationFrame(loop);
+    }
+
+    thumb.addEventListener("mouseenter", (e) => {
+      const r = thumb.getBoundingClientRect();
+      tx = bx = e.clientX - r.left;
+      ty = by = e.clientY - r.top;
+      blob.style.left = bx + "px";
+      blob.style.top = by + "px";
+      if (!raf) raf = requestAnimationFrame(loop);
+    });
+    thumb.addEventListener("mousemove", (e) => {
+      const r = thumb.getBoundingClientRect();
+      tx = e.clientX - r.left;
+      ty = e.clientY - r.top;
+    });
+    thumb.addEventListener("mouseleave", () => {
+      if (raf){ cancelAnimationFrame(raf); raf = null; }
+    });
+  });
 })();
 </script>
 
