@@ -97,7 +97,12 @@ header{height:108px;background:var(--paper);}
 .foot-game{height:380px;margin-top:48px;overflow:hidden;}
 .foot-credit{font-family:'Manrope';font-size:13px;font-weight:400;color:var(--muted);
   padding:32px clamp(24px,5vw,64px) 0;box-sizing:border-box;}
-@media(max-width:560px){.foot-contact-inner{flex-direction:column;align-items:flex-start;gap:20px;}}
+@media(max-width:560px){
+  .foot-contact-inner{flex-direction:column;align-items:flex-start;gap:20px;}
+  .foot-left{flex-direction:column;align-items:flex-start;gap:16px;}
+  .foot-hello-row{flex-direction:column;align-items:flex-start;gap:16px;}
+  .foot-hello{font-size:clamp(36px,12vw,70px);white-space:normal;}
+}
 
 @media(max-width:640px){.hd-contact{font-size:clamp(11px,2.4vw,16px)}.of-row{grid-template-columns:1fr;}}
 
