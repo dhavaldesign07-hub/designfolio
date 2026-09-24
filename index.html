@@ -123,6 +123,37 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
   .foot-hello-row{flex-direction:column;align-items:flex-start;gap:16px;}
   .foot-hello{font-size:clamp(36px,12vw,70px);white-space:normal;}
 }
+
+/* ---------- page-load entrance animation ---------- */
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+header,
+.eyebrow,
+.head,
+.sub,
+.scroll-cue,
+.mywork{
+  animation:fadeSlideUp .6s ease both;
+}
+header{animation-delay:0s;}
+.eyebrow{animation-delay:.12s;}
+.head{animation-delay:.24s;}
+.sub{animation-delay:.36s;}
+.scroll-cue{animation-delay:.48s;}
+.mywork{animation-delay:.55s;}
+
+/* thumbnails fade + slide up as they scroll into view */
+.grid .card{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+.grid .card.in-view{opacity:1;transform:translateY(0);}
+.grid .card:nth-child(2){transition-delay:.07s;}
+.grid .card:nth-child(3){transition-delay:.14s;}
+.grid .card:nth-child(4){transition-delay:.07s;}
+.grid .card:nth-child(5){transition-delay:.14s;}
+.grid .card:nth-child(6){transition-delay:.07s;}
+.grid .card:nth-child(7){transition-delay:.14s;}
+@media(prefers-reduced-motion:reduce){
+  header, .eyebrow, .head, .sub, .scroll-cue, .mywork{animation:none;}
+  .grid .card{opacity:1;transform:none;transition:none;}
+}
 </style>
 </head>
 <body>
@@ -220,7 +251,7 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
           <a href="mailto:dhaval.design07@gmail.com">dhaval.design07@gmail.com</a>
           <a href="tel:+919561116517">+91 95611 16517</a>
         </div></div>
-        <span class="foot-sub">or pop a balloon 👇</span>
+        <span class="foot-sub">or help the balloon dodge cacti 👇</span>
       </div>
       <button class="back-to-top" id="back-to-top" aria-label="Back to top">
         BACK TO TOP
@@ -962,6 +993,20 @@ document.getElementById("back-to-top").addEventListener("click", () => {
       if (raf){ cancelAnimationFrame(raf); raf = null; }
     });
   });
+})();
+
+(function(){
+  const cards = document.querySelectorAll(".grid .card");
+  if (!cards.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting){
+        entry.target.classList.add("in-view");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach((card) => io.observe(card));
 })();
 </script>
 
