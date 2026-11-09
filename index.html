@@ -90,6 +90,10 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
   background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.35), rgba(255,255,255,0) 45%);
   transition:opacity .25s ease;}
 .thumb:hover .glass-blob{opacity:1;}
+/* same glass lens on the Earlier work rows, sized for the shorter rows */
+.ew-row{position:relative;overflow:hidden;contain:paint;}
+.ew-row .glass-blob{width:120px;height:120px;}
+.ew-row:hover .glass-blob{opacity:1;}
 
 /* Punch — big "SINGLE SCREEN TRADING" text behind the phone */
 .punch-text{position:absolute;left:6.7%;top:36%;z-index:0;font-family:'Manrope';font-weight:800;
@@ -119,6 +123,27 @@ header img{height:34px;width:auto;filter:brightness(0) saturate(100%);transition
 .foot-game{height:380px;margin-top:48px;overflow:hidden;}
 .foot-credit{font-family:'Manrope';font-size:13px;font-weight:400;color:var(--muted);
   padding:32px clamp(24px,5vw,64px) 0;box-sizing:border-box;}
+
+/* ---------- EARLIER WORK (list view) ---------- */
+.ew-sec{margin-top:clamp(80px,8vw,120px);}
+.ew-rule{height:1px;background:var(--line);}
+.ew-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap;margin-top:clamp(48px,5vw,72px);}
+.ew-sec .mywork{margin-top:0;}
+.ew-sub{font-family:'Manrope';font-weight:400;font-size:clamp(16px,1.4vw,18px);line-height:1.55;color:var(--muted);max-width:440px;}
+.ew-list{list-style:none;margin-top:clamp(32px,3.5vw,48px);border-top:1px solid var(--line);}
+.ew-row{display:grid;grid-template-columns:72px minmax(200px,300px) 1fr auto;align-items:center;gap:24px;
+  padding:clamp(22px,2.2vw,32px) 0;border-bottom:1px solid var(--line);color:var(--ink);}
+.ew-num{font-family:'Manrope';font-weight:500;font-size:15px;letter-spacing:.08em;color:var(--muted);font-variant-numeric:tabular-nums;}
+.ew-name{font-family:'Manrope';font-weight:700;font-size:clamp(20px,1.9vw,24px);line-height:1.25;}
+.ew-desc{font-family:'Manrope';font-weight:400;font-size:clamp(15px,1.3vw,18px);line-height:1.5;color:var(--muted);}
+.ew-view{display:inline-flex;align-items:center;gap:8px;font-family:'Manrope';font-weight:600;font-size:15px;white-space:nowrap;
+  border:1px solid var(--ink);border-radius:999px;padding:10px 20px;transition:background .15s ease,color .15s ease;}
+.ew-row:hover .ew-view,.ew-row:focus-visible .ew-view{background:var(--ink);color:var(--paper);}
+@media(max-width:760px){
+  .ew-row{grid-template-columns:36px 1fr auto;row-gap:6px;}
+  .ew-desc{grid-column:2 / 4;grid-row:2;}
+  .ew-view{padding:8px 14px;font-size:14px;}
+}
 
 /* ---------- responsive ---------- */
 @media(max-width:900px){
@@ -166,6 +191,13 @@ header{animation-delay:0s;}
   header, .eyebrow, .head, .sub, .scroll-cue, .mywork{animation:none;}
   .grid .card{opacity:1;transform:none;transition:none;}
 }
+
+/* no blue highlight after clicking a card (keyboard Tab still shows a focus ring) */
+a{-webkit-tap-highlight-color:transparent;}
+a:focus:not(:focus-visible){outline:none;}
+html.returning header,html.returning .eyebrow,html.returning .head,html.returning .sub,
+html.returning .scroll-cue,html.returning .mywork{animation:none !important;}
+html.no-trans .grid .card{transition:none !important;}
 </style>
 </head>
 <body>
@@ -260,6 +292,40 @@ header{animation-delay:0s;}
 
   </div>
 </div>
+
+<section class="wrap ew-sec" aria-labelledby="ew-heading">
+  <div class="ew-rule"></div>
+  <div class="ew-top">
+    <h2 class="mywork" id="ew-heading">Earlier work</h2>
+    <p class="ew-sub">Social media brand creatives.</p>
+  </div>
+  <ol class="ew-list">
+    <li><a class="ew-row" href="parle-nutricrunch.html">
+      <span class="ew-num">01</span>
+      <span class="ew-name">Parle Nutricrunch</span>
+      <span class="ew-desc">Social media creatives for Parle&rsquo;s range of healthy biscuits</span>
+      <span class="ew-view">View <span aria-hidden="true">&rarr;</span></span>
+    </a></li>
+    <li><a class="ew-row" href="metro-shoes.html">
+      <span class="ew-num">02</span>
+      <span class="ew-name">Metro Shoes</span>
+      <span class="ew-desc">Social media creatives for the footwear brand</span>
+      <span class="ew-view">View <span aria-hidden="true">&rarr;</span></span>
+    </a></li>
+    <li><a class="ew-row" href="ace-blend.html">
+      <span class="ew-num">03</span>
+      <span class="ew-name">Ace Blend</span>
+      <span class="ew-desc">Launch creatives for a vegan plant-protein powder</span>
+      <span class="ew-view">View <span aria-hidden="true">&rarr;</span></span>
+    </a></li>
+    <li><a class="ew-row" href="viacom18.html">
+      <span class="ew-num">04</span>
+      <span class="ew-name">Viacom18</span>
+      <span class="ew-desc">Viabuzz, the monthly in-house newsletter. Silver at PR Awards Asia 2017</span>
+      <span class="ew-view">View <span aria-hidden="true">&rarr;</span></span>
+    </a></li>
+  </ol>
+</section>
 
 <div class="foot">
   <div class="foot-contact">
@@ -979,7 +1045,7 @@ document.getElementById("back-to-top").addEventListener("click", () => {
 })();
 
 (function(){
-  document.querySelectorAll(".thumb").forEach((thumb) => {
+  document.querySelectorAll(".thumb, .ew-row").forEach((thumb) => {
     const blob = document.createElement("div");
     blob.className = "glass-blob";
     thumb.appendChild(blob);
@@ -1028,5 +1094,33 @@ document.getElementById("back-to-top").addEventListener("click", () => {
 })();
 </script>
 
+<script>
+// Coming back from a project page: reopen the home page at the exact scroll position you left it at.
+(function(){
+  const KEY = "homeScrollY", root = document.documentElement;
+  document.querySelectorAll("a.card, a.ew-row").forEach(a =>
+    a.addEventListener("click", () => { try { sessionStorage.setItem(KEY, String(window.scrollY)); } catch(e){} })
+  );
+  const nav = performance.getEntriesByType("navigation")[0];
+  const cameBack = location.hash === "#back" || (nav && nav.type === "back_forward");
+  let y = null;
+  try { y = sessionStorage.getItem(KEY); sessionStorage.removeItem(KEY); } catch(e){}
+  if (location.hash === "#back") history.replaceState(null, "", location.pathname + location.search);
+  if (!cameBack || y === null) return;
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  root.classList.add("returning", "no-trans");            // no load-in animations; on-screen cards appear instantly
+  const restore = () => window.scrollTo({ top: +y, left: 0, behavior: "instant" });
+  const showVisibleCards = () => document.querySelectorAll(".grid .card").forEach(c => {
+    const r = c.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < window.innerHeight) c.classList.add("in-view");
+  });
+  restore(); showVisibleCards();
+  const done = () => {
+    restore(); showVisibleCards();
+    setTimeout(() => root.classList.remove("no-trans"), 120);
+  };
+  if (document.readyState === "complete") done(); else window.addEventListener("load", done, { once: true });
+})();
+</script>
 </body>
 </html>
